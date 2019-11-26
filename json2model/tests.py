@@ -29,7 +29,6 @@ class TestDjangoDynamicModel(TransactionTestCase):
         self.assertEqual(instance.test4.dummy1, 1)
         self.assertEqual(instance.test4.dummy2, "test2")
 
-    @unittest.skip
     def test_many_to_many(self):
         from .services import DynamicModelMutantService
         data = {
@@ -47,6 +46,7 @@ class TestDjangoDynamicModel(TransactionTestCase):
             ]
         }
         instance = DynamicModelMutantService.create_from_data("root_obj", data)
+        print(instance)
 
         self.assertTrue(hasattr(instance, "test4"))
         self.assertTrue(hasattr(instance.test4, "dummy1"))

@@ -43,6 +43,8 @@ class DynamicModelMutantService:
         # ('datetime', mutant.contrib.temporal.models.DateTimeFieldDefinition),
     }
 
+    APP_LABEL = "json2model"
+
     @classmethod
     def create_from_data(cls, root_name, data):
         return cls._create_object_and_instance_iterative(root_name, data)
@@ -63,12 +65,12 @@ class DynamicModelMutantService:
 
     @classmethod
     def _create_or_get_model_def(cls, object_name):
-        model_def = ModelDefinition.objects.get_or_create(
-            app_label='testapp',
+        model_def, created = ModelDefinition.objects.get_or_create(
+            app_label=cls.APP_LABEL,
             object_name=object_name,
             defaults={'fields': []},  # [CharFieldDefinition(name='char_field', max_length=25)]}
         )
-        return model_def[0]
+        return model_def
 
     @classmethod
     def _create_fields(cls, model_def, data: dict):
