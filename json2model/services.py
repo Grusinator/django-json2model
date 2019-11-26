@@ -123,6 +123,8 @@ class DynamicModelMutantService:
     @classmethod
     def _get_specific_relation_field_def(cls, value):
         if isinstance(value, dict):
-            return mutant.contrib.related.models.OneToOneFieldDefinition
+            return mutant.contrib.related.models.ForeignKeyDefinition
         elif isinstance(value, list):
             return mutant.contrib.related.models.ForeignKeyDefinition
+
+
