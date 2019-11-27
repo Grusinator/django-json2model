@@ -8,6 +8,7 @@ import mutant.contrib.related.models
 import mutant.contrib.temporal.models
 import mutant.contrib.text.models
 from django.contrib.sessions.backends import file
+from django.utils import deprecation
 from mutant.models import ModelDefinition
 
 from json2model.services.dynamic_model.i_json_iterator import IJsonIterator
@@ -48,36 +49,54 @@ class DynamicModelMutant(IJsonIterator, ABC):
 
     APP_LABEL = "json2model"
 
-    def handle_attributes(self, parrent_object, data, label: str):
-        raise NotImplementedError
-
-    def handle_objects(self, parrent_object, data, label: str):
-        raise NotImplementedError
-
-    def handle_schema_edges(self, parrent_object, data, label: str):
-        raise NotImplementedError
-
     @classmethod
     def create_models_from_data(cls, root_name, data):
-        return cls._create_object_and_instance_iterative(root_name, data)
+        object_name = cls._iterate_data_structure(root_name, data)
+        return cls.get_dynamic_model(object_name)
 
     @classmethod
-    def create_instances_from_data(cls, root_name, data):
-        return cls._create_object_and_instance_iterative(root_name, data)
+    def get_dynamic_model(cls, model_name):
+        return cls._get_model_def(model_name).model_class()._default_manager.model
 
     @classmethod
-    def _create_object_and_instance_iterative(cls, object_name, data):
-        if isinstance(data, list):
-            return cls._handle_list_data(object_name, data)
-        properties, related_objects = cls._split_into_properties_and_related_objects(data)
-        model_def = cls._create_or_get_model_def(object_name)
-        cls._create_fields(model_def, properties)
-        related_instances = cls._create_related_objects_and_instances(model_def, related_objects)
-        return cls._create_object_instance(model_def, related_instances, properties)
+    def handle_attribute(cls, parent_name, label, data):
+        model_def = cls._get_model_def(parent_name)
+        SpecificFieldDefinition = cls._get_specific_field_def(data)
+        field_schema = SpecificFieldDefinition.objects.get_or_create(
+            name=label,
+            model_def=model_def
+        )
+        return field_schema
 
     @classmethod
-    def _handle_list_data(cls, object_name, data):
-        return [cls._create_object_and_instance_iterative(object_name, elm) for elm in data]
+    def handle_attribute_lists(cls, parent_name, label, value):
+        raise NotImplementedError
+
+    @classmethod
+    def handle_object(cls, parent_object, label, data):
+        model_def, created = ModelDefinition.objects.get_or_create(
+            app_label=cls.APP_LABEL,
+            object_name=label,
+            defaults={'fields': []},  # [CharFieldDefinition(name='char_field', max_length=25)]}
+        )
+        return model_def
+
+    @classmethod
+    def handle_related_object(cls, parent_label, label, data):
+        related_object = cls._iterate_data_structure(label, data)
+        cls.create_relation_to_parent(parent_label, label, data)
+        return related_object
+
+    @classmethod
+    def create_relation_to_parent(cls, parent_label, label, data):
+        model_def = cls._get_model_def(parent_label)
+        related_model_def = cls._get_model_def(label)
+        SpecificRelationFieldDef = cls._get_specific_relation_field_def(data)
+        SpecificRelationFieldDef.objects.create(model_def=model_def, name=label, to=related_model_def)
+
+    @classmethod
+    def _get_model_def(cls, object_name):
+        return ModelDefinition.objects.get(object_name=object_name)
 
     @classmethod
     def _create_or_get_model_def(cls, object_name):
@@ -89,19 +108,6 @@ class DynamicModelMutant(IJsonIterator, ABC):
         return model_def
 
     @classmethod
-    def _create_fields(cls, model_def, data: dict):
-        return [cls._create_field(model_def, name, value) for name, value in data.items()]
-
-    @classmethod
-    def _create_field(cls, model_def, field_name: str, value):
-        SpecificFieldDefinition = cls._get_specific_field_def(value)
-        field_schema = SpecificFieldDefinition.objects.get_or_create(
-            name=field_name,
-            model_def=model_def
-        )
-        return field_schema
-
-    @classmethod
     def _create_object_instance(cls, model_def, related_instances: dict, properties: dict):
         Model = model_def.model_class()
         if isinstance(related_instances, list):
@@ -109,34 +115,8 @@ class DynamicModelMutant(IJsonIterator, ABC):
         return Model.objects.create(**properties, **related_instances)
 
     @classmethod
-    def _create_related_objects_and_instances(cls, model_def, data):
-        return {name: cls._create_related_object_and_instance(model_def, name, value) for name, value in data.items()}
-
-    @classmethod
-    def _split_into_properties_and_related_objects(cls, data):
-        properties = {}
-        related_instances = {}
-        for name, value in data.items():
-            if isinstance(value, (dict, list)):
-                related_instances[name] = value
-            else:
-                properties[name] = value
-
-        return properties, related_instances
-
-    @classmethod
     def _get_specific_field_def(cls, value):
         return cls.FIELD_TYPES.get(type(value))
-
-    @classmethod
-    def _create_related_object_and_instance(cls, model_def, name, value):
-        related_instance = cls._create_object_and_instance_iterative(name, value)
-        related_model_def = ModelDefinition.objects.get(object_name=name)
-        SpecificRelationFieldDef = cls._get_specific_relation_field_def(value)
-        # TODO related object cannot be created if instances has been created. split into modelling and generating data
-        #  look at previous json iterator
-        SpecificRelationFieldDef.objects.create(model_def=model_def, name=name, to=related_model_def)
-        return related_instance
 
     @classmethod
     def _get_specific_relation_field_def(cls, value):
@@ -144,3 +124,5 @@ class DynamicModelMutant(IJsonIterator, ABC):
             return mutant.contrib.related.models.ForeignKeyDefinition
         elif isinstance(value, list):
             return mutant.contrib.related.models.ForeignKeyDefinition
+
+

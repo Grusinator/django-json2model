@@ -6,69 +6,64 @@ class IJsonIterator:
 
     att_types = (str, int, float, bool)
 
+    @classmethod
     @abstractmethod
-    def handle_attributes(self, parrent_object,
-                          data, label: str):
+    def handle_attribute(cls, parent_name: str, label: str, data):
         raise NotImplementedError
 
+    @classmethod
     @abstractmethod
-    def handle_objects(self, parrent_object, data, label: str):
+    def handle_attribute_lists(cls, parent_name: str, label: str, data):
         raise NotImplementedError
 
+    @classmethod
     @abstractmethod
-    def handle_schema_edges(self, parrent_object, data, label: str):
+    def handle_object(cls, parent_name: str, label: str, data):
         raise NotImplementedError
 
-    def isAnAttribute(self, value):
-        return isinstance(value, self.att_types) or (
-                isinstance(value, dict) and
-                self.dict_contains_only_attr_values(value)
-        )
+    @classmethod
+    @abstractmethod
+    def handle_related_object(cls, parent_name: str, label: str, data):
+        raise NotImplementedError
 
-    def iterate_json_tree(self, input_data, parrent_object=None):
-        if input_data is None:
-            return
+    @classmethod
+    def _iterate_data_structure(cls, object_name, data):
+        if isinstance(data, list):
+            return cls._handle_list_data(object_name, data)
+        cls.handle_object(None, object_name, data)
+        attributes, related_objects = cls._split_into_attributes_and_related_objects(data)
+        cls._handle_attributes(object_name, attributes)
+        cls._handle_related_objects(object_name, related_objects)
+        return object_name
 
-        if isinstance(input_data, list):
-            for elm in input_data:
-                self.iterate_json_tree(
-                    elm, parrent_object)
+    @classmethod
+    def _handle_list_data(cls, object_name, data):
+        if not any(map(lambda x: isinstance(x, dict), data)):
+            return cls.handle_attribute_lists(None, object_name, data)
+        elif all(map(lambda x: isinstance(x, dict), data)):
+            # TODO we need some more info here, what is the parent?
+            return cls._handle_related_objects(object_name, data)
+        else:
+            # i dont know what kind of obscure mixed types of lists can occur
+            raise NotImplementedError
 
-            return
-        # it must be some sort of value, this might only happen
-        # if the parrent structure is a list, because if it is a dict
-        # the value of the dict is tested for being an attribute
-        elif not isinstance(input_data, dict):
-            if parrent_object is not None:
-                self.handle_attributes(parrent_object, input_data, None)
-            return
+    @classmethod
+    def _handle_attributes(cls, parent_name, data: dict):
+        return [cls.handle_attribute(parent_name, label, data) for label, data in data.items()]
 
-        elif isinstance(input_data, dict):
-            for key, value in input_data.items():
-                if self.isAnAttribute(value):
-                    self.handle_attributes(parrent_object, value, key)
-                else:
-                    obj = self.handle_objects(parrent_object, value, key)
 
-                    obj_rel = self.handle_schema_edges(
-                        parrent_object, obj, None)
+    @classmethod
+    def _handle_related_objects(cls, parent_name, data):
+        return {label: cls.handle_related_object(parent_name, label, inner_data) for label, inner_data in data.items()}
 
-                    self.iterate_json_tree(
-                        value, parrent_object=obj or parrent_object)
+    @classmethod
+    def _split_into_attributes_and_related_objects(cls, data):
+        properties = {}
+        related_instances = {}
+        for name, value in data.items():
+            if isinstance(value, (dict, list)):
+                related_instances[name] = value
+            else:
+                properties[name] = value
 
-        self.depth -= 1
-        return
-
-    def dict_contains_only_attr_values(self, data):
-        # if its not a dict, then its not an
-        # attribute
-        if not isinstance(data, dict):
-            return False
-
-        data = data.copy()
-        if len(data) == 0:
-            return False
-        attr_names = ["value", "unit"]
-        attrs = [data.pop(name, None) for name in attr_names]
-
-        return len(data) == 0
+        return properties, related_instances

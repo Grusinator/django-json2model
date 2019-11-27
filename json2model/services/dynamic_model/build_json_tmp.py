@@ -42,8 +42,8 @@ class BuildObjectsFromJson(IJsonIterator):
             # obj.delete()
             del obj
 
-    def handle_attributes(self, parrent_object: Node,
-                          data, label: str):
+    def handle_attribute(self, parrent_object: Node,
+                         data, label: str):
         if parrent_object is None:
             return None
 
