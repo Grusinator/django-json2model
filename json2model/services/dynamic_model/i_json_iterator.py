@@ -27,34 +27,32 @@ class IJsonIterator:
         raise NotImplementedError
 
     @classmethod
-    def _iterate_data_structure(cls, object_name, data):
+    def _iterate_data_structure(cls, data, object_label=None, parent_label=None):
         if isinstance(data, list):
-            return cls._handle_list_data(object_name, data)
-        cls.handle_object(None, object_name, data)
+            return cls._handle_list_data(parent_label, object_label, data)
+        cls.handle_object(parent_label, object_label, data)
         attributes, related_objects = cls._split_into_attributes_and_related_objects(data)
-        cls._handle_attributes(object_name, attributes)
-        cls._handle_related_objects(object_name, related_objects)
-        return object_name
+        cls._handle_attributes(object_label, attributes)
+        cls._handle_related_objects(object_label, related_objects)
+        return object_label
 
     @classmethod
-    def _handle_list_data(cls, object_name, data):
-        if not any(map(lambda x: isinstance(x, dict), data)):
-            return cls.handle_attribute_lists(None, object_name, data)
-        elif all(map(lambda x: isinstance(x, dict), data)):
-            # TODO we need some more info here, what is the parent?
-            return cls._handle_related_objects(object_name, data)
+    def _handle_list_data(cls, parent_label, object_label, data):
+        if not any(cls.list_element_is_objects(data)):
+            return cls.handle_attribute_lists(parent_label, object_label, data)
+        elif all(cls.list_element_is_objects(data)):
+            [cls.handle_related_object(parent_label, object_label, inner_data) for inner_data in data]
+            return object_label
         else:
-            # i dont know what kind of obscure mixed types of lists can occur
-            raise NotImplementedError
+            raise NotImplementedError("i dont know what kind of obscure mixed types of lists can occur")
 
     @classmethod
     def _handle_attributes(cls, parent_name, data: dict):
         return [cls.handle_attribute(parent_name, label, data) for label, data in data.items()]
 
-
     @classmethod
-    def _handle_related_objects(cls, parent_name, data):
-        return {label: cls.handle_related_object(parent_name, label, inner_data) for label, inner_data in data.items()}
+    def _handle_related_objects(cls, parent_label, data):
+        return {label: cls.handle_related_object(parent_label, label, inner_data) for label, inner_data in data.items()}
 
     @classmethod
     def _split_into_attributes_and_related_objects(cls, data):
@@ -65,5 +63,8 @@ class IJsonIterator:
                 related_instances[name] = value
             else:
                 properties[name] = value
-
         return properties, related_instances
+
+    @classmethod
+    def list_element_is_objects(cls, data):
+        return list(map(lambda x: isinstance(x, dict), data))

@@ -50,8 +50,8 @@ class DynamicModelMutant(IJsonIterator, ABC):
     APP_LABEL = "json2model"
 
     @classmethod
-    def create_models_from_data(cls, root_name, data):
-        object_name = cls._iterate_data_structure(root_name, data)
+    def create_models_from_data(cls, root_label, data):
+        object_name = cls._iterate_data_structure(data, object_label=root_label)
         return cls.get_dynamic_model(object_name)
 
     @classmethod
@@ -82,17 +82,22 @@ class DynamicModelMutant(IJsonIterator, ABC):
         return model_def
 
     @classmethod
-    def handle_related_object(cls, parent_label, label, data):
-        related_object = cls._iterate_data_structure(label, data)
-        cls.create_relation_to_parent(parent_label, label, data)
+    def handle_related_object(cls, parent_label, object_label, data):
+        related_object = cls._iterate_data_structure(data, object_label=object_label, parent_label=parent_label)
+        cls.create_relation_to_parent(parent_label, object_label, data)
         return related_object
 
     @classmethod
     def create_relation_to_parent(cls, parent_label, label, data):
-        model_def = cls._get_model_def(parent_label)
+        parent_model_def = cls._get_model_def(parent_label)
         related_model_def = cls._get_model_def(label)
         SpecificRelationFieldDef = cls._get_specific_relation_field_def(data)
-        SpecificRelationFieldDef.objects.create(model_def=model_def, name=label, to=related_model_def)
+        # SpecificRelationFieldDef.objects.create(model_def=model_def, name=label, to=related_model_def)
+        SpecificRelationFieldDef.objects.get_or_create(
+            model_def=related_model_def,
+            name=parent_label,
+            to=parent_model_def
+        )
 
     @classmethod
     def _get_model_def(cls, object_name):
