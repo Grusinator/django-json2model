@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/json2model/services/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/build_json_tmp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/i_json_iterator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_json2model/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_json2model/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/tests.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,15 +16,36 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1U9n4qkV9VjQEKwR851FXPhMTy9" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MetaDataApi" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\willi\repo\django-json2model\json2model\services\dynamic_model" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -118,6 +143,9 @@
       <updated>1574777489077</updated>
       <workItem from="1574777491149" duration="1750000" />
       <workItem from="1574779281350" duration="374000" />
+      <workItem from="1574779854207" duration="517000" />
+      <workItem from="1574839357521" duration="1796000" />
+      <workItem from="1574841174510" duration="1501000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes, django version rolled back to working version.">
       <created>1574778767304</created>
@@ -133,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574778790021</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="now most is running as expected. start refactoring using json iterator">
+      <created>1574780116115</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1574780116115</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,24 +190,25 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="minor changes, django version rolled back to working version." />
     <MESSAGE value="add .idea" />
-    <option name="LAST_COMMIT_MESSAGE" value="add .idea" />
+    <MESSAGE value="now most is running as expected. start refactoring using json iterator" />
+    <option name="LAST_COMMIT_MESSAGE" value="now most is running as expected. start refactoring using json iterator" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/json2model/services.py</url>
-          <line>58</line>
+          <url>file://$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py</url>
+          <line>72</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/json2model/services.py</url>
-          <line>67</line>
+          <url>file://$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py</url>
+          <line>81</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/json2model/services.py</url>
-          <line>72</line>
+          <url>file://$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py</url>
+          <line>86</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -182,18 +218,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/json2model/tests.py</url>
-          <line>48</line>
+          <line>47</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/json2model/tests.py</url>
-          <line>34</line>
+          <line>33</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/json2model/tests.py</url>
           <line>26</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/json2model/tests.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

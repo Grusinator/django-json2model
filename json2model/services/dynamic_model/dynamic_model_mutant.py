@@ -1,4 +1,5 @@
 import datetime
+from abc import ABC
 
 import mutant.contrib.boolean.models
 import mutant.contrib.file.models
@@ -9,8 +10,10 @@ import mutant.contrib.text.models
 from django.contrib.sessions.backends import file
 from mutant.models import ModelDefinition
 
+from json2model.services.dynamic_model.i_json_iterator import IJsonIterator
 
-class DynamicModelMutantService:
+
+class DynamicModelMutant(IJsonIterator, ABC):
     FIELD_TYPES = {
         str: mutant.contrib.text.models.TextFieldDefinition,
         float: mutant.contrib.numeric.models.FloatFieldDefinition,
@@ -45,8 +48,21 @@ class DynamicModelMutantService:
 
     APP_LABEL = "json2model"
 
+    def handle_attributes(self, parrent_object, data, label: str):
+        raise NotImplementedError
+
+    def handle_objects(self, parrent_object, data, label: str):
+        raise NotImplementedError
+
+    def handle_schema_edges(self, parrent_object, data, label: str):
+        raise NotImplementedError
+
     @classmethod
-    def create_from_data(cls, root_name, data):
+    def create_models_from_data(cls, root_name, data):
+        return cls._create_object_and_instance_iterative(root_name, data)
+
+    @classmethod
+    def create_instances_from_data(cls, root_name, data):
         return cls._create_object_and_instance_iterative(root_name, data)
 
     @classmethod
@@ -128,5 +144,3 @@ class DynamicModelMutantService:
             return mutant.contrib.related.models.ForeignKeyDefinition
         elif isinstance(value, list):
             return mutant.contrib.related.models.ForeignKeyDefinition
-
-

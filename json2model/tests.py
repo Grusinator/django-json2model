@@ -21,7 +21,7 @@ class TestDjangoDynamicModel(TransactionTestCase):
             "dummy1": 1,
             "dummy2": "test2"
         }}
-        instance = DynamicModelMutantService.create_from_data("test_root2", data)
+        instance = DynamicModelMutantService.create_models_from_data("test_root2", data)
 
         self.assertTrue(hasattr(instance, "test4"))
         self.assertTrue(hasattr(instance.test4, "dummy1"))
@@ -45,7 +45,7 @@ class TestDjangoDynamicModel(TransactionTestCase):
                 },
             ]
         }
-        instance = DynamicModelMutantService.create_from_data("root_obj", data)
+        instance = DynamicModelMutantService.create_models_from_data("root_obj", data)
         print(instance)
 
         self.assertTrue(hasattr(instance, "test4"))
