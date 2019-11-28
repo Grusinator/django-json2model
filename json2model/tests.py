@@ -18,24 +18,26 @@ class TestDjangoDynamicModel(TransactionTestCase):
 
     def test_create_dynamic_simple(self):
         from .services.dynamic_model import create_objects_from_json
-        data = {"test4": {
-            "dummy1": 1,
-            "dummy2": "value1"
-        }}
-        Object = create_objects_from_json("test_root3", data)
+        data = {
+            "desc": "some",
+            "relate": {
+                "dummy1": 1,
+                "dummy2": "value1"
+            }
+        }
+        Object = create_objects_from_json("main", data)
 
-        inst = Object()
-        ObjTest4 = get_dynamic_model("test4")
-        inst2 = ObjTest4(dummy1=2, dummy2="value2")
-        inst2.save()
-        inst.test4 = inst2
+        inst = Object(desc="soemthing")
         inst.save()
+        Objrelate = get_dynamic_model("relate")
+        inst2 = Objrelate(main=inst, dummy1=2, dummy2="value2")
+        inst2.save()
 
-        self.assertTrue(hasattr(inst, "test4"))
-        self.assertTrue(hasattr(inst.test4, "dummy1"))
-        self.assertTrue(hasattr(inst.test4, "dummy2"))
-        self.assertEqual(inst.test4.dummy1, 2)
-        self.assertEqual(inst.test4.dummy2, "value2")
+        self.assertTrue(hasattr(inst, "relate"))
+        self.assertTrue(hasattr(inst.relate, "dummy1"))
+        self.assertTrue(hasattr(inst.relate, "dummy2"))
+        self.assertEqual(inst.relate.dummy1, 2)
+        self.assertEqual(inst.relate.dummy2, "value2")
 
     def test_create_dynamic_list_of_objects(self):
         from .services.dynamic_model import create_objects_from_json
@@ -61,9 +63,33 @@ class TestDjangoDynamicModel(TransactionTestCase):
         inst1.save()
         inst1 = RelObj(name="Anders Rikvold", value=3, root_obj=instance)
         inst1.save()
-        #
-        # self.assertTrue(hasattr(instance, "test4"))
-        # self.assertTrue(hasattr(instance.test4, "dummy1"))
-        # self.assertTrue(hasattr(instance.test4, "dummy2"))
-        # self.assertEqual(instance.test4.dummy1, 1)
-        # self.assertEqual(instance.test4.dummy2, "test2")
+
+    def test_create_random_json(self):
+        from .services.dynamic_model import create_objects_from_json
+        data = {
+            "glossary": {
+                "title": "example glossary",
+                "GlossDiv": {
+                    "title": "S",
+                    "GlossList": {
+                        "GlossEntry": {
+                            "ID": "SGML",
+                            "SortAs": "SGML",
+                            "GlossTerm": "Standard Generalized Markup Language",
+                            "Acronym": "SGML",
+                            "Abbrev": "ISO 8879:1986",
+                            "GlossDef": {
+                                "para": "A meta-markup language, used to create markup languages such as DocBook.",
+                                "GlossSeeAlso": "something else" #["GML", "XML"]
+                            },
+                            "GlossSee": "markup"
+                        }
+                    }
+                }
+            }
+        }
+        Object = create_objects_from_json("root_obj", data)
+        Obj1 = get_dynamic_model("GlossEntry")
+        Obj2 = get_dynamic_model("GlossList")
+        Obj3 = get_dynamic_model("glossary")
+

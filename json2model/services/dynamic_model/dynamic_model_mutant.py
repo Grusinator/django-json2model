@@ -8,14 +8,13 @@ import mutant.contrib.related.models
 import mutant.contrib.temporal.models
 import mutant.contrib.text.models
 from django.contrib.sessions.backends import file
-from django.utils import deprecation
 from mutant.models import ModelDefinition
 
 from json2model.services.dynamic_model.i_json_iterator import IJsonIterator
 
 
 class DynamicModelMutant(IJsonIterator, ABC):
-    FIELD_TYPES = {
+    ATTRIBUTE_TYPES = {
         str: mutant.contrib.text.models.TextFieldDefinition,
         float: mutant.contrib.numeric.models.FloatFieldDefinition,
         bool: mutant.contrib.boolean.models.BooleanFieldDefinition,
@@ -46,7 +45,10 @@ class DynamicModelMutant(IJsonIterator, ABC):
         # ('time', mutant.contrib.temporal.models.TimeFieldDefinition),
         # ('datetime', mutant.contrib.temporal.models.DateTimeFieldDefinition),
     }
-
+    RELATION_TYPES = {
+        False: mutant.contrib.related.models.OneToOneFieldDefinition,
+        True: mutant.contrib.related.models.ForeignKeyDefinition
+    }
     APP_LABEL = "json2model"
 
     @classmethod
@@ -60,6 +62,8 @@ class DynamicModelMutant(IJsonIterator, ABC):
 
     @classmethod
     def handle_attribute(cls, parent_name, label, data):
+        if isinstance(data, list):
+            raise NotImplementedError(f"could not handle the attribute list {data}")
         model_def = cls._get_model_def(parent_name)
         SpecificFieldDefinition = cls._get_specific_field_def(data)
         field_schema = SpecificFieldDefinition.objects.get_or_create(
@@ -68,9 +72,6 @@ class DynamicModelMutant(IJsonIterator, ABC):
         )
         return field_schema
 
-    @classmethod
-    def handle_attribute_lists(cls, parent_name, label, value):
-        raise NotImplementedError
 
     @classmethod
     def handle_object(cls, parent_object, label, data):
@@ -82,16 +83,15 @@ class DynamicModelMutant(IJsonIterator, ABC):
         return model_def
 
     @classmethod
-    def handle_related_object(cls, parent_label, object_label, data):
-        related_object = cls._iterate_data_structure(data, object_label=object_label, parent_label=parent_label)
-        cls.create_relation_to_parent(parent_label, object_label, data)
-        return related_object
+    def handle_related_object(cls, parent_label, object_label, data, parent_has_many=False):
+        cls.create_relation_to_parent(parent_label, object_label, parent_has_many)
+
 
     @classmethod
-    def create_relation_to_parent(cls, parent_label, label, data):
+    def create_relation_to_parent(cls, parent_label, label, parent_has_many: bool = False):
         parent_model_def = cls._get_model_def(parent_label)
         related_model_def = cls._get_model_def(label)
-        SpecificRelationFieldDef = cls._get_specific_relation_field_def(data)
+        SpecificRelationFieldDef = cls._get_specific_relation_field_def(parent_has_many)
         # SpecificRelationFieldDef.objects.create(model_def=model_def, name=label, to=related_model_def)
         SpecificRelationFieldDef.objects.get_or_create(
             model_def=related_model_def,
@@ -121,13 +121,8 @@ class DynamicModelMutant(IJsonIterator, ABC):
 
     @classmethod
     def _get_specific_field_def(cls, value):
-        return cls.FIELD_TYPES.get(type(value))
+        return cls.ATTRIBUTE_TYPES.get(type(value))
 
     @classmethod
-    def _get_specific_relation_field_def(cls, value):
-        if isinstance(value, dict):
-            return mutant.contrib.related.models.ForeignKeyDefinition
-        elif isinstance(value, list):
-            return mutant.contrib.related.models.ForeignKeyDefinition
-
-
+    def _get_specific_relation_field_def(cls, parent_has_many):
+        return cls.RELATION_TYPES[parent_has_many]
