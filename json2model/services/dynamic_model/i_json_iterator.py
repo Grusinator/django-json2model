@@ -1,8 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
 
-
-
 class IJsonIterator:
     __metaclass__ = ABCMeta
 
@@ -17,8 +15,14 @@ class IJsonIterator:
 
     @classmethod
     @abstractmethod
-    def handle_object(cls, parent_name: str, label: str, data):
+    def pre_handle_object(cls, parent_name: str, label: str, data):
         """do what ever you must with the current object that has been identified"""
+        raise NotImplementedError
+
+    @classmethod
+    @abstractmethod
+    def post_handle_object(cls, parent_label: str, label: str, data):
+        """do what ever you must with the current object, but after creation of the relation and attributes"""
         raise NotImplementedError
 
     @classmethod
@@ -30,11 +34,12 @@ class IJsonIterator:
 
     @classmethod
     def _iterate_data_structure(cls, data, object_label=None, parent_label=None):
-        cls.handle_object(parent_label, object_label, data)
+        cls.pre_handle_object(parent_label, object_label, data)
         attributes, one2one_related_objs, one2many_related_objs = cls._split_into_attributes_and_related_objects(data)
         cls._handle_attributes(object_label, attributes)
         cls._handle_one2one_related_objects(object_label, one2one_related_objs)
         cls._handle_one2many_related_objects(object_label, one2many_related_objs)
+        cls.post_handle_object(parent_label, object_label, data)
         return object_label
 
     @classmethod
@@ -70,7 +75,8 @@ class IJsonIterator:
                 one2one_related_objects[name] = value
             # if it is a list it will either be an attribute or a one2many relation, and we dont deal with that here.
             elif isinstance(value, list):
-                if not any(cls.list_element_is_objects(value)):# and all([type(val) in ATTRIBUTE_TYPES for val in value]):
+                if not any(cls.list_element_is_objects(
+                        value)):  # and all([type(val) in ATTRIBUTE_TYPES for val in value]):
                     properties[name] = value
                 elif all(cls.list_element_is_objects(value)):
                     one2many_related_objects[name] = value

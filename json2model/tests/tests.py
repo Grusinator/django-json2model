@@ -4,7 +4,7 @@
 import django
 from django.test import TransactionTestCase
 
-from json2model.services.dynamic_model import get_dynamic_model
+from json2model.services.dynamic_model import get_dynamic_model, create_objects_from_json
 
 
 class TestDjangoDynamicModel(TransactionTestCase):
@@ -17,7 +17,7 @@ class TestDjangoDynamicModel(TransactionTestCase):
         django.setup()
 
     def test_create_dynamic_simple(self):
-        from .services.dynamic_model import create_objects_from_json
+
         data = {
             "desc": "some",
             "relate": {
@@ -40,7 +40,6 @@ class TestDjangoDynamicModel(TransactionTestCase):
         self.assertEqual(inst.relate.dummy2, "value2")
 
     def test_create_dynamic_list_of_objects(self):
-        from .services.dynamic_model import create_objects_from_json
         data = {
             "prop2": 1,
             "prop1": "test2",
@@ -65,7 +64,6 @@ class TestDjangoDynamicModel(TransactionTestCase):
         inst1.save()
 
     def test_create_random_json(self):
-        from .services.dynamic_model import create_objects_from_json
         data = {
             "glossary": {
                 "title": "example glossary",
@@ -80,7 +78,7 @@ class TestDjangoDynamicModel(TransactionTestCase):
                             "Abbrev": "ISO 8879:1986",
                             "GlossDef": {
                                 "para": "A meta-markup language, used to create markup languages such as DocBook.",
-                                "GlossSeeAlso": "something else" #["GML", "XML"]
+                                "GlossSeeAlso": ["GML", "XML"]
                             },
                             "GlossSee": "markup"
                         }
@@ -88,7 +86,7 @@ class TestDjangoDynamicModel(TransactionTestCase):
                 }
             }
         }
-        Object = create_objects_from_json("root_obj", data)
+        Object = create_objects_from_json("root_obj2", data)
         Obj1 = get_dynamic_model("GlossEntry")
         Obj2 = get_dynamic_model("GlossList")
         Obj3 = get_dynamic_model("glossary")

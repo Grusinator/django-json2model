@@ -7,6 +7,7 @@ import mutant.contrib.numeric.models
 import mutant.contrib.related.models
 import mutant.contrib.temporal.models
 import mutant.contrib.text.models
+from django.contrib import admin
 from django.contrib.sessions.backends import file
 from mutant.models import ModelDefinition
 
@@ -54,6 +55,7 @@ class DynamicModelMutant(IJsonIterator, ABC):
     @classmethod
     def create_models_from_data(cls, root_label, data):
         object_name = cls._iterate_data_structure(data, object_label=root_label)
+        cls.register_all_models()
         return cls.get_dynamic_model(object_name)
 
     @classmethod
@@ -63,7 +65,8 @@ class DynamicModelMutant(IJsonIterator, ABC):
     @classmethod
     def handle_attribute(cls, parent_name, label, data):
         if isinstance(data, list):
-            raise NotImplementedError(f"could not handle the attribute list {data}")
+            data = str(data)
+            #raise NotImplementedError(f"could not handle the attribute list {data}")
         model_def = cls._get_model_def(parent_name)
         SpecificFieldDefinition = cls._get_specific_field_def(data)
         field_schema = SpecificFieldDefinition.objects.get_or_create(
@@ -74,13 +77,18 @@ class DynamicModelMutant(IJsonIterator, ABC):
 
 
     @classmethod
-    def handle_object(cls, parent_object, label, data):
+    def pre_handle_object(cls, parent_label, object_label, data):
         model_def, created = ModelDefinition.objects.get_or_create(
             app_label=cls.APP_LABEL,
-            object_name=label,
+            object_name=object_label,
             defaults={'fields': []},  # [CharFieldDefinition(name='char_field', max_length=25)]}
         )
         return model_def
+
+    @classmethod
+    def post_handle_object(cls, parent_label: str, object_label: str, data):
+        pass
+
 
     @classmethod
     def handle_related_object(cls, parent_label, object_label, data, parent_has_many=False):
@@ -92,7 +100,6 @@ class DynamicModelMutant(IJsonIterator, ABC):
         parent_model_def = cls._get_model_def(parent_label)
         related_model_def = cls._get_model_def(label)
         SpecificRelationFieldDef = cls._get_specific_relation_field_def(parent_has_many)
-        # SpecificRelationFieldDef.objects.create(model_def=model_def, name=label, to=related_model_def)
         SpecificRelationFieldDef.objects.get_or_create(
             model_def=related_model_def,
             name=parent_label,
@@ -102,15 +109,6 @@ class DynamicModelMutant(IJsonIterator, ABC):
     @classmethod
     def _get_model_def(cls, object_name):
         return ModelDefinition.objects.get(object_name=object_name)
-
-    @classmethod
-    def _create_or_get_model_def(cls, object_name):
-        model_def, created = ModelDefinition.objects.get_or_create(
-            app_label=cls.APP_LABEL,
-            object_name=object_name,
-            defaults={'fields': []},  # [CharFieldDefinition(name='char_field', max_length=25)]}
-        )
-        return model_def
 
     @classmethod
     def _create_object_instance(cls, model_def, related_instances: dict, properties: dict):
@@ -126,3 +124,12 @@ class DynamicModelMutant(IJsonIterator, ABC):
     @classmethod
     def _get_specific_relation_field_def(cls, parent_has_many):
         return cls.RELATION_TYPES[parent_has_many]
+
+    @classmethod
+    def register_all_models(cls):
+        model_defs = ModelDefinition.objects.all()
+        for model in model_defs:
+            try:
+                admin.site.register(model.model_class())
+            except admin.sites.AlreadyRegistered:
+                pass
