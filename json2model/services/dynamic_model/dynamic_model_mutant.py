@@ -1,5 +1,7 @@
 import datetime
+import logging
 from abc import ABC
+from importlib import import_module, reload
 
 import mutant.contrib.boolean.models
 import mutant.contrib.file.models
@@ -9,10 +11,14 @@ import mutant.contrib.temporal.models
 import mutant.contrib.text.models
 from django.contrib import admin
 from django.contrib.sessions.backends import file
+from django.core.exceptions import MultipleObjectsReturned
+from django.urls import clear_url_caches
 from mutant.models import ModelDefinition
 
+from django_json2model import settings
 from json2model.services.dynamic_model.i_json_iterator import IJsonIterator
 
+logger = logging.getLogger(__name__)
 
 class DynamicModelMutant(IJsonIterator, ABC):
     ATTRIBUTE_TYPES = {
@@ -50,7 +56,7 @@ class DynamicModelMutant(IJsonIterator, ABC):
         False: mutant.contrib.related.models.OneToOneFieldDefinition,
         True: mutant.contrib.related.models.ForeignKeyDefinition
     }
-    APP_LABEL = "json2model"
+    APP_LABEL = "dynamicmodels"
 
     @classmethod
     def create_models_from_data(cls, root_label, data):
@@ -65,8 +71,8 @@ class DynamicModelMutant(IJsonIterator, ABC):
     @classmethod
     def handle_attribute(cls, parent_name, label, data):
         if isinstance(data, list):
+            # TODO this should be done better
             data = str(data)
-            #raise NotImplementedError(f"could not handle the attribute list {data}")
         model_def = cls._get_model_def(parent_name)
         SpecificFieldDefinition = cls._get_specific_field_def(data)
         field_schema = SpecificFieldDefinition.objects.get_or_create(
@@ -108,7 +114,11 @@ class DynamicModelMutant(IJsonIterator, ABC):
 
     @classmethod
     def _get_model_def(cls, object_name):
-        return ModelDefinition.objects.get(object_name=object_name)
+        try:
+            return ModelDefinition.objects.get(object_name=object_name)
+        except MultipleObjectsReturned as e:
+            logger.warning(f"multiple objects found with object name {object_name}")
+            return ModelDefinition.objects.filter(object_name=object_name).first()
 
     @classmethod
     def _create_object_instance(cls, model_def, related_instances: dict, properties: dict):
@@ -127,9 +137,19 @@ class DynamicModelMutant(IJsonIterator, ABC):
 
     @classmethod
     def register_all_models(cls):
-        model_defs = ModelDefinition.objects.all()
-        for model in model_defs:
+        model_defs = ModelDefinition.objects.filter(app_label=cls.APP_LABEL)
+        for model_def in model_defs:
             try:
-                admin.site.register(model.model_class())
+                cls.register_model_in_admin(model_def)
             except admin.sites.AlreadyRegistered:
                 pass
+
+        reload(import_module(settings.ROOT_URLCONF))
+        clear_url_caches()
+
+    @classmethod
+    def register_model_in_admin(cls, model_def):
+        ObjectModel = model_def.model_class()
+        attrs = {'model': ObjectModel}
+        ObjectModelAdmin = type(f'{ObjectModel.__name__}Admin', (admin.ModelAdmin,), attrs)
+        admin.site.register(ObjectModel, ObjectModelAdmin)

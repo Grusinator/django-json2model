@@ -1,8 +1,16 @@
 # Create your views here.
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from json2model.forms import CreateRequestForm
 
 def create_models_from_json_view(request):
-    form = CreateRequestForm()
+    if request.method == "POST":
+        form = CreateRequestForm(request.POST)
+        if form.is_valid():
+            create_request = form.save(commit=False)
+            create_request.status = 0
+            create_request.save()
+            # return redirect('post_detail', pk=create_request.pk)
+    else:
+        form = CreateRequestForm()
     return render(request, 'create_models_from_json.html', {'form': form})

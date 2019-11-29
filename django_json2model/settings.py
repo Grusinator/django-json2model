@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'json2model.apps.Json2ModelConfig'
+    'json2model.apps.Json2ModelConfig',
+    'dynamicmodels.apps.DynamicmodelsConfig'
 ]
 
 INSTALLED_APPS += (
@@ -92,13 +93,13 @@ WSGI_APPLICATION = 'django_json2model.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_test',
+        'NAME': 'django_dynamic_models',
         'USER': 'django',
         'PASSWORD': 'dev1234',
         'HOST': 'localhost',
         'PORT': '5432',
         'TEST': {
-            'NAME': 'test_django_test',
+            'NAME': 'test_django_dynamic_models',
         },
     }
 }

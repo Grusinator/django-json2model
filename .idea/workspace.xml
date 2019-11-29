@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/json2model/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json2model/services/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json2model/templates/create_models_from_json.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_json2model/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_json2model/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_json2model/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_json2model/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/json2model/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/apps.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/json2model/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/i_json_iterator.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/i_json_iterator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/tests/tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/json2model/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,9 +43,11 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\willi\repo\django-json2model\json2model" />
       <recent name="C:\Users\willi\repo\django-json2model\json2model\services\tests" />
       <recent name="C:\Users\willi\repo\django-json2model\json2model\services\dynamic_model" />
     </key>
@@ -243,7 +240,11 @@
       <workItem from="1574958151924" duration="1616000" />
       <workItem from="1575009213001" duration="1613000" />
       <workItem from="1575011026102" duration="1790000" />
-      <workItem from="1575012856479" duration="549000" />
+      <workItem from="1575012856479" duration="1792000" />
+      <workItem from="1575037823152" duration="1788000" />
+      <workItem from="1575040207780" duration="1544000" />
+      <workItem from="1575042044694" duration="1790000" />
+      <workItem from="1575043877496" duration="871000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes, django version rolled back to working version.">
       <created>1574778767304</created>
@@ -294,7 +295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574959149899</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="great progress. create from view just for testing purpose">
+      <created>1575013644395</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1575013644395</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,28 +329,24 @@
     <MESSAGE value="create object of jsonIterator, some fixes needed" />
     <MESSAGE value="fixed some bugs, basic tests are passing." />
     <MESSAGE value="fixed some more bugs. now tests passes but could not handle list of strings. make more tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed some more bugs. now tests passes but could not handle list of strings. make more tests" />
+    <MESSAGE value="great progress. create from view just for testing purpose" />
+    <option name="LAST_COMMIT_MESSAGE" value="great progress. create from view just for testing purpose" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/json2model/services/tests/tests.py</url>
+          <url>file://$PROJECT_DIR$/json2model/tests/tests.py</url>
           <line>36</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/json2model/services/tests/tests.py</url>
+          <url>file://$PROJECT_DIR$/json2model/tests/tests.py</url>
           <line>35</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py</url>
-          <line>68</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/json2model/services/tests/tests.py</url>
+          <url>file://$PROJECT_DIR$/json2model/tests/tests.py</url>
           <line>90</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
