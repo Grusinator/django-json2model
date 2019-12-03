@@ -7,9 +7,8 @@ from django.test import TransactionTestCase
 from json2model.services.dynamic_model import (
     create_instances_from_json,
     create_objects_from_json,
-    delete_all_dynamic_models
+    get_dynamic_model
 )
-
 
 
 class TestDynamicModelMutant(TransactionTestCase):
@@ -23,7 +22,6 @@ class TestDynamicModelMutant(TransactionTestCase):
 
     # def tearDown(self) -> None:
     #     delete_all_dynamic_models()
-
 
     def test_create_dynamic_data_simple(self):
         data = {
@@ -61,26 +59,16 @@ class TestDynamicModelMutant(TransactionTestCase):
 
     def test_create_data_from_random_json(self):
         data = {
-            "glossary": {
-                "title": "example glossary",
-                "GlossDiv": {
-                    "title": "S",
-                    "GlossList": {
-                        "GlossEntry": {
-                            "ID": "SGML",
-                            "SortAs": "SGML",
-                            "GlossTerm": "Standard Generalized Markup Language",
-                            "Acronym": "SGML",
-                            "Abbrev": "ISO 8879:1986",
-                            "GlossDef": {
-                                "para": "A meta-markup language, used to create markup languages such as DocBook.",
-                                "GlossSeeAlso": ["GML", "XML"]
-                            },
-                            "GlossSee": "markup"
-                        }
-                    }
+            "obj2": {
+                "title": "title1",
+                "obj3": {
+                    "title": "title2"
                 }
             }
         }
-        create_objects_from_json("root_obj2", data)
-        instance = create_instances_from_json("root_obj2", data)
+        create_objects_from_json("obj1", data)
+        obj1 = create_instances_from_json("obj1", data)
+        obj2 = get_dynamic_model("obj2").objects.first()
+        obj3 = get_dynamic_model("obj3").objects.first()
+        self.assertEqual(obj3.title, "title2")
+        self.assertEqual(obj1.obj2.obj3.title, "title2")

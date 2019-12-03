@@ -85,7 +85,7 @@ class DynamicModelMutant(IJsonIterator, ABC):
 
     @classmethod
     def get_dynamic_model(cls, model_name):
-        return cls._get_model_def(model_name).model_class()._default_manager.model
+        return cls._get_model_def(model_name).model_class()
 
     @classmethod
     def delete_all_dynamic_models(cls, **filter_kwargs):

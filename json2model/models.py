@@ -2,7 +2,7 @@
 from django.db import models
 from jsonfield import JSONField
 
-# from json2model.services.dynamic_model import create_objects_from_json
+from json2model.services.dynamic_model import create_objects_from_json, create_instances_from_json
 
 
 class CreateRequest(models.Model):
@@ -12,4 +12,5 @@ class CreateRequest(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        # create_objects_from_json(self.root_name, self.json_data)
+        create_objects_from_json(self.root_name, self.json_data)
+        create_instances_from_json(self.root_name, self.json_data)

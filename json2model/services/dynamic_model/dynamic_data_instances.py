@@ -22,9 +22,9 @@ class DynamicDataInstances(IJsonIterator, ABC):
 
     @classmethod
     @abstractmethod
-    def handle_attribute(cls, object_ref: Model, label: str, data):
+    def handle_attribute(cls, object_ref: Model, attribute_label: str, data):
         try:
-            setattr(object_ref, label, data)
+            setattr(object_ref, attribute_label, data)
         except Exception as e:
             logger.warning(f"attribute label did not exist: {e}")
 
@@ -32,7 +32,8 @@ class DynamicDataInstances(IJsonIterator, ABC):
     @abstractmethod
     def pre_handle_object(cls, parent_ref: Model, object_label: str, data):
         DjangoModel = get_dynamic_model(model_name=object_label)
-        return DjangoModel()
+        instance = DjangoModel()
+        return instance
 
     @classmethod
     @abstractmethod
@@ -44,9 +45,11 @@ class DynamicDataInstances(IJsonIterator, ABC):
     @abstractmethod
     def handle_related_object(cls, parent_ref: Model, related_object_ref: Model, object_label,
                               parent_has_many: bool = False):
-        parent_name = parent_ref.__class__.__name__
+        parent_label = parent_ref.__class__.__name__
         try:
-            setattr(related_object_ref, parent_name, parent_ref)
+            # TODO something strange is going on since i cant set the instance. but the primary key seems
+            #  to work, but not very nice
+            setattr(related_object_ref, f"{parent_label}_id", parent_ref)
             related_object_ref.save()
         except Exception as e:
-            logger.warning(f"could not set related object: {e}")
+            logger.warning(f"could not set relation between objects {parent_label} and {object_label}. {e}")
