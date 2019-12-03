@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/build_json_tmp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_data_instances.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_data_instances.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_json2model/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_json2model/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/tests/test_dynamic_data_instance.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/tests/test_dynamic_data_instance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -291,7 +290,8 @@
       <workItem from="1575368974457" duration="111000" />
       <workItem from="1575369157572" duration="645000" />
       <workItem from="1575376282958" duration="1791000" />
-      <workItem from="1575378112799" duration="1265000" />
+      <workItem from="1575378112799" duration="1790000" />
+      <workItem from="1575379945656" duration="1583000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes, django version rolled back to working version.">
       <created>1574778767304</created>
@@ -370,7 +370,21 @@
       <option name="project" value="LOCAL" />
       <updated>1575369068152</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="creating relations have been fairly well fixed">
+      <created>1575379609565</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1575379609565</updated>
+    </task>
+    <task id="LOCAL-00013" summary="creating relations have been fairly well fixed">
+      <created>1575379630288</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1575379630288</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -401,7 +415,8 @@
     <MESSAGE value="models are now being added to admin after creation." />
     <MESSAGE value="adjusted the jsonIterator a bit so that instances can be passed along though the iterator" />
     <MESSAGE value="creating instances works except for this random data" />
-    <option name="LAST_COMMIT_MESSAGE" value="creating instances works except for this random data" />
+    <MESSAGE value="creating relations have been fairly well fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="creating relations have been fairly well fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -423,7 +438,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/json2model/tests/test_dynamic_data_instance.py</url>
-          <line>39</line>
+          <line>36</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -433,28 +448,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/json2model/tests/test_dynamic_data_instance.py</url>
-          <line>76</line>
+          <line>73</line>
           <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/json2model/tests/test_dynamic_data_instance.py</url>
-          <line>72</line>
+          <line>69</line>
           <option name="timeStamp" value="68" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/json2model/services/dynamic_model/i_json_iterator.py</url>
-          <line>42</line>
-          <option name="timeStamp" value="69" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/json2model/services/dynamic_model/i_json_iterator.py</url>
-          <line>64</line>
-          <option name="timeStamp" value="71" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_data_instances.py</url>
-          <line>52</line>
-          <option name="timeStamp" value="73" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_data_instances.py</url>

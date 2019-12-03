@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'admin_reorder',
     'json2model.apps.Json2ModelConfig',
     'dynamicmodels.apps.DynamicmodelsConfig'
 ]
@@ -139,3 +140,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# TODO fix this at some point ;)
+ADMIN_REORDER = (
+    {'app': 'dynamicmodels', 'label': 'dynamic models'},
+    {'app': 'mutant', 'label': 'dynamicMeta'},
+    {'app': 'numeric', 'label': 'numeric'},
+)

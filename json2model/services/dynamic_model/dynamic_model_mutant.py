@@ -39,6 +39,10 @@ def delete_all_dynamic_models(**filter_kwargs):
     DynamicModelMutant.delete_all_dynamic_models(**filter_kwargs)
 
 
+def register_all_dynamic_models_in_admin():
+    DynamicModelMutant.register_all_models()
+
+
 class DynamicModelMutant(IJsonIterator, ABC):
     ATTRIBUTE_TYPES = {
         str: mutant.contrib.text.models.TextFieldDefinition,
@@ -104,7 +108,6 @@ class DynamicModelMutant(IJsonIterator, ABC):
         cls.delete_relation_defs(model_def)
         model_def.delete()
         return model_def
-
 
     @classmethod
     def handle_attribute(cls, object_ref, attribute_label, data):
@@ -211,4 +214,3 @@ class DynamicModelMutant(IJsonIterator, ABC):
     def reload_and_clear_cache_admin(cls):
         reload(import_module(settings.ROOT_URLCONF))
         clear_url_caches()
-
