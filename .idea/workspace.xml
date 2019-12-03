@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_json2model/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_json2model/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-    </list>
+    <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +284,7 @@
       <workItem from="1575369157572" duration="645000" />
       <workItem from="1575376282958" duration="1791000" />
       <workItem from="1575378112799" duration="1790000" />
-      <workItem from="1575379945656" duration="1583000" />
+      <workItem from="1575379945656" duration="1785000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes, django version rolled back to working version.">
       <created>1574778767304</created>
@@ -384,7 +377,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575379630288</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="minor admin reorder m.m.">
+      <created>1575381593519</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1575381593519</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -416,7 +416,8 @@
     <MESSAGE value="adjusted the jsonIterator a bit so that instances can be passed along though the iterator" />
     <MESSAGE value="creating instances works except for this random data" />
     <MESSAGE value="creating relations have been fairly well fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="creating relations have been fairly well fixed" />
+    <MESSAGE value="minor admin reorder m.m." />
+    <option name="LAST_COMMIT_MESSAGE" value="minor admin reorder m.m." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
