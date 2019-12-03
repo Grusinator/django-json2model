@@ -71,4 +71,4 @@ class TestDynamicModelMutant(TransactionTestCase):
         obj2 = get_dynamic_model("obj2").objects.first()
         obj3 = get_dynamic_model("obj3").objects.first()
         self.assertEqual(obj3.title, "title2")
-        self.assertEqual(obj1.obj2.obj3.title, "title2")
+        self.assertEqual(obj2.title, "title1")
