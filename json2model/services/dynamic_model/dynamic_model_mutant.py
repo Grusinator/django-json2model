@@ -20,6 +20,7 @@ from json2model.services.dynamic_model.i_json_iterator import IJsonIterator
 
 logger = logging.getLogger(__name__)
 
+
 class DynamicModelMutant(IJsonIterator, ABC):
     ATTRIBUTE_TYPES = {
         str: mutant.contrib.text.models.TextFieldDefinition,
@@ -69,46 +70,43 @@ class DynamicModelMutant(IJsonIterator, ABC):
         return cls._get_model_def(model_name).model_class()._default_manager.model
 
     @classmethod
-    def handle_attribute(cls, parent_name, label, data):
+    def handle_attribute(cls, object_ref, attribute_label, data):
         if isinstance(data, list):
             # TODO this should be done better
             data = str(data)
-        model_def = cls._get_model_def(parent_name)
+        model_def = cls._get_model_def(object_ref)
         SpecificFieldDefinition = cls._get_specific_field_def(data)
         field_schema = SpecificFieldDefinition.objects.get_or_create(
-            name=label,
+            name=attribute_label,
             model_def=model_def
         )
         return field_schema
 
-
     @classmethod
-    def pre_handle_object(cls, parent_label, object_label, data):
+    def pre_handle_object(cls, parent_ref, object_label, data):
         model_def, created = ModelDefinition.objects.get_or_create(
             app_label=cls.APP_LABEL,
             object_name=object_label,
-            defaults={'fields': []},  # [CharFieldDefinition(name='char_field', max_length=25)]}
+            defaults={'fields': []},
         )
-        return model_def
+        return object_label
 
     @classmethod
-    def post_handle_object(cls, parent_label: str, object_label: str, data):
-        pass
-
-
-    @classmethod
-    def handle_related_object(cls, parent_label, object_label, data, parent_has_many=False):
-        cls.create_relation_to_parent(parent_label, object_label, parent_has_many)
-
+    def post_handle_object(cls, parent_ref: str, object_label: str, data):
+        return object_label
 
     @classmethod
-    def create_relation_to_parent(cls, parent_label, label, parent_has_many: bool = False):
-        parent_model_def = cls._get_model_def(parent_label)
+    def handle_related_object(cls, parent_ref, object_label, data, parent_has_many=False):
+        cls.create_relation_to_parent(parent_ref, object_label, parent_has_many)
+
+    @classmethod
+    def create_relation_to_parent(cls, parent_ref, label, parent_has_many: bool = False):
+        parent_model_def = cls._get_model_def(parent_ref)
         related_model_def = cls._get_model_def(label)
         SpecificRelationFieldDef = cls._get_specific_relation_field_def(parent_has_many)
         SpecificRelationFieldDef.objects.get_or_create(
             model_def=related_model_def,
-            name=parent_label,
+            name=parent_ref,
             to=parent_model_def
         )
 
@@ -119,13 +117,6 @@ class DynamicModelMutant(IJsonIterator, ABC):
         except MultipleObjectsReturned as e:
             logger.warning(f"multiple objects found with object name {object_name}")
             return ModelDefinition.objects.filter(object_name=object_name).first()
-
-    @classmethod
-    def _create_object_instance(cls, model_def, related_instances: dict, properties: dict):
-        Model = model_def.model_class()
-        if isinstance(related_instances, list):
-            pass
-        return Model.objects.create(**properties, **related_instances)
 
     @classmethod
     def _get_specific_field_def(cls, value):
