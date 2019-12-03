@@ -29,7 +29,7 @@ class IJsonIterator:
 
     @classmethod
     @abstractmethod
-    def handle_related_object(cls, parent_ref: str, label: str, data, parent_has_many: bool = False):
+    def handle_related_object(cls, parent_ref: str, related_object_ref: str, object_label, parent_has_many: bool = False):
         """This method is called after exiting the iteration of the related object, so the relation can be handled
         after both objects has been handled"""
         raise NotImplementedError
@@ -39,9 +39,9 @@ class IJsonIterator:
         object_ref = cls.pre_handle_object(parent_ref, object_label, data)
         attributes, one2one_related_objs, one2many_related_objs = cls._split_into_attributes_and_related_objects(data)
         cls._handle_attributes(object_ref, attributes)
+        object_ref = cls.post_handle_object(parent_ref, object_ref, data)
         cls._handle_one2one_related_objects(object_ref, one2one_related_objs)
         cls._handle_one2many_related_objects(object_ref, one2many_related_objs)
-        object_ref = cls.post_handle_object(parent_ref, object_ref, data)
         return object_ref
 
     @classmethod
@@ -60,10 +60,10 @@ class IJsonIterator:
                 cls._inner_handle_related_object(parent_ref, related_label, object_data, parent_has_many=True)
 
     @classmethod
-    def _inner_handle_related_object(cls, parent_ref, object_label : str, data, parent_has_many: bool = False):
-        related_object = cls._iterate_data_structure(data, object_label=object_label, parent_ref=parent_ref)
-        cls.handle_related_object(parent_ref, object_label, data, parent_has_many=parent_has_many)
-        return related_object
+    def _inner_handle_related_object(cls, parent_ref, object_label: str, data, parent_has_many: bool = False):
+        related_object_ref = cls._iterate_data_structure(data, object_label=object_label, parent_ref=parent_ref)
+        cls.handle_related_object(parent_ref, related_object_ref, object_label, parent_has_many=parent_has_many)
+        return related_object_ref
 
     @classmethod
     def _split_into_attributes_and_related_objects(cls, data):

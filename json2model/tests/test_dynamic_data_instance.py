@@ -4,46 +4,48 @@
 import django
 from django.test import TransactionTestCase
 
-from json2model.services.dynamic_model import get_dynamic_model, create_objects_from_json
+from json2model.services.dynamic_model import (
+    create_instances_from_json,
+    create_objects_from_json,
+    delete_all_dynamic_models
+)
 
 
-class TestDjangoDynamicModel(TransactionTestCase):
+
+class TestDynamicModelMutant(TransactionTestCase):
     """Tests for the application views."""
 
     # Django requires an explicit setup() when running tests in PTVS
     @classmethod
     def setUpClass(cls):
-        super(TestDjangoDynamicModel, cls).setUpClass()
+        super(TestDynamicModelMutant, cls).setUpClass()
         django.setup()
 
-    def test_create_dynamic_simple(self):
+    # def tearDown(self) -> None:
+    #     delete_all_dynamic_models()
 
+
+    def test_create_dynamic_data_simple(self):
         data = {
             "desc": "some",
-            "relate": {
+            "relate1": {
                 "dummy1": 1,
                 "dummy2": "value1"
             }
         }
-        Object = create_objects_from_json("main", data)
+        create_objects_from_json("root_obj0", data)
+        inst = create_instances_from_json("root_obj0", data)
 
-        inst = Object(desc="soemthing")
-        inst.save()
-        Objrelate = get_dynamic_model("relate")
-        inst2 = Objrelate(main=inst, dummy1=2, dummy2="value2")
-        inst2.save()
+        self.assertTrue(hasattr(inst, "relate1"))
+        self.assertTrue(hasattr(inst.relate1, "dummy1"))
+        self.assertEqual(inst.relate1.dummy1, 1)
+        self.assertEqual(inst.relate1.dummy2, "value1")
 
-        self.assertTrue(hasattr(inst, "relate"))
-        self.assertTrue(hasattr(inst.relate, "dummy1"))
-        self.assertTrue(hasattr(inst.relate, "dummy2"))
-        self.assertEqual(inst.relate.dummy1, 2)
-        self.assertEqual(inst.relate.dummy2, "value2")
-
-    def test_create_dynamic_list_of_objects(self):
+    def test_create_data_dynamic_list_of_objects(self):
         data = {
             "prop2": 1,
             "prop1": "test2",
-            "related_obj": [
+            "related_obj1": [
                 {
                     "name": "name1",
                     "value": 2
@@ -54,16 +56,10 @@ class TestDjangoDynamicModel(TransactionTestCase):
                 },
             ]
         }
-        Object = create_objects_from_json("root_obj", data)
-        instance = Object(prop2=3)
-        instance.save()
-        RelObj = get_dynamic_model("related_obj")
-        inst1 = RelObj(name="Peter Meyer", value=3, root_obj=instance)
-        inst1.save()
-        inst1 = RelObj(name="Anders Rikvold", value=3, root_obj=instance)
-        inst1.save()
+        create_objects_from_json("root_obj1", data)
+        instance = create_instances_from_json("root_obj1", data)
 
-    def test_create_random_json(self):
+    def test_create_data_from_random_json(self):
         data = {
             "glossary": {
                 "title": "example glossary",
@@ -86,8 +82,5 @@ class TestDjangoDynamicModel(TransactionTestCase):
                 }
             }
         }
-        Object = create_objects_from_json("root_obj2", data)
-        Obj1 = get_dynamic_model("GlossEntry")
-        Obj2 = get_dynamic_model("GlossList")
-        Obj3 = get_dynamic_model("glossary")
-
+        create_objects_from_json("root_obj2", data)
+        instance = create_instances_from_json("root_obj2", data)
