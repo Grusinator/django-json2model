@@ -1,4 +1,4 @@
-Django<2.1.0,>=2.0.0
+Django<2.1.0,>=2.0.0 #issues with model creation when going higher
 psycopg2
 django-mutant>=0.3a5
 django-polymodels>=1.5.1

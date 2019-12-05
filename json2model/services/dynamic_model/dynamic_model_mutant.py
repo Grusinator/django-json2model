@@ -130,7 +130,7 @@ class DynamicModelMutant(IJsonIterator, ABC):
         model_def, created = ModelDefinition.objects.get_or_create(
             app_label=cls.APP_LABEL,
             object_name=object_label,
-            defaults={'fields': []},
+            defaults={'fields': []} # this does not work in django >=2.2.8
         )
         return object_label
 
