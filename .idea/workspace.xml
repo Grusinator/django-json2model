@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="refactored views.py and models.py out to an example app">
+    <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_admin_handler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_json2model/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_json2model/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +24,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Python Script" />
         <option value="PowerShell File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -315,7 +319,7 @@
       <workItem from="1575647808953" duration="1404000" />
       <workItem from="1575649660070" duration="598000" />
       <workItem from="1575723040400" duration="241000" />
-      <workItem from="1575723461212" duration="3532000" />
+      <workItem from="1575723461212" duration="5699000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes, django version rolled back to working version.">
       <created>1574778767304</created>
@@ -450,7 +454,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575732460811</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="refactored views.py and models.py out to an example app">
+      <created>1575733581879</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1575733581879</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,10 +504,10 @@
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1215" y="99" key="CommitChangelistDialog2" timestamp="1575732494157">
+    <state x="-1215" y="99" key="CommitChangelistDialog2" timestamp="1575735783374">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
-    <state x="-1215" y="99" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575732494157" />
+    <state x="-1215" y="99" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575735783374" />
     <state x="-1070" y="273" key="FileChooserDialogImpl" timestamp="1575724891885">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
@@ -517,10 +528,10 @@
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
     <state width="1637" height="210" key="GridCell.Tab.0.right/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575732649384" />
-    <state x="-1248" y="237" key="Vcs.Push.Dialog.v2" timestamp="1575732496538">
+    <state x="-1248" y="237" key="Vcs.Push.Dialog.v2" timestamp="1575733585770">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
-    <state x="-1248" y="237" key="Vcs.Push.Dialog.v2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575732496538" />
+    <state x="-1248" y="237" key="Vcs.Push.Dialog.v2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575733585770" />
     <state x="536" y="328" key="com.intellij.ide.util.TipDialog" timestamp="1575723467229">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>

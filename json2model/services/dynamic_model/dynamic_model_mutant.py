@@ -1,7 +1,6 @@
 import datetime
 import logging
 from abc import ABC
-from importlib import import_module, reload
 
 import mutant.contrib.boolean.models
 import mutant.contrib.file.models
@@ -9,13 +8,11 @@ import mutant.contrib.numeric.models
 import mutant.contrib.related.models
 import mutant.contrib.temporal.models
 import mutant.contrib.text.models
-from django.contrib import admin
-from django.contrib.admin.sites import NotRegistered
 from django.contrib.sessions.backends import file
 from django.core.exceptions import MultipleObjectsReturned
-from django.urls import clear_url_caches
 from mutant.models import ModelDefinition
 
+import json2model.services.dynamic_model.dynamic_model_admin_handler as admin_handler
 from django_json2model import settings
 from json2model.services.dynamic_model.i_json_iterator import IJsonIterator
 from json2model.utils import except_errors
@@ -37,10 +34,6 @@ def delete_dynamic_model(model_name: str):
 
 def delete_all_dynamic_models(**filter_kwargs):
     DynamicModelMutant.delete_all_dynamic_models(**filter_kwargs)
-
-
-def register_all_dynamic_models_in_admin():
-    DynamicModelMutant.register_all_models()
 
 
 class DynamicModelMutant(IJsonIterator, ABC):
@@ -79,12 +72,11 @@ class DynamicModelMutant(IJsonIterator, ABC):
         False: mutant.contrib.related.models.OneToOneFieldDefinition,
         True: mutant.contrib.related.models.ForeignKeyDefinition
     }
-    APP_LABEL = "dynamicmodels"
+    APP_LABEL = settings.APP_LABEL_DYNAMIC_MODELS
 
     @classmethod
     def create_models_from_data(cls, root_label, data):
         object_name = cls._iterate_data_structure(data, object_label=root_label)
-        cls.register_all_models()
         return cls.get_dynamic_model(object_name)
 
     @classmethod
@@ -103,7 +95,7 @@ class DynamicModelMutant(IJsonIterator, ABC):
 
     @classmethod
     def _delete_dynamic_model(cls, model_def):
-        cls.try_unregister_model_in_admin(model_def)
+        admin_handler.try_unregister_model_in_admin(model_def)
         cls.delete_attribute_defs(model_def)
         cls.delete_relation_defs(model_def)
         model_def.delete()
@@ -130,7 +122,7 @@ class DynamicModelMutant(IJsonIterator, ABC):
         model_def, created = ModelDefinition.objects.get_or_create(
             app_label=cls.APP_LABEL,
             object_name=object_label,
-            defaults={'fields': []} # this does not work in django >=2.2.8
+            defaults={'fields': []}  # this does not work in django >=2.2.8
         )
         return object_label
 
@@ -182,35 +174,3 @@ class DynamicModelMutant(IJsonIterator, ABC):
         for relation_def in cls.RELATION_TYPES.values():
             relation_def.objects.filter(model_def=model_def).delete()
             relation_def.objects.filter(to=model_def).delete()
-
-    @classmethod
-    def register_all_models(cls):
-        model_defs = ModelDefinition.objects.filter(app_label=cls.APP_LABEL)
-        for model_def in model_defs:
-            try:
-                cls.register_model_in_admin(model_def)
-            except admin.sites.AlreadyRegistered:
-                pass
-        cls.reload_and_clear_cache_admin()
-
-    @classmethod
-    def register_model_in_admin(cls, model_def):
-        ObjectModel = model_def.model_class()
-        attrs = {'model': ObjectModel}
-        ObjectModelAdmin = type(f'{ObjectModel.__name__}Admin', (admin.ModelAdmin,), attrs)
-        admin.site.register(ObjectModel, ObjectModelAdmin)
-
-    @classmethod
-    def try_unregister_model_in_admin(cls, model_def):
-        ObjectModel = model_def.model_class()
-        try:
-            admin.site.unregister(ObjectModel)
-            cls.reload_and_clear_cache_admin()
-        except NotRegistered:
-            logger.warning(f"model_def: {model_def.name}, was not registered in admin.site, "
-                           f"and could therefore not unregister")
-
-    @classmethod
-    def reload_and_clear_cache_admin(cls):
-        reload(import_module(settings.ROOT_URLCONF))
-        clear_url_caches()
