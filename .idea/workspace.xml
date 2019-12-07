@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/activate_env.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/django-json2model.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/django-json2model.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_json2model/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_json2model/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/forms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/templates/create_models_from_json.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +42,13 @@
     </option>
   </component>
   <component name="ProjectId" id="1U9n4qkV9VjQEKwR851FXPhMTy9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -70,19 +78,7 @@
       <recent name="C:\Users\willi\repo\django-json2model\json2model\services\dynamic_model" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Django tests.Test">
+  <component name="RunManager" selected="Django server.django-json2model">
     <configuration name="Test" type="DjangoTestsConfigurationType">
       <module name="django-json2model" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -246,6 +242,18 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -301,7 +309,11 @@
       <workItem from="1575381860025" duration="1090000" />
       <workItem from="1575383681948" duration="1612000" />
       <workItem from="1575533629270" duration="1085000" />
-      <workItem from="1575542810171" duration="243000" />
+      <workItem from="1575542810171" duration="998000" />
+      <workItem from="1575647808953" duration="1404000" />
+      <workItem from="1575649660070" duration="598000" />
+      <workItem from="1575723040400" duration="241000" />
+      <workItem from="1575723461212" duration="2207000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes, django version rolled back to working version.">
       <created>1574778767304</created>
@@ -415,7 +427,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575383494701</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="minor admin reorder m.m.">
+      <created>1575543194986</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1575543194986</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -449,6 +468,32 @@
     <MESSAGE value="creating relations have been fairly well fixed" />
     <MESSAGE value="minor admin reorder m.m." />
     <option name="LAST_COMMIT_MESSAGE" value="minor admin reorder m.m." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-1070" y="273" key="FileChooserDialogImpl" timestamp="1575724891885">
+      <screen x="-1680" y="0" width="1680" height="1010" />
+    </state>
+    <state x="-1070" y="273" key="FileChooserDialogImpl/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575724891885" />
+    <state width="1637" height="210" key="GridCell.Tab.0.bottom" timestamp="1575732332577">
+      <screen x="-1680" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="210" key="GridCell.Tab.0.bottom/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575732332577" />
+    <state width="1637" height="210" key="GridCell.Tab.0.center" timestamp="1575732332577">
+      <screen x="-1680" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="210" key="GridCell.Tab.0.center/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575732332577" />
+    <state width="1637" height="210" key="GridCell.Tab.0.left" timestamp="1575732332577">
+      <screen x="-1680" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="210" key="GridCell.Tab.0.left/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575732332577" />
+    <state width="1637" height="210" key="GridCell.Tab.0.right" timestamp="1575732332577">
+      <screen x="-1680" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="210" key="GridCell.Tab.0.right/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575732332577" />
+    <state x="536" y="328" key="com.intellij.ide.util.TipDialog" timestamp="1575723467229">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="536" y="328" key="com.intellij.ide.util.TipDialog/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1575723467229" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -512,21 +557,21 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel_test_create_random_json.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel.test_create_random_json Coverage Results" MODIFIED="1574959043552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_model_mutant_TestDynamicModelMutant_test_create_dynamic_simple.coverage" NAME="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_dynamic_simple Coverage Results" MODIFIED="1575366105076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel_test_create_dynamic_simple.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel.test_create_dynamic_simple Coverage Results" MODIFIED="1574872938864" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_model_mutant_TestDynamicModelMutant.coverage" NAME="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant Coverage Results" MODIFIED="1575366142141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_services_tests_tests_TestDjangoDynamicModel.coverage" NAME="Test: json2model.services.tests.tests.TestDjangoDynamicModel Coverage Results" MODIFIED="1575010085367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel_test_simple.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel.test_simple Coverage Results" MODIFIED="1574863913205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_data_instance_TestDynamicModelMutant_test_create_data_from_random_json.coverage" NAME="Test: json2model.tests.test_dynamic_data_instance.TestDynamicModelMutant.test_create_data_from_random_json Coverage Results" MODIFIED="1575378876246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel_test_create_dynamic_list_of_objects.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel.test_create_dynamic_list_of_objects Coverage Results" MODIFIED="1574958738666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_data_instance_TestDynamicModelMutant.coverage" NAME="Test: json2model.tests.test_dynamic_data_instance.TestDynamicModelMutant Coverage Results" MODIFIED="1575365733197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_services_tests_tests_TestDjangoDynamicModel_test_create_random_json.coverage" NAME="Test: json2model.services.tests.tests.TestDjangoDynamicModel.test_create_random_json Coverage Results" MODIFIED="1575010625585" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_model_mutant_TestDynamicModelMutant_test_create_random_json.coverage" NAME="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_random_json Coverage Results" MODIFIED="1575367164710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel Coverage Results" MODIFIED="1574950254554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_model_mutant_TestDynamicModelMutant_test_create_dynamic_list_of_objects.coverage" NAME="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_dynamic_list_of_objects Coverage Results" MODIFIED="1575366132780" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$Test.coverage" NAME="Test Coverage Results" MODIFIED="1575732269604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel_test_many_to_many.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel.test_many_to_many Coverage Results" MODIFIED="1574779863409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_model_mutant_TestDynamicModelMutant_test_create_dynamic_simple.coverage" NAME="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_dynamic_simple Coverage Results" MODIFIED="1575366105076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel_test_create_random_json.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel.test_create_random_json Coverage Results" MODIFIED="1574959043552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_model_mutant_TestDynamicModelMutant_test_create_dynamic_list_of_objects.coverage" NAME="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_dynamic_list_of_objects Coverage Results" MODIFIED="1575366132780" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel_test_simple.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel.test_simple Coverage Results" MODIFIED="1574863913205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_services_tests_tests_TestDjangoDynamicModel.coverage" NAME="Test: json2model.services.tests.tests.TestDjangoDynamicModel Coverage Results" MODIFIED="1575010085367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_model_mutant_TestDynamicModelMutant_test_create_random_json.coverage" NAME="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_random_json Coverage Results" MODIFIED="1575367164710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_data_instance_TestDynamicModelMutant_test_create_dynamic_data_simple.coverage" NAME="Test: json2model.tests.test_dynamic_data_instance.TestDynamicModelMutant.test_create_dynamic_data_simple Coverage Results" MODIFIED="1575363311923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_data_instance_TestDynamicModelMutant_test_create_data_from_random_json.coverage" NAME="Test: json2model.tests.test_dynamic_data_instance.TestDynamicModelMutant.test_create_data_from_random_json Coverage Results" MODIFIED="1575378876246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/django_json2model$Test.coverage" NAME="Test Coverage Results" MODIFIED="1575384610062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_services_tests_tests_TestDjangoDynamicModel_test_create_random_json.coverage" NAME="Test: json2model.services.tests.tests.TestDjangoDynamicModel.test_create_random_json Coverage Results" MODIFIED="1575010625585" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_model_mutant_TestDynamicModelMutant.coverage" NAME="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant Coverage Results" MODIFIED="1575366142141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
