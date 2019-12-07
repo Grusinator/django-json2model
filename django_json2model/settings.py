@@ -36,8 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'admin_reorder',
-    'json2model.apps.Json2ModelConfig',
-    'dynamicmodels.apps.DynamicmodelsConfig'
+    'json2model',
 ]
 
 INSTALLED_APPS += (
@@ -98,7 +97,7 @@ DATABASES = {
     }
 }
 
-APP_LABEL_DYNAMIC_MODELS = "dynamicmodels"
+APP_LABEL_DYNAMIC_MODELS = "json2model"
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

@@ -27,6 +27,7 @@ def register_model_in_admin(model_def):
     attrs = {'model': ObjectModel}
     ObjectModelAdmin = type(f'{ObjectModel.__name__}Admin', (admin.ModelAdmin,), attrs)
     admin.site.register(ObjectModel, ObjectModelAdmin)
+    reload_and_clear_cache_admin()
 
 
 def try_unregister_model_in_admin(model_def):

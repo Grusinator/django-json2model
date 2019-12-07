@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_admin_handler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_json2model/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_json2model/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dynamicmodels/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dynamicmodels/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dynamicmodels/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dynamicmodels/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dynamicmodels/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dynamicmodels/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dynamicmodels/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_admin_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_admin_handler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -319,7 +325,7 @@
       <workItem from="1575647808953" duration="1404000" />
       <workItem from="1575649660070" duration="598000" />
       <workItem from="1575723040400" duration="241000" />
-      <workItem from="1575723461212" duration="5699000" />
+      <workItem from="1575723461212" duration="8340000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes, django version rolled back to working version.">
       <created>1574778767304</created>
@@ -461,7 +467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575733581879</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="added admin methods for registering model defs in admin">
+      <created>1575735910899</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1575735910899</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,16 +511,17 @@
     <MESSAGE value="creating relations have been fairly well fixed" />
     <MESSAGE value="minor admin reorder m.m." />
     <MESSAGE value="refactored views.py and models.py out to an example app" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored views.py and models.py out to an example app" />
+    <MESSAGE value="added admin methods for registering model defs in admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="added admin methods for registering model defs in admin" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1215" y="99" key="CommitChangelistDialog2" timestamp="1575735783374">
+    <state x="-1215" y="99" key="CommitChangelistDialog2" timestamp="1575735910169">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
-    <state x="-1215" y="99" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575735783374" />
+    <state x="-1215" y="99" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575735910169" />
     <state x="-1070" y="273" key="FileChooserDialogImpl" timestamp="1575724891885">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
@@ -528,14 +542,18 @@
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
     <state width="1637" height="210" key="GridCell.Tab.0.right/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575732649384" />
-    <state x="-1248" y="237" key="Vcs.Push.Dialog.v2" timestamp="1575733585770">
+    <state x="-1248" y="237" key="Vcs.Push.Dialog.v2" timestamp="1575735918609">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
-    <state x="-1248" y="237" key="Vcs.Push.Dialog.v2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575733585770" />
+    <state x="-1248" y="237" key="Vcs.Push.Dialog.v2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575735918609" />
     <state x="536" y="328" key="com.intellij.ide.util.TipDialog" timestamp="1575723467229">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="536" y="328" key="com.intellij.ide.util.TipDialog/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1575723467229" />
+    <state x="-1144" y="110" width="607" height="789" key="find.popup" timestamp="1575736940953">
+      <screen x="-1680" y="0" width="1680" height="1010" />
+    </state>
+    <state x="-1144" y="110" width="607" height="789" key="find.popup/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575736940953" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
