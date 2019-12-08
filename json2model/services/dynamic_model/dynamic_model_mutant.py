@@ -1,20 +1,14 @@
-import datetime
 import logging
 from abc import ABC
 
-import mutant.contrib.boolean.models
-import mutant.contrib.file.models
-import mutant.contrib.numeric.models
 import mutant.contrib.related.models
-import mutant.contrib.temporal.models
-import mutant.contrib.text.models
-from django.contrib.sessions.backends import file
+from django.conf import settings
 from django.core.exceptions import MultipleObjectsReturned
 from mutant.models import ModelDefinition
 
 import json2model.services.dynamic_model.dynamic_model_admin_handler as admin_handler
-from django_json2model import settings
 from json2model.services.dynamic_model.i_json_iterator import IJsonIterator
+from json2model.services.dynamic_model.mutant_attribute_types import MUTANT_ATTRIBUTE_TYPES
 from json2model.utils import except_errors
 
 logger = logging.getLogger(__name__)
@@ -36,43 +30,15 @@ def delete_all_dynamic_models(**filter_kwargs):
     DynamicModelMutant.delete_all_dynamic_models(**filter_kwargs)
 
 
+APP_LABEL = getattr(settings, 'APP_LABEL_DYNAMIC_MODELS', "json2model")
+
+
 class DynamicModelMutant(IJsonIterator, ABC):
-    ATTRIBUTE_TYPES = {
-        str: mutant.contrib.text.models.TextFieldDefinition,
-        float: mutant.contrib.numeric.models.FloatFieldDefinition,
-        bool: mutant.contrib.boolean.models.BooleanFieldDefinition,
-        int: mutant.contrib.numeric.models.BigIntegerFieldDefinition,
-        file: mutant.contrib.file.models.FilePathFieldDefinition,
-        datetime: mutant.contrib.temporal.models.DateTimeFieldDefinition,
-        # ('varchar', mutant.contrib.text.models.CharFieldDefinition),
-        #
-        # ('integer', mutant.contrib.numeric.models.BigIntegerFieldDefinition),
-        # ('small_integer', mutant.contrib.numeric.models.SmallIntegerFieldDefinition),
-        # ('float', mutant.contrib.numeric.models.FloatFieldDefinition),
-        #
-        # ('null_boolean', mutant.contrib.boolean.models.NullBooleanFieldDefinition),
-        # ('boolean', mutant.contrib.boolean.models.BooleanFieldDefinition),
-        #
-        # ('file', mutant.contrib.file.models.FilePathFieldDefinition),
-        #
-        # ('foreign_key', mutant.contrib.related.models.ForeignKeyDefinition),
-        # ('one_to_one', mutant.contrib.related.models.OneToOneFieldDefinition),
-        # ('many_to_many', mutant.contrib.related.models.ManyToManyFieldDefinition),
-        #
-        # ('ip_generic', mutant.contrib.web.models.GenericIPAddressFieldDefinition),
-        # ('ip', mutant.contrib.web.models.IPAddressFieldDefinition),
-        # ('email', mutant.contrib.web.models.EmailFieldDefinition),
-        # ('url', mutant.contrib.web.models.URLFieldDefinition),
-        #
-        # ('date', mutant.contrib.temporal.models.DateFieldDefinition),
-        # ('time', mutant.contrib.temporal.models.TimeFieldDefinition),
-        # ('datetime', mutant.contrib.temporal.models.DateTimeFieldDefinition),
-    }
+    ATTRIBUTE_TYPES = MUTANT_ATTRIBUTE_TYPES
     RELATION_TYPES = {
         False: mutant.contrib.related.models.OneToOneFieldDefinition,
         True: mutant.contrib.related.models.ForeignKeyDefinition
     }
-    APP_LABEL = settings.APP_LABEL_DYNAMIC_MODELS
 
     @classmethod
     def create_models_from_data(cls, root_label, data):
@@ -120,7 +86,7 @@ class DynamicModelMutant(IJsonIterator, ABC):
     @except_errors
     def pre_handle_object(cls, parent_ref, object_label, data):
         model_def, created = ModelDefinition.objects.get_or_create(
-            app_label=cls.APP_LABEL,
+            app_label=APP_LABEL,
             object_name=object_label,
             defaults={'fields': []}  # this does not work in django >=2.2.8
         )

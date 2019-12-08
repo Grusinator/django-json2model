@@ -1,14 +1,14 @@
 import logging
 from importlib import import_module, reload
 
+from django.conf import settings
 from django.contrib import admin
 from django.urls import clear_url_caches
 from mutant.models import ModelDefinition
 
-from django_json2model import settings
+APP_LABEL = getattr(settings, 'APP_LABEL_DYNAMIC_MODELS', "json2model")
 
 logger = logging.getLogger(__name__)
-APP_LABEL = settings.APP_LABEL_DYNAMIC_MODELS
 
 
 def register_all_models():

@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/mutant_attribute_types.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/django-json2model.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/django-json2model.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_json2model/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_json2model/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_json2model/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_json2model/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manifest.in" beforeDir="false" afterPath="$PROJECT_DIR$/manifest.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_admin_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_admin_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -322,7 +322,7 @@
       <workItem from="1575649660070" duration="598000" />
       <workItem from="1575723040400" duration="241000" />
       <workItem from="1575723461212" duration="8411000" />
-      <workItem from="1575790402676" duration="1758000" />
+      <workItem from="1575790402676" duration="2529000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes, django version rolled back to working version.">
       <created>1574778767304</created>
@@ -485,7 +485,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575791913776</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="updated reusable app according to docs.djangoproject.com">
+      <created>1575792220043</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1575792220043</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -525,16 +532,17 @@
     <MESSAGE value="added admin methods for registering model defs in admin" />
     <MESSAGE value="refactored admin handling" />
     <MESSAGE value="refactored admin handler" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored admin handler" />
+    <MESSAGE value="updated reusable app according to docs.djangoproject.com" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated reusable app according to docs.djangoproject.com" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1215" y="99" key="CommitChangelistDialog2" timestamp="1575791912959">
+    <state x="-1215" y="99" key="CommitChangelistDialog2" timestamp="1575792219293">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
-    <state x="-1215" y="99" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575791912959" />
+    <state x="-1215" y="99" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575792219293" />
     <state x="-1070" y="273" key="FileChooserDialogImpl" timestamp="1575724891885">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>

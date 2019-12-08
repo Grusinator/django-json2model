@@ -3,4 +3,3 @@ psycopg2
 django-mutant>=0.3a5
 django-polymodels>=1.5.1
 jsonfield
-django-modeladmin-reorder
