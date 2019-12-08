@@ -13,6 +13,8 @@ from json2model.utils import except_errors
 
 logger = logging.getLogger(__name__)
 
+APP_LABEL = getattr(settings, 'APP_LABEL_DYNAMIC_MODELS', "json2model")
+
 
 def create_objects_from_json(root_name, data):
     return DynamicModelMutant.create_models_from_data(root_name, data)
@@ -28,9 +30,6 @@ def delete_dynamic_model(model_name: str):
 
 def delete_all_dynamic_models(**filter_kwargs):
     DynamicModelMutant.delete_all_dynamic_models(**filter_kwargs)
-
-
-APP_LABEL = getattr(settings, 'APP_LABEL_DYNAMIC_MODELS', "json2model")
 
 
 class DynamicModelMutant(IJsonIterator, ABC):

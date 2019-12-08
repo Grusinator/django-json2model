@@ -6,6 +6,8 @@ from django.contrib import admin
 from django.urls import clear_url_caches
 from mutant.models import ModelDefinition
 
+ROOT_URLCONF = getattr(settings, 'ROOT_URLCONF')
+
 APP_LABEL = getattr(settings, 'APP_LABEL_DYNAMIC_MODELS', "json2model")
 
 logger = logging.getLogger(__name__)
@@ -40,5 +42,5 @@ def try_unregister_model_in_admin(model_def):
 
 
 def reload_and_clear_cache_admin():
-    reload(import_module(settings.ROOT_URLCONF))
+    reload(import_module(ROOT_URLCONF))
     clear_url_caches()
