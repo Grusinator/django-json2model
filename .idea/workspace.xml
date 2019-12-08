@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/django-json2model.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/django-json2model.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_admin_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_admin_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -320,7 +318,7 @@
       <workItem from="1575723040400" duration="241000" />
       <workItem from="1575723461212" duration="8411000" />
       <workItem from="1575790402676" duration="3441000" />
-      <workItem from="1575795533183" duration="2829000" />
+      <workItem from="1575795533183" duration="3471000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes, django version rolled back to working version.">
       <created>1574778767304</created>
@@ -497,7 +495,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575793002943</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="now it works">
+      <created>1575798785657</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1575798785657</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -539,16 +544,18 @@
     <MESSAGE value="refactored admin handler" />
     <MESSAGE value="updated reusable app according to docs.djangoproject.com" />
     <MESSAGE value="extracted out atts, and fixed some broken admin handler refs." />
-    <option name="LAST_COMMIT_MESSAGE" value="extracted out atts, and fixed some broken admin handler refs." />
+    <MESSAGE value="now it works" />
+    <option name="LAST_COMMIT_MESSAGE" value="now it works" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1215" y="99" key="CommitChangelistDialog2" timestamp="1575793002209">
-      <screen x="-1680" y="0" width="1680" height="1010" />
+    <state x="425" y="13" key="CommitChangelistDialog2" timestamp="1575798784737">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-1215" y="99" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575793002209" />
+    <state x="425" y="13" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1575798784737" />
     <state x="-1070" y="273" key="FileChooserDialogImpl" timestamp="1575724891885">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
