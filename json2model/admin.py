@@ -15,11 +15,11 @@ class ModelDefinitionAdmin(admin.ModelAdmin):
 
     def register_in_admin(self, request, queryset):
         for model_def in queryset:
-            admin_handler.try_unregister_model_in_admin(model_def)
+            admin_handler.try_register_model_in_admin(model_def)
 
     def unregister_in_admin(self, request, queryset):
         for model_def in queryset:
-            admin_handler.try_register_model_in_admin(model_def)
+            admin_handler.try_unregister_model_in_admin(model_def)
 
 
 admin.site.register(ModelDefinition, ModelDefinitionAdmin)
