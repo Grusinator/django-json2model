@@ -42,6 +42,7 @@ class DynamicModelMutant(IJsonIterator, ABC):
     @classmethod
     def create_models_from_data(cls, root_label, data):
         object_name = cls._iterate_data_structure(data, object_label=root_label)
+        admin_handler.register_all_models()
         return cls.get_dynamic_model(object_name)
 
     @classmethod

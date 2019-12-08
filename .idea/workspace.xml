@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -318,7 +318,7 @@
       <workItem from="1575723040400" duration="241000" />
       <workItem from="1575723461212" duration="8411000" />
       <workItem from="1575790402676" duration="3441000" />
-      <workItem from="1575795533183" duration="3841000" />
+      <workItem from="1575795533183" duration="4093000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes, django version rolled back to working version.">
       <created>1574778767304</created>
@@ -509,7 +509,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575799267808</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="revert unregister bug">
+      <created>1575799679528</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1575799679528</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,17 +560,18 @@
     <MESSAGE value="extracted out atts, and fixed some broken admin handler refs." />
     <MESSAGE value="now it works" />
     <MESSAGE value="now it works, one version up" />
-    <option name="LAST_COMMIT_MESSAGE" value="now it works, one version up" />
+    <MESSAGE value="revert unregister bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="revert unregister bug" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="425" y="13" key="CommitChangelistDialog2" timestamp="1575799267006">
+    <state x="425" y="13" key="CommitChangelistDialog2" timestamp="1575799678794">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-1215" y="99" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575793002209" />
-    <state x="425" y="13" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1575799267006" />
+    <state x="425" y="13" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1575799678794" />
     <state x="-1070" y="273" key="FileChooserDialogImpl" timestamp="1575724891885">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
