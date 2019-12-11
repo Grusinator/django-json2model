@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/django_json2model_example/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/django_json2model_example/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/django_json2model_example/wsgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/run_tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_json2model_example/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/tests/test_dynamic_data_instance.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_dynamic_data_instance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/tests/test_dynamic_model_mutant.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_dynamic_model_mutant.py" afterDir="false" />
     </list>
+    <list id="6724cedb-00c1-4034-a522-89b9374c7156" name="changed boolean to null boolean, and added default string as att type" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,7 +56,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../django-generic-serializer" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -79,17 +71,17 @@
     <option name="myUseBundledCoveragePy" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\willi\repo\django-json2model" />
+      <recent name="C:\Users\willi\repo\django-json2model\json2model\services\dynamic_model" />
+      <recent name="C:\Users\willi\repo\django-json2model\json2model\tests" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\willi\repo\django-json2model\tests" />
       <recent name="C:\Users\willi\repo\django-json2model" />
       <recent name="C:\Users\willi\repo\django-json2model\json2model\utils" />
       <recent name="C:\Users\willi\repo\django-json2model\json2model" />
       <recent name="C:\Users\willi\repo\django-json2model\json2model\services\tests" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\willi\repo\django-json2model" />
-      <recent name="C:\Users\willi\repo\django-json2model\json2model\services\dynamic_model" />
-      <recent name="C:\Users\willi\repo\django-json2model\json2model\tests" />
     </key>
   </component>
   <component name="RunManager" selected="Django tests.Test">
@@ -333,7 +325,10 @@
       <workItem from="1575790402676" duration="3441000" />
       <workItem from="1575795533183" duration="6490000" />
       <workItem from="1575887617133" duration="2707000" />
-      <workItem from="1575959727116" duration="3380000" />
+      <workItem from="1575959727116" duration="3998000" />
+      <workItem from="1575994787396" duration="797000" />
+      <workItem from="1576046713578" duration="19000" />
+      <workItem from="1576058253173" duration="1333000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes, django version rolled back to working version.">
       <created>1574778767304</created>
@@ -545,7 +540,28 @@
       <option name="project" value="LOCAL" />
       <updated>1575800254804</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="trying to make the tests work in pycharm">
+      <created>1575979152205</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1575979152205</updated>
+    </task>
+    <task id="LOCAL-00032" summary="upping version">
+      <created>1575979214305</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1575979214305</updated>
+    </task>
+    <task id="LOCAL-00033" summary="changed boolean to null boolean, and added default string as att type">
+      <created>1576058562623</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1576058562623</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -568,7 +584,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="minor changes, django version rolled back to working version." />
     <MESSAGE value="add .idea" />
     <MESSAGE value="now most is running as expected. start refactoring using json iterator" />
     <MESSAGE value="restructure of json iterator and services" />
@@ -591,7 +606,10 @@
     <MESSAGE value="now it works, one version up" />
     <MESSAGE value="revert unregister bug" />
     <MESSAGE value="add create all models in admin, from data" />
-    <option name="LAST_COMMIT_MESSAGE" value="add create all models in admin, from data" />
+    <MESSAGE value="trying to make the tests work in pycharm" />
+    <MESSAGE value="upping version" />
+    <MESSAGE value="changed boolean to null boolean, and added default string as att type" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed boolean to null boolean, and added default string as att type" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -605,15 +623,15 @@
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
     <state x="-1386" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575889488811" />
-    <state x="-1215" y="99" key="CommitChangelistDialog2" timestamp="1575979151416">
+    <state x="-1215" y="99" key="CommitChangelistDialog2" timestamp="1576058561852">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
-    <state x="-1215" y="99" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575979151416" />
+    <state x="-1215" y="99" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1576058561852" />
     <state x="425" y="13" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1575800254117" />
-    <state x="-1070" y="273" key="FileChooserDialogImpl" timestamp="1575969992317">
+    <state x="-1070" y="273" key="FileChooserDialogImpl" timestamp="1576046730302">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
-    <state x="-1070" y="273" key="FileChooserDialogImpl/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575969992317" />
+    <state x="-1070" y="273" key="FileChooserDialogImpl/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1576046730302" />
     <state width="1637" height="210" key="GridCell.Tab.0.bottom" timestamp="1575888642336">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
@@ -651,14 +669,15 @@
     </state>
     <state x="-1339" y="147" key="SettingsEditor/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575793864026" />
     <state x="312" y="109" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1575797911996" />
-    <state x="395" y="193" key="Vcs.Push.Dialog.v2" timestamp="1575800278504">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="-1248" y="237" key="Vcs.Push.Dialog.v2" timestamp="1575979233615">
+      <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
-    <state x="-1248" y="237" key="Vcs.Push.Dialog.v2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575749508143" />
+    <state x="-1248" y="237" key="Vcs.Push.Dialog.v2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575979233615" />
     <state x="395" y="193" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1575800278504" />
-    <state x="536" y="328" key="com.intellij.ide.util.TipDialog" timestamp="1575959733866">
-      <screen x="0" y="0" width="1680" height="1010" />
+    <state x="-1144" y="328" key="com.intellij.ide.util.TipDialog" timestamp="1576046713619">
+      <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
+    <state x="-1144" y="328" key="com.intellij.ide.util.TipDialog/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1576046713619" />
     <state x="536" y="328" key="com.intellij.ide.util.TipDialog/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1575959733866" />
     <state x="593" y="343" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1575801759071">
       <screen x="0" y="0" width="1536" height="824" />
@@ -670,6 +689,10 @@
     </state>
     <state x="-1144" y="110" width="607" height="789" key="find.popup/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575793446392" />
     <state x="490" y="90" width="611" height="644" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1575797591392" />
+    <state x="-1041" y="352" width="682" height="305" key="git4idea.ui.GitUnstashDialog" timestamp="1576061545485">
+      <screen x="-1680" y="0" width="1680" height="1010" />
+    </state>
+    <state x="-1041" y="352" width="682" height="305" key="git4idea.ui.GitUnstashDialog/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1576061545485" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

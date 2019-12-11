@@ -7,10 +7,10 @@ import mutant.contrib.temporal.models
 import mutant.contrib.text.models
 from django.contrib.sessions.backends import file
 
-MUTANT_ATTRIBUTE_TYPES = {
+ATTRIBUTE_TYPES = {
     str: mutant.contrib.text.models.TextFieldDefinition,
     float: mutant.contrib.numeric.models.FloatFieldDefinition,
-    bool: mutant.contrib.boolean.models.BooleanFieldDefinition,
+    bool: mutant.contrib.boolean.models.NullBooleanFieldDefinition,
     int: mutant.contrib.numeric.models.BigIntegerFieldDefinition,
     file: mutant.contrib.file.models.FilePathFieldDefinition,
     datetime: mutant.contrib.temporal.models.DateTimeFieldDefinition,

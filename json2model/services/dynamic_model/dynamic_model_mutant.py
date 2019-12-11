@@ -7,8 +7,8 @@ from django.core.exceptions import MultipleObjectsReturned
 from mutant.models import ModelDefinition
 
 import json2model.services.dynamic_model.dynamic_model_admin_handler as admin_handler
+from json2model.services.dynamic_model.attribute_types import ATTRIBUTE_TYPES
 from json2model.services.dynamic_model.i_json_iterator import IJsonIterator
-from json2model.services.dynamic_model.mutant_attribute_types import MUTANT_ATTRIBUTE_TYPES
 from json2model.utils import except_errors
 
 logger = logging.getLogger(__name__)
@@ -33,7 +33,6 @@ def delete_all_dynamic_models(**filter_kwargs):
 
 
 class DynamicModelMutant(IJsonIterator, ABC):
-    ATTRIBUTE_TYPES = MUTANT_ATTRIBUTE_TYPES
     RELATION_TYPES = {
         False: mutant.contrib.related.models.OneToOneFieldDefinition,
         True: mutant.contrib.related.models.ForeignKeyDefinition
@@ -124,7 +123,7 @@ class DynamicModelMutant(IJsonIterator, ABC):
 
     @classmethod
     def _get_specific_field_def(cls, value):
-        return cls.ATTRIBUTE_TYPES.get(type(value))
+        return ATTRIBUTE_TYPES.get(type(value), ATTRIBUTE_TYPES[str])
 
     @classmethod
     def _get_specific_relation_field_def(cls, parent_has_many):
@@ -132,7 +131,7 @@ class DynamicModelMutant(IJsonIterator, ABC):
 
     @classmethod
     def delete_attribute_defs(cls, model_def):
-        for field_def in cls.ATTRIBUTE_TYPES.values():
+        for field_def in ATTRIBUTE_TYPES.values():
             field_def.objects.filter(model_def=model_def).delete()
 
     @classmethod
