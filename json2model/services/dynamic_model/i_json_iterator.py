@@ -1,4 +1,7 @@
+import logging
 from abc import ABCMeta, abstractmethod
+
+logger = logging.getLogger(__name__)
 
 
 class IJsonIterator:
@@ -29,7 +32,8 @@ class IJsonIterator:
 
     @classmethod
     @abstractmethod
-    def handle_related_object(cls, parent_ref: str, related_object_ref: str, object_label, parent_has_many: bool = False):
+    def handle_related_object(cls, parent_ref: str, related_object_ref: str, object_label,
+                              parent_has_many: bool = False):
         """This method is called after exiting the iteration of the related object, so the relation can be handled
         after both objects has been handled"""
         raise NotImplementedError
@@ -67,7 +71,7 @@ class IJsonIterator:
 
     @classmethod
     def _split_into_attributes_and_related_objects(cls, data):
-        # TODO create unit test
+
         properties = {}
         one2one_related_objects = {}
         one2many_related_objects = {}
@@ -87,6 +91,8 @@ class IJsonIterator:
                                               "(fx objects and values)")
             elif isinstance(value, cls.JSON_ATTRIBUTE_TYPES):
                 properties[name] = value
+            elif value is None:
+                logger.warning(f"property {name} has value {value} which is excluded")
             else:
                 raise NotImplementedError("the list contains not known attribute data types")
         return properties, one2one_related_objects, one2many_related_objects

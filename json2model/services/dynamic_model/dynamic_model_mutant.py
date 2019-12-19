@@ -40,9 +40,25 @@ class DynamicModelMutant(IJsonIterator, ABC):
 
     @classmethod
     def create_models_from_data(cls, root_label, data):
-        object_name = cls._iterate_data_structure(data, object_label=root_label)
+        object_name = cls.start_iterating_data_structure(data, root_label)
         admin_handler.register_all_models()
         return cls.get_dynamic_model(object_name)
+
+    @classmethod
+    def start_iterating_data_structure(cls, data, root_label):
+        if isinstance(data, list):
+            object_name = cls._start_iterating_as_list(root_label, data)
+        elif isinstance(data, dict):
+            object_name = cls._iterate_data_structure(data, object_label=root_label)
+        else:
+            raise NotImplementedError("cant handle other datatypes")
+        return object_name
+
+    @classmethod
+    def _start_iterating_as_list(cls, root_label, data):
+        objects = [cls._iterate_data_structure(data_elm, object_label=root_label) for data_elm in data]
+        # here they should all be the same, and since we just want the name to get the model
+        return objects[0]
 
     @classmethod
     def get_dynamic_model(cls, model_name):

@@ -1,6 +1,11 @@
+import os
+
 DEBUG = True,
 USE_TZ = True,
 SECRET_KEY = "verySecure3"
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -17,6 +22,7 @@ DATABASES = {
 APP_LABEL_DYNAMIC_MODELS = "json2model"
 
 ROOT_URLCONF = "tests.urls",
+
 INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -34,6 +40,10 @@ INSTALLED_APPS += (
     'mutant.contrib.related',
     "json2model"
 )
-SITE_ID = 1,
-NOSE_ARGS = ['-s'],
-FIXTURE_DIRS = ['tests/fixtures']
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+    },
+]

@@ -1,0 +1,16 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+psycopg2 = "*"
+django-mutant = ">=0.3a5"
+django-polymodels = ">=1.5.1"
+jsonfield = "*"
+Django = ">=2.0.0,<2.1.0"
+
+[requires]
+python_version = "3.7"

@@ -2,8 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_project/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/run_data_tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_data/strava_activity.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_split_into_atts_and_related.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/django-json2model.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/django-json2model.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_json2model_example/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_json2model_example/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_json2model_example/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_project/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_json2model_example/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_project/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/migrations/0002_delete_createrequest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/i_json_iterator.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/i_json_iterator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/run_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_dynamic_data_instance.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_dynamic_data_instance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_dynamic_model_mutant.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_dynamic_model_mutant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +74,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test_project/settings.py" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -65,34 +83,54 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.django.DjangoModulesConfigurable" />
   </component>
   <component name="PyCoverageOptionsProvider">
     <option name="myUseBundledCoveragePy" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\willi\repo\django-json2model" />
+      <recent name="C:\Users\willi\repo\django-json2model\tests" />
+      <recent name="C:\Users\willi\repo\django-json2model\json2model\utils" />
+      <recent name="C:\Users\willi\repo\django-json2model\json2model" />
+      <recent name="C:\Users\willi\repo\django-json2model\json2model\services\tests" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\willi\repo\django-json2model" />
       <recent name="C:\Users\willi\repo\django-json2model\json2model\services\dynamic_model" />
       <recent name="C:\Users\willi\repo\django-json2model\json2model\tests" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\willi\repo\django-json2model\tests" />
-      <recent name="C:\Users\willi\repo\django-json2model" />
-      <recent name="C:\Users\willi\repo\django-json2model\json2model\utils" />
-      <recent name="C:\Users\willi\repo\django-json2model\json2model" />
-      <recent name="C:\Users\willi\repo\django-json2model\json2model\services\tests" />
-    </key>
   </component>
-  <component name="RunManager" selected="Django tests.Test">
-    <configuration name="Test" type="DjangoTestsConfigurationType">
+  <component name="RunManager" selected="Django tests.Test: tests.run_data_tests.TestOnJsonData.test_all_files">
+    <configuration name="Test: tests.run_data_tests.TestOnJsonData.test_all_files" type="DjangoTestsConfigurationType" temporary="true">
       <module name="django-json2model" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\willi\repo\django-json2model\env\Scripts\python.exe" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="tests.run_data_tests.TestOnJsonData.test_all_files" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tests" type="DjangoTestsConfigurationType">
+      <module name="django-json2model" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\willi\Anaconda3\envs\django-json2model\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -105,117 +143,15 @@
       <option name="OPTIONS" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Test: json2model.tests.test_dynamic_data_instance.TestDynamicModelMutant.test_create_data_from_random_json" type="DjangoTestsConfigurationType" temporary="true">
-      <module name="django-json2model" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="json2model.tests.test_dynamic_data_instance.TestDynamicModelMutant.test_create_data_from_random_json" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant" type="DjangoTestsConfigurationType" temporary="true">
-      <module name="django-json2model" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_dynamic_list_of_objects" type="DjangoTestsConfigurationType" temporary="true">
-      <module name="django-json2model" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_dynamic_list_of_objects" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_random_json" type="DjangoTestsConfigurationType" temporary="true">
-      <module name="django-json2model" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_random_json" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="run_tests" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="django-json2model" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/run_tests.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="django-json2model" type="Python.DjangoServer" factoryName="Django server">
       <module name="django-json2model" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="DJANGO_SETTINGS_MODULE" value="django_json2model.settings" />
+        <env name="DJANGO_SETTINGS_MODULE" value="test_project.settings" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\willi\Anaconda3\envs\django-json2model\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -233,20 +169,12 @@
     </configuration>
     <list>
       <item itemvalue="Django server.django-json2model" />
-      <item itemvalue="Django tests.Test" />
-      <item itemvalue="Django tests.Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant" />
-      <item itemvalue="Django tests.Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_dynamic_list_of_objects" />
-      <item itemvalue="Django tests.Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_random_json" />
-      <item itemvalue="Django tests.Test: json2model.tests.test_dynamic_data_instance.TestDynamicModelMutant.test_create_data_from_random_json" />
-      <item itemvalue="Python.run_tests" />
+      <item itemvalue="Django tests.tests" />
+      <item itemvalue="Django tests.Test: tests.run_data_tests.TestOnJsonData.test_all_files" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.run_tests" />
-        <item itemvalue="Django tests.Test: json2model.tests.test_dynamic_data_instance.TestDynamicModelMutant.test_create_data_from_random_json" />
-        <item itemvalue="Django tests.Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_random_json" />
-        <item itemvalue="Django tests.Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant" />
-        <item itemvalue="Django tests.Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_dynamic_list_of_objects" />
+        <item itemvalue="Django tests.Test: tests.run_data_tests.TestOnJsonData.test_all_files" />
       </list>
     </recent_temporary>
   </component>
@@ -329,6 +257,9 @@
       <workItem from="1575994787396" duration="797000" />
       <workItem from="1576046713578" duration="19000" />
       <workItem from="1576058253173" duration="1333000" />
+      <workItem from="1576134019634" duration="1240000" />
+      <workItem from="1576410069060" duration="1249000" />
+      <workItem from="1576770875374" duration="8326000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes, django version rolled back to working version.">
       <created>1574778767304</created>
@@ -575,7 +506,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576061933082</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="try load admins, instead">
+      <created>1576062049461</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1576062049461</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -629,60 +567,75 @@
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1121" y="175" key="#Test" timestamp="1575889500003">
-      <screen x="-1680" y="0" width="1680" height="1010" />
+    <state x="511" y="143" key="#Test" timestamp="1576772755906">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-1121" y="175" key="#Test/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575889500003" />
-    <state x="-1386" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575889488811">
-      <screen x="-1680" y="0" width="1680" height="1010" />
+    <state x="511" y="143" key="#Test/0.0.1536.824@0.0.1536.824" timestamp="1576772755906" />
+    <state x="269" y="130" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576773621631">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-1386" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575889488811" />
-    <state x="-1215" y="99" key="CommitChangelistDialog2" timestamp="1576061932496">
-      <screen x="-1680" y="0" width="1680" height="1010" />
+    <state x="269" y="130" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1576773621631" />
+    <state x="378" y="107" width="801" height="594" key="#xdebugger.evaluate" timestamp="1576776829142">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="-1215" y="99" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1576061932496" />
-    <state x="425" y="13" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1575800254117" />
-    <state x="-1070" y="273" key="FileChooserDialogImpl" timestamp="1576046730302">
-      <screen x="-1680" y="0" width="1680" height="1010" />
+    <state x="378" y="107" width="801" height="594" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1576776829142" />
+    <state x="425" y="13" key="CommitChangelistDialog2" timestamp="1576781255051">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="-1215" y="99" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1576062048912" />
+    <state x="425" y="13" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1576781255051" />
+    <state x="558" y="223" key="FileChooserDialogImpl" timestamp="1576774415516">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-1070" y="273" key="FileChooserDialogImpl/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1576046730302" />
-    <state width="1637" height="210" key="GridCell.Tab.0.bottom" timestamp="1575888642336">
-      <screen x="-1680" y="0" width="1680" height="1010" />
+    <state x="558" y="223" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1576774415516" />
+    <state width="1493" height="260" key="GridCell.Tab.0.bottom" timestamp="1576781206415">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1637" height="210" key="GridCell.Tab.0.bottom/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575888642336" />
-    <state width="1637" height="210" key="GridCell.Tab.0.center" timestamp="1575888642336">
-      <screen x="-1680" y="0" width="1680" height="1010" />
+    <state width="1493" height="260" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1576781206415" />
+    <state width="1493" height="260" key="GridCell.Tab.0.center" timestamp="1576781206415">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1637" height="210" key="GridCell.Tab.0.center/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575888642336" />
-    <state width="1637" height="210" key="GridCell.Tab.0.left" timestamp="1575888642336">
-      <screen x="-1680" y="0" width="1680" height="1010" />
+    <state width="1493" height="260" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1576781206415" />
+    <state width="1493" height="260" key="GridCell.Tab.0.left" timestamp="1576781206415">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1637" height="210" key="GridCell.Tab.0.left/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575888642336" />
-    <state width="1637" height="210" key="GridCell.Tab.0.right" timestamp="1575888642336">
-      <screen x="-1680" y="0" width="1680" height="1010" />
+    <state width="1493" height="260" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1576781206415" />
+    <state width="1493" height="260" key="GridCell.Tab.0.right" timestamp="1576781206415">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1637" height="210" key="GridCell.Tab.0.right/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575888642336" />
-    <state width="1637" height="335" key="GridCell.Tab.1.bottom" timestamp="1575793867343">
-      <screen x="-1680" y="0" width="1680" height="1010" />
+    <state width="1493" height="260" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1576781206415" />
+    <state width="1493" height="260" key="GridCell.Tab.1.bottom" timestamp="1576781206415">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1637" height="335" key="GridCell.Tab.1.bottom/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575793867343" />
-    <state width="1637" height="335" key="GridCell.Tab.1.center" timestamp="1575793867343">
-      <screen x="-1680" y="0" width="1680" height="1010" />
+    <state width="1493" height="260" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1576781206415" />
+    <state width="1493" height="260" key="GridCell.Tab.1.center" timestamp="1576781206415">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1637" height="335" key="GridCell.Tab.1.center/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575793867343" />
-    <state width="1637" height="335" key="GridCell.Tab.1.left" timestamp="1575793867343">
-      <screen x="-1680" y="0" width="1680" height="1010" />
+    <state width="1493" height="260" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1576781206415" />
+    <state width="1493" height="260" key="GridCell.Tab.1.left" timestamp="1576781206415">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1637" height="335" key="GridCell.Tab.1.left/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575793867343" />
-    <state width="1637" height="335" key="GridCell.Tab.1.right" timestamp="1575793867343">
-      <screen x="-1680" y="0" width="1680" height="1010" />
+    <state width="1493" height="260" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1576781206415" />
+    <state width="1493" height="260" key="GridCell.Tab.1.right" timestamp="1576781206415">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1637" height="335" key="GridCell.Tab.1.right/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575793867343" />
-    <state x="312" y="109" key="SettingsEditor" timestamp="1575797911996">
+    <state width="1493" height="260" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1576781206415" />
+    <state x="312" y="109" key="SettingsEditor" timestamp="1576774433116">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-1339" y="147" key="SettingsEditor/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575793864026" />
-    <state x="312" y="109" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1575797911996" />
+    <state x="312" y="109" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1576774433116" />
     <state x="-1248" y="237" key="Vcs.Push.Dialog.v2" timestamp="1576061950234">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
@@ -698,11 +651,11 @@
     </state>
     <state x="-1031" y="421" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575749499924" />
     <state x="593" y="343" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1575801759071" />
-    <state x="490" y="90" width="611" height="644" key="find.popup" timestamp="1575797591392">
+    <state x="490" y="90" width="611" height="644" key="find.popup" timestamp="1576772540159">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="-1144" y="110" width="607" height="789" key="find.popup/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575793446392" />
-    <state x="490" y="90" width="611" height="644" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1575797591392" />
+    <state x="-1144" y="110" width="607" height="789" key="find.popup/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1576412131104" />
+    <state x="490" y="90" width="611" height="644" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1576772540159" />
     <state x="-1041" y="352" width="682" height="305" key="git4idea.ui.GitUnstashDialog" timestamp="1576061545485">
       <screen x="-1680" y="0" width="1680" height="1010" />
     </state>
@@ -713,12 +666,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tests/test_dynamic_model_mutant.py</url>
-          <line>36</line>
+          <line>33</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tests/test_dynamic_model_mutant.py</url>
-          <line>35</line>
+          <line>32</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -728,7 +681,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tests/test_dynamic_data_instance.py</url>
-          <line>36</line>
+          <line>33</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -738,12 +691,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tests/test_dynamic_data_instance.py</url>
-          <line>73</line>
+          <line>70</line>
           <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tests/test_dynamic_data_instance.py</url>
-          <line>69</line>
+          <line>66</line>
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -752,9 +705,39 @@
           <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tests/run_tests.py</url>
-          <line>13</line>
-          <option name="timeStamp" value="75" />
+          <url>file://$PROJECT_DIR$/tests/test_dynamic_data_instance.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/test_dynamic_data_instance.py</url>
+          <line>10</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/run_data_tests.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_mutant.py</url>
+          <line>48</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tests/test_split_into_atts_and_related.py</url>
+          <line>87</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/json2model/services/dynamic_model/i_json_iterator.py</url>
+          <line>89</line>
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/json2model/services/dynamic_model/i_json_iterator.py</url>
+          <line>94</line>
+          <option name="timeStamp" value="91" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -779,18 +762,23 @@
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_data_instance_TestDynamicModelMutant_test_create_data_from_random_json.coverage" NAME="Test: json2model.tests.test_dynamic_data_instance.TestDynamicModelMutant.test_create_data_from_random_json Coverage Results" MODIFIED="1575378876246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel_test_create_dynamic_list_of_objects.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel.test_create_dynamic_list_of_objects Coverage Results" MODIFIED="1574958738666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_data_instance_TestDynamicModelMutant.coverage" NAME="Test: json2model.tests.test_dynamic_data_instance.TestDynamicModelMutant Coverage Results" MODIFIED="1575365733197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$test.coverage" NAME="test Coverage Results" MODIFIED="1576773107146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel Coverage Results" MODIFIED="1574950254554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test.coverage" NAME="Test Coverage Results" MODIFIED="1575793012118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$Test__tests_test_dynamic_data_instance_TestDynamicModelMutant.coverage" NAME="Test: tests.test_dynamic_data_instance.TestDynamicModelMutant Coverage Results" MODIFIED="1576773299157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel_test_many_to_many.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel.test_many_to_many Coverage Results" MODIFIED="1574779863409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_model_mutant_TestDynamicModelMutant_test_create_dynamic_simple.coverage" NAME="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_dynamic_simple Coverage Results" MODIFIED="1575366105076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$tests.coverage" NAME="tests Coverage Results" MODIFIED="1576773628107" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel_test_create_random_json.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel.test_create_random_json Coverage Results" MODIFIED="1574959043552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/django_json2model$run_tests.coverage" NAME="run_tests Coverage Results" MODIFIED="1575888642330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/django_json2model$run_tests.coverage" NAME="run_tests Coverage Results" MODIFIED="1576771758023" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_model_mutant_TestDynamicModelMutant_test_create_dynamic_list_of_objects.coverage" NAME="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_dynamic_list_of_objects Coverage Results" MODIFIED="1575366132780" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel_test_simple.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel.test_simple Coverage Results" MODIFIED="1574863913205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_services_tests_tests_TestDjangoDynamicModel.coverage" NAME="Test: json2model.services.tests.tests.TestDjangoDynamicModel Coverage Results" MODIFIED="1575010085367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_model_mutant_TestDynamicModelMutant_test_create_random_json.coverage" NAME="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_random_json Coverage Results" MODIFIED="1575367164710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_data_instance_TestDynamicModelMutant_test_create_dynamic_data_simple.coverage" NAME="Test: json2model.tests.test_dynamic_data_instance.TestDynamicModelMutant.test_create_dynamic_data_simple Coverage Results" MODIFIED="1575363311923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_services_tests_tests_TestDjangoDynamicModel_test_create_random_json.coverage" NAME="Test: json2model.services.tests.tests.TestDjangoDynamicModel.test_create_random_json Coverage Results" MODIFIED="1575010625585" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$Test__tests_run_data_tests_TestOnJsonData_test_all_files.coverage" NAME="Test: tests.run_data_tests.TestOnJsonData.test_all_files Coverage Results" MODIFIED="1576780961440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_model_mutant_TestDynamicModelMutant.coverage" NAME="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant Coverage Results" MODIFIED="1575366142141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$run_tests__1_.coverage" NAME="run_tests (1) Coverage Results" MODIFIED="1576772071183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
