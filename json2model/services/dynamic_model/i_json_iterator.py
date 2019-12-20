@@ -40,6 +40,8 @@ class IJsonIterator:
 
     @classmethod
     def _iterate_data_structure(cls, data, object_label=None, parent_ref=None):
+        if isinstance(data, list):
+            return "Why is this a list"
         object_ref = cls.pre_handle_object(parent_ref, object_label, data)
         attributes, one2one_related_objs, one2many_related_objs = cls._split_into_attributes_and_related_objects(data)
         cls._handle_attributes(object_ref, attributes)
@@ -71,7 +73,6 @@ class IJsonIterator:
 
     @classmethod
     def _split_into_attributes_and_related_objects(cls, data):
-
         properties = {}
         one2one_related_objects = {}
         one2many_related_objects = {}
@@ -100,3 +101,18 @@ class IJsonIterator:
     @classmethod
     def list_element_is_objects(cls, data):
         return list(map(lambda x: isinstance(x, dict), data))
+
+    @classmethod
+    def start_iterating_data_structure(cls, data, root_label):
+        if isinstance(data, list):
+            object_name = cls._start_iterating_as_list(root_label, data)
+        elif isinstance(data, dict):
+            object_name = cls._iterate_data_structure(data, object_label=root_label)
+        else:
+            raise NotImplementedError("cant handle other datatypes")
+        return object_name
+
+    @classmethod
+    def _start_iterating_as_list(cls, root_label, data):
+        objects = [cls._iterate_data_structure(data_elm, object_label=root_label) for data_elm in data]
+        return objects

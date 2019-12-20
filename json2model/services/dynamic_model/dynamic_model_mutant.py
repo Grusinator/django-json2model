@@ -14,7 +14,7 @@ from json2model.utils import except_errors
 logger = logging.getLogger(__name__)
 
 APP_LABEL = getattr(settings, 'APP_LABEL_DYNAMIC_MODELS', "json2model")
-
+NOT_ALLOWED_ATTRIBUTE_NAMES = ("id",)
 
 def create_objects_from_json(root_name, data):
     return DynamicModelMutant.create_models_from_data(root_name, data)
@@ -33,6 +33,7 @@ def delete_all_dynamic_models(**filter_kwargs):
 
 
 class DynamicModelMutant(IJsonIterator, ABC):
+
     RELATION_TYPES = {
         False: mutant.contrib.related.models.OneToOneFieldDefinition,
         True: mutant.contrib.related.models.ForeignKeyDefinition
@@ -41,24 +42,10 @@ class DynamicModelMutant(IJsonIterator, ABC):
     @classmethod
     def create_models_from_data(cls, root_label, data):
         object_name = cls.start_iterating_data_structure(data, root_label)
+        object_name = object_name[0] if isinstance(object_name, list) else object_name
         admin_handler.register_all_models()
         return cls.get_dynamic_model(object_name)
 
-    @classmethod
-    def start_iterating_data_structure(cls, data, root_label):
-        if isinstance(data, list):
-            object_name = cls._start_iterating_as_list(root_label, data)
-        elif isinstance(data, dict):
-            object_name = cls._iterate_data_structure(data, object_label=root_label)
-        else:
-            raise NotImplementedError("cant handle other datatypes")
-        return object_name
-
-    @classmethod
-    def _start_iterating_as_list(cls, root_label, data):
-        objects = [cls._iterate_data_structure(data_elm, object_label=root_label) for data_elm in data]
-        # here they should all be the same, and since we just want the name to get the model
-        return objects[0]
 
     @classmethod
     def get_dynamic_model(cls, model_name):
@@ -84,28 +71,49 @@ class DynamicModelMutant(IJsonIterator, ABC):
 
     @classmethod
     def handle_attribute(cls, object_ref, attribute_label, data):
+        if not attribute_label:
+            raise Exception("something is wrong here")
+        data = cls.handle_attribute_lists(data)
+        attribute_label = cls.handle_specific_attribute_names(attribute_label)
+        field_schema = cls.try_get_or_create_attribute(object_ref, attribute_label, data)
+        return field_schema
+
+    @classmethod
+    def handle_attribute_lists(cls, data):
         if isinstance(data, list):
             # TODO this should be done better
             data = str(data)
-        model_def = cls._get_model_def(object_ref)
+        return data
+
+    @classmethod
+    def try_get_or_create_attribute(cls, object_ref, attribute_label, data):
         SpecificFieldDefinition = cls._get_specific_field_def(data)
-        field_schema, created = SpecificFieldDefinition.objects.get_or_create(
-            name=attribute_label,
-            model_def=model_def,
-            blank=True,
-            null=True
-        )
-        return field_schema
+        model_def = cls._get_model_def(object_ref)
+        try:
+            field_schema, created = SpecificFieldDefinition.objects.get_or_create(
+                name=attribute_label,
+                model_def=model_def,
+                blank=True,
+                null=True
+            )
+        except Exception as e:
+            logger.error(f"attribute {attribute_label} could not be created. ERROR msg: {e}")
+        else:
+            return field_schema
 
     @classmethod
     @except_errors
     def pre_handle_object(cls, parent_ref, object_label, data):
-        model_def, created = ModelDefinition.objects.get_or_create(
-            app_label=APP_LABEL,
-            object_name=object_label,
-            defaults={'fields': []}  # this does not work in django >=2.2.8
-        )
-        return object_label
+        try:
+            model_def, created = ModelDefinition.objects.get_or_create(
+                app_label=APP_LABEL,
+                object_name=object_label,
+                defaults={'fields': []}  # this does not work in django >=2.2.8
+            )
+        except Exception as e:
+            logger.error(f"object {object_label} could not be created. ERROR msg: {e}")
+        else:
+            return object_label
 
     @classmethod
     def post_handle_object(cls, parent_ref: str, object_ref: str, data):
@@ -120,14 +128,18 @@ class DynamicModelMutant(IJsonIterator, ABC):
         parent_model_def = cls._get_model_def(parent_ref)
         related_model_def = cls._get_model_def(related_object_ref)
         SpecificRelationFieldDef = cls._get_specific_relation_field_def(parent_has_many)
-        relation_def, created = SpecificRelationFieldDef.objects.get_or_create(
-            model_def=related_model_def,
-            name=parent_ref,
-            to=parent_model_def,
-            null=True,
-            blank=True
-        )
-        return relation_def
+        try:
+            relation_def, created = SpecificRelationFieldDef.objects.get_or_create(
+                model_def=related_model_def,
+                name=parent_ref,
+                to=parent_model_def,
+                null=True,
+                blank=True
+            )
+        except Exception as e:
+            logger.error(f"object ref {related_object_ref} could not be created. ERROR msg: {e}")
+        else:
+            return relation_def
 
     @classmethod
     def _get_model_def(cls, object_name: str):
@@ -155,3 +167,10 @@ class DynamicModelMutant(IJsonIterator, ABC):
         for relation_def in cls.RELATION_TYPES.values():
             relation_def.objects.filter(model_def=model_def).delete()
             relation_def.objects.filter(to=model_def).delete()
+
+    @classmethod
+    def handle_specific_attribute_names(cls, attribute_label):
+        if attribute_label in NOT_ALLOWED_ATTRIBUTE_NAMES:
+            return f"ÅÅÅ_{attribute_label}"
+        else:
+            return attribute_label

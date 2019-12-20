@@ -17,7 +17,7 @@ class DynamicDataInstances(IJsonIterator, ABC):
 
     @classmethod
     def create_instances_from_data(cls, root_label, data):
-        root_instance = cls._iterate_data_structure(data, object_label=root_label)
+        root_instance = cls.start_iterating_data_structure(data, root_label)
         return root_instance
 
     @classmethod

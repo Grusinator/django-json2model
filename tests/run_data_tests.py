@@ -15,6 +15,7 @@ test_data_results_path = "./tests/test_data_results"
 
 def run_test_on_data(file):
     data = get_test_data(file)
+    data = data[:10]
     expected = get_test_data_results(file)
     create_objects_from_json("root_obj0", data)
     inst = create_instances_from_json("root_obj0", data)
