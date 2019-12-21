@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 from django.db.models.base import Model
 
-from json2model.services.dynamic_model.dynamic_model_mutant import get_dynamic_model
+from json2model.services.dynamic_model.dynamic_model_mutant import get_dynamic_model, DynamicModelMutant
 from json2model.services.dynamic_model.i_json_iterator import IJsonIterator
 
 logger = logging.getLogger(__name__)
@@ -23,6 +23,11 @@ class DynamicDataInstances(IJsonIterator, ABC):
     @classmethod
     @abstractmethod
     def handle_attribute(cls, object_ref: Model, attribute_label: str, data):
+        attribute_label, data = DynamicModelMutant.pre_handle_atts_if_list_and_specific_labels(attribute_label, data)
+        cls.try_set_attribute(attribute_label, data, object_ref)
+
+    @classmethod
+    def try_set_attribute(cls, attribute_label, data, object_ref):
         try:
             setattr(object_ref, attribute_label, data)
         except Exception as e:

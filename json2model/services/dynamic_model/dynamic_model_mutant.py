@@ -71,12 +71,17 @@ class DynamicModelMutant(IJsonIterator, ABC):
 
     @classmethod
     def handle_attribute(cls, object_ref, attribute_label, data):
+        attribute_label, data = cls.pre_handle_atts_if_list_and_specific_labels(attribute_label, data)
+        field_schema = cls.try_get_or_create_attribute(object_ref, attribute_label, data)
+        return field_schema
+
+    @classmethod
+    def pre_handle_atts_if_list_and_specific_labels(cls, attribute_label, data):
         if not attribute_label:
             raise Exception("something is wrong here")
         data = cls.handle_attribute_lists(data)
-        attribute_label = cls.handle_specific_attribute_names(attribute_label)
-        field_schema = cls.try_get_or_create_attribute(object_ref, attribute_label, data)
-        return field_schema
+        attribute_label = cls.handle_specific_attribute_labels(attribute_label)
+        return attribute_label, data
 
     @classmethod
     def handle_attribute_lists(cls, data):
@@ -169,7 +174,7 @@ class DynamicModelMutant(IJsonIterator, ABC):
             relation_def.objects.filter(to=model_def).delete()
 
     @classmethod
-    def handle_specific_attribute_names(cls, attribute_label):
+    def handle_specific_attribute_labels(cls, attribute_label):
         if attribute_label in NOT_ALLOWED_ATTRIBUTE_NAMES:
             return f"ÅÅÅ_{attribute_label}"
         else:
