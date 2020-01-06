@@ -4,12 +4,13 @@ from abc import ABC
 import mutant.contrib.related.models
 from django.conf import settings
 from django.core.exceptions import MultipleObjectsReturned
+from django.db import IntegrityError
 from mutant.models import ModelDefinition
 
 import json2model.services.dynamic_model.dynamic_model_admin_handler as admin_handler
 from json2model.services.dynamic_model.attribute_types import ATTRIBUTE_TYPES
 from json2model.services.dynamic_model.i_json_iterator import IJsonIterator
-from json2model.utils import except_errors
+from json2model.utils import handle_errors
 
 logger = logging.getLogger(__name__)
 
@@ -70,9 +71,10 @@ class DynamicModelMutant(IJsonIterator, ABC):
         return model_def
 
     @classmethod
+    @handle_errors(raise_types=(IntegrityError,))
     def handle_attribute(cls, object_ref, attribute_label, data):
         attribute_label, data = cls.pre_handle_atts_if_list_and_specific_labels(attribute_label, data)
-        field_schema = cls.try_get_or_create_attribute(object_ref, attribute_label, data)
+        field_schema = cls._get_or_create_attribute(object_ref, attribute_label, data)
         return field_schema
 
     @classmethod
@@ -91,23 +93,19 @@ class DynamicModelMutant(IJsonIterator, ABC):
         return data
 
     @classmethod
-    def try_get_or_create_attribute(cls, object_ref, attribute_label, data):
+    def _get_or_create_attribute(cls, object_ref, attribute_label, data):
         SpecificFieldDefinition = cls._get_specific_field_def(data)
         model_def = cls._get_model_def(object_ref)
-        try:
-            field_schema, created = SpecificFieldDefinition.objects.get_or_create(
-                name=attribute_label,
-                model_def=model_def,
-                blank=True,
-                null=True
-            )
-        except Exception as e:
-            logger.error(f"attribute {attribute_label} could not be created. ERROR msg: {e}")
-        else:
-            return field_schema
+        field_schema, created = SpecificFieldDefinition.objects.get_or_create(
+            name=attribute_label,
+            model_def=model_def,
+            blank=True,
+            null=True
+        )
+        return field_schema
 
     @classmethod
-    @except_errors
+    @handle_errors()
     def pre_handle_object(cls, parent_ref, object_label, data):
         try:
             model_def, created = ModelDefinition.objects.get_or_create(
@@ -115,6 +113,8 @@ class DynamicModelMutant(IJsonIterator, ABC):
                 object_name=object_label,
                 defaults={'fields': []}  # this does not work in django >=2.2.8
             )
+        except IntegrityError as e:
+            raise e
         except Exception as e:
             logger.error(f"object {object_label} could not be created. ERROR msg: {e}")
         else:
@@ -125,11 +125,12 @@ class DynamicModelMutant(IJsonIterator, ABC):
         return object_ref
 
     @classmethod
+    @handle_errors()
     def handle_related_object(cls, parent_ref, related_object_ref, object_label, parent_has_many=False):
-        cls.create_relation_to_parent(parent_ref, related_object_ref, parent_has_many)
+        cls.try_get_or_create_relation_to_parent(parent_ref, related_object_ref, parent_has_many)
 
     @classmethod
-    def create_relation_to_parent(cls, parent_ref, related_object_ref: str, parent_has_many: bool = False):
+    def try_get_or_create_relation_to_parent(cls, parent_ref, related_object_ref: str, parent_has_many: bool = False):
         parent_model_def = cls._get_model_def(parent_ref)
         related_model_def = cls._get_model_def(related_object_ref)
         SpecificRelationFieldDef = cls._get_specific_relation_field_def(parent_has_many)

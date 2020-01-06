@@ -1,6 +1,7 @@
-
 import functools
+import inspect
 import logging
+
 
 def create_logger():
     """
@@ -21,22 +22,31 @@ def create_logger():
     return logger
 
 
-def except_errors(function):
-    """
-    A decorator that wraps the passed in function and logs
-    exceptions should one occur
-    """
-    @functools.wraps(function)
-    def wrapper(*args, **kwargs):
-        logger = create_logger()
-        try:
-            return function(*args, **kwargs)
-        except:
-            # log the exception
-            err = "There was an exception in  "
-            err += function.__name__
-            logger.exception(err)
+def handle_errors(raise_types: tuple = (Exception,), accept_types: tuple = ()):
+    def log_errors_decorator(function):
+        @functools.wraps(function)
+        def wrapper(*args, **kwargs):
+            try:
+                return function(*args, **kwargs)
+            except raise_types as e:
+                create_error_log(args, kwargs)
+                raise
+            except accept_types as e:
+                create_error_log(args, kwargs)
 
-            # re-raise the exception
-            raise
-    return wrapper
+        def create_error_log(args, kwargs):
+            logger = create_logger()
+            selected_args = get_selected_args_from_method(args, kwargs)
+            err_msg = f"There was an exception in method: {function.__name__}, args was: {selected_args}"
+            logger.exception(err_msg)
+
+        def get_selected_args_from_method(args, kwargs):
+            args_name = inspect.getfullargspec(function)[0]
+            args_dict = dict(zip(args_name, args))
+            args_dict.pop("cls", None)
+            args_dict.pop("self", None)
+            return args_dict
+
+        return wrapper
+
+    return log_errors_decorator

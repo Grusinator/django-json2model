@@ -1,1 +1,1 @@
-from .logging_utils import except_errors, create_logger
+from .logging_utils import handle_errors, create_logger

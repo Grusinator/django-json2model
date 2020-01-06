@@ -1,7 +1,12 @@
+import unittest
+from unittest.mock import Mock
+
 import django
+from django.db import IntegrityError
 from django.test import TransactionTestCase
 
-from json2model.services.dynamic_model import get_dynamic_model, create_objects_from_json
+from json2model.services import dynamic_model
+from json2model.services.dynamic_model.dynamic_model_mutant import DynamicModelMutant
 
 
 class TestDynamicModelMutant(TransactionTestCase):
@@ -14,7 +19,6 @@ class TestDynamicModelMutant(TransactionTestCase):
         django.setup()
 
     def test_create_dynamic_simple(self):
-
         data = {
             "desc": "some",
             "relate": {
@@ -22,11 +26,11 @@ class TestDynamicModelMutant(TransactionTestCase):
                 "dummy2": "value1"
             }
         }
-        Object = create_objects_from_json("root_obj3", data)
+        Object = dynamic_model.create_objects_from_json("root_obj3", data)
 
         inst = Object(desc="soemthing")
         inst.save()
-        Objrelate = get_dynamic_model("relate")
+        Objrelate = dynamic_model.get_dynamic_model("relate")
         inst2 = Objrelate(root_obj3=inst, dummy1=2, dummy2="value2")
         inst2.save()
 
@@ -51,10 +55,10 @@ class TestDynamicModelMutant(TransactionTestCase):
                 },
             ]
         }
-        Object = create_objects_from_json("root_obj4", data)
+        Object = dynamic_model.create_objects_from_json("root_obj4", data)
         instance = Object(prop2=3)
         instance.save()
-        RelObj = get_dynamic_model("related_obj")
+        RelObj = dynamic_model.get_dynamic_model("related_obj")
         inst1 = RelObj(name="Peter Meyer", value=3, root_obj4=instance)
         inst1.save()
         inst1 = RelObj(name="Anders Rikvold", value=3, root_obj4=instance)
@@ -83,9 +87,22 @@ class TestDynamicModelMutant(TransactionTestCase):
                 }
             }
         }
-        Object = create_objects_from_json("root_obj2", data)
-        Object = create_objects_from_json("root_obj2", data)
+        Object = dynamic_model.create_objects_from_json("root_obj2", data)
+        Object = dynamic_model.create_objects_from_json("root_obj2", data)
         # Obj1 = get_dynamic_model("GlossEntry")
         # Obj2 = get_dynamic_model("GlossList")
         # Obj3 = get_dynamic_model("glossary")
 
+    @unittest.expectedFailure
+    def test_error_in_create_attribute(self):
+        DynamicModelMutant._get_or_create_attribute = Mock()
+        DynamicModelMutant._get_or_create_attribute.side_effect = IntegrityError("Booom!!")
+        data = {
+            "desc": "some",
+            "relate": {
+                "dummy1": 1,
+                "dummy2": "value1"
+            }
+        }
+
+        Object = dynamic_model.create_objects_from_json("root_obj2", data)

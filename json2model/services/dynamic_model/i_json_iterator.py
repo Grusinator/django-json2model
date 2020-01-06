@@ -39,15 +39,39 @@ class IJsonIterator:
         raise NotImplementedError
 
     @classmethod
+    @abstractmethod
+    def do_rollback_on_error(cls, parent_ref: str, object_label: str, data):
+        """If the pre_handle_object, handle_attribute and post_handle_object fails, this method can be used to undo the
+         things that was made"""
+        raise NotImplementedError
+
+    @classmethod
     def _iterate_data_structure(cls, data, object_label=None, parent_ref=None):
         if isinstance(data, list):
             return "Why is this a list"
-        object_ref = cls.pre_handle_object(parent_ref, object_label, data)
         attributes, one2one_related_objs, one2many_related_objs = cls._split_into_attributes_and_related_objects(data)
+        try:
+            object_ref = cls.handle_object_and_attributes(parent_ref, object_label, data, attributes)
+        except Exception as e:
+            cls.do_rollback_on_error(parent_ref, object_label, data)
+            logger.error(f"object {object_label} could not be created due to error {e}")
+        else:
+            cls.try_handle_related_objects(object_ref, one2many_related_objs, one2one_related_objs)
+            return object_ref
+
+    @classmethod
+    def try_handle_related_objects(cls, object_ref, one2many_related_objs, one2one_related_objs):
+        try:
+            cls._handle_one2one_related_objects(object_ref, one2one_related_objs)
+            cls._handle_one2many_related_objects(object_ref, one2many_related_objs)
+        except Exception as e:
+            logger.error(f"related objects to object: {object_ref}, could not be created due to error {e}")
+
+    @classmethod
+    def handle_object_and_attributes(cls, parent_ref, object_label, data, attributes: dict):
+        object_ref = cls.pre_handle_object(parent_ref, object_label, data)
         cls._handle_attributes(object_ref, attributes)
         object_ref = cls.post_handle_object(parent_ref, object_ref, data)
-        cls._handle_one2one_related_objects(object_ref, one2one_related_objs)
-        cls._handle_one2many_related_objects(object_ref, one2many_related_objs)
         return object_ref
 
     @classmethod
