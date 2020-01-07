@@ -4,8 +4,8 @@ import django
 from django.db import IntegrityError
 from django.test import TransactionTestCase
 
-from json2model.services import dynamic_model
-from json2model.services.dynamic_model.dynamic_model_mutant import DynamicModelMutant
+from json2model.services.dynamic_model.dynamic_model_builder import DynamicModelBuilder
+from json2model.services.dynamic_model.dynamic_model_utils import get_dynamic_model
 
 
 class TestDynamicModelMutant(TransactionTestCase):
@@ -25,12 +25,15 @@ class TestDynamicModelMutant(TransactionTestCase):
                 "dummy2": "value1"
             }
         }
-        Object = dynamic_model.create_objects_from_json("root_obj3", data)
+
+        root_name = "model_test0"
+        model_builder = DynamicModelBuilder()
+        Object = model_builder.create_models_from_data(root_name, data)
 
         inst = Object(desc="soemthing")
         inst.save()
-        Objrelate = dynamic_model.get_dynamic_model("relate")
-        inst2 = Objrelate(root_obj3=inst, dummy1=2, dummy2="value2")
+        Objrelate = get_dynamic_model("relate")
+        inst2 = Objrelate(model_test0=inst, dummy1=2, dummy2="value2")
         inst2.save()
 
         self.assertTrue(hasattr(inst, "relate"))
@@ -54,13 +57,20 @@ class TestDynamicModelMutant(TransactionTestCase):
                 },
             ]
         }
-        Object = dynamic_model.create_objects_from_json("root_obj4", data)
-        instance = Object(prop2=3)
+        root_name = "model_test1"
+        model_builder = DynamicModelBuilder()
+        ModelObject = model_builder.create_models_from_data(root_name, data)
+
+        instance = ModelObject(prop2=3)
         instance.save()
-        RelObj = dynamic_model.get_dynamic_model("related_obj")
-        inst1 = RelObj(name="Peter Meyer", value=3, root_obj4=instance)
+
+        # instance_builder = DynamicDataInstances()
+        # instances = instance_builder.create_instances_from_data(root_name, data)
+
+        RelObj = get_dynamic_model("related_obj")
+        inst1 = RelObj(name="Peter Meyer", value=3, model_test1=instance)
         inst1.save()
-        inst1 = RelObj(name="Anders Rikvold", value=3, root_obj4=instance)
+        inst1 = RelObj(name="Anders Rikvold", value=3, model_test1=instance)
         inst1.save()
 
     def test_create_random_json(self):
@@ -86,15 +96,17 @@ class TestDynamicModelMutant(TransactionTestCase):
                 }
             }
         }
-        Object = dynamic_model.create_objects_from_json("root_obj2", data)
-        Object = dynamic_model.create_objects_from_json("root_obj2", data)
-        # Obj1 = get_dynamic_model("GlossEntry")
-        # Obj2 = get_dynamic_model("GlossList")
-        # Obj3 = get_dynamic_model("glossary")
+
+        root_name = "model_test2"
+        model_builder = DynamicModelBuilder()
+        model_builder.create_models_from_data(root_name, data)
+
+        # validate here
+        # self.fail()
 
     def test_error_in_create_attribute_does_not_propagate(self):
-        DynamicModelMutant._get_or_create_attribute = Mock()
-        DynamicModelMutant._get_or_create_attribute.side_effect = IntegrityError("Booom!!")
+        DynamicModelBuilder._get_or_create_attribute = Mock()
+        DynamicModelBuilder._get_or_create_attribute.side_effect = IntegrityError("Booom!!")
         data = {
             "newobj1": {
                 "newobj2": {
@@ -103,5 +115,6 @@ class TestDynamicModelMutant(TransactionTestCase):
                 }
             }
         }
-
-        Object = dynamic_model.create_objects_from_json("root_obj5", data)
+        root_name = "model_test3"
+        model_builder = DynamicModelBuilder()
+        ModelObject = model_builder.create_models_from_data(root_name, data)

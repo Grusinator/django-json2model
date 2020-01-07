@@ -5,10 +5,7 @@ import django
 from django.db.models import Model
 from django.test import TransactionTestCase
 
-from json2model.services.dynamic_model import (
-    create_instances_from_json,
-    create_objects_from_json
-)
+from json2model.services.dynamic_model import DynamicDataInstances, DynamicModelBuilder
 
 test_data_path = "./tests/test_data"
 test_data_results_path = "./tests/test_data_results"
@@ -75,8 +72,10 @@ class TestOnJsonData(TransactionTestCase):
         test_data_results_file = build_result_file_path(file)
         expected = try_read_json_file(test_data_results_file)
         root_name = file.replace(".json", "_root_obj")
-        create_objects_from_json(root_name, data)
-        instances = create_instances_from_json(root_name, data)
+        model_builder = DynamicModelBuilder()
+        model_builder.create_models_from_data(root_name, data)
+        instance_builder = DynamicDataInstances()
+        instances = instance_builder.create_instances_from_data(root_name, data)
         instances_json = instances_to_list_of_json(instances)
         if expected:
             self.assertListEqual(instances_json, expected)

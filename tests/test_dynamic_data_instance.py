@@ -1,11 +1,8 @@
 import django
 from django.test import TransactionTestCase
 
-from json2model.services.dynamic_model import (
-    create_instances_from_json,
-    create_objects_from_json,
-    get_dynamic_model
-)
+from json2model.services.dynamic_model import DynamicModelBuilder, DynamicDataInstances
+from json2model.services.dynamic_model.dynamic_model_utils import get_dynamic_model
 
 
 class TestDynamicModelMutant(TransactionTestCase):
@@ -28,8 +25,11 @@ class TestDynamicModelMutant(TransactionTestCase):
                 "dummy2": "value1"
             }
         }
-        create_objects_from_json("root_obj0", data)
-        inst = create_instances_from_json("root_obj0", data)
+        root_name = "instance_test0"
+        model_builder = DynamicModelBuilder()
+        model_builder.create_models_from_data(root_name, data)
+        instance_builder = DynamicDataInstances()
+        inst = instance_builder.create_instances_from_data(root_name, data)
 
         self.assertTrue(hasattr(inst, "relate1"))
         self.assertTrue(hasattr(inst.relate1, "dummy1"))
@@ -51,8 +51,12 @@ class TestDynamicModelMutant(TransactionTestCase):
                 },
             ]
         }
-        create_objects_from_json("root_obj1", data)
-        instance = create_instances_from_json("root_obj1", data)
+        root_name = "instance_test1"
+        model_builder = DynamicModelBuilder()
+        ModelObject = model_builder.create_models_from_data(root_name, data)
+
+        instance_builder = DynamicDataInstances()
+        instances = instance_builder.create_instances_from_data(root_name, data)
 
     def test_create_data_from_random_json(self):
         data = {
@@ -63,8 +67,12 @@ class TestDynamicModelMutant(TransactionTestCase):
                 }
             }
         }
-        create_objects_from_json("obj1", data)
-        obj1 = create_instances_from_json("obj1", data)
+        root_name = "instance_test2"
+        model_builder = DynamicModelBuilder()
+        model_builder.create_models_from_data(root_name, data)
+
+        instance_builder = DynamicDataInstances()
+        instances = instance_builder.create_instances_from_data(root_name, data)
         obj2 = get_dynamic_model("obj2").objects.first()
         obj3 = get_dynamic_model("obj3").objects.first()
         self.assertEqual(obj3.title, "title2")
