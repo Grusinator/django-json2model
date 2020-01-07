@@ -1,4 +1,3 @@
-import unittest
 from unittest.mock import Mock
 
 import django
@@ -93,16 +92,16 @@ class TestDynamicModelMutant(TransactionTestCase):
         # Obj2 = get_dynamic_model("GlossList")
         # Obj3 = get_dynamic_model("glossary")
 
-    @unittest.expectedFailure
-    def test_error_in_create_attribute(self):
+    def test_error_in_create_attribute_does_not_propagate(self):
         DynamicModelMutant._get_or_create_attribute = Mock()
         DynamicModelMutant._get_or_create_attribute.side_effect = IntegrityError("Booom!!")
         data = {
-            "desc": "some",
-            "relate": {
-                "dummy1": 1,
-                "dummy2": "value1"
+            "newobj1": {
+                "newobj2": {
+                    "dummy1": 1,
+                    "dummy2": "value1"
+                }
             }
         }
 
-        Object = dynamic_model.create_objects_from_json("root_obj2", data)
+        Object = dynamic_model.create_objects_from_json("root_obj5", data)

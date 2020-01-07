@@ -1,6 +1,8 @@
 import logging
 from abc import ABCMeta, abstractmethod
 
+from json2model.services.dynamic_model.failed_object import FailedObject
+
 logger = logging.getLogger(__name__)
 
 
@@ -28,7 +30,8 @@ class IJsonIterator:
     def post_handle_object(cls, parent_ref: str, object_ref: str, data):
         """do what ever you must with the current object, but after creation of the relation and attributes.
         implement it as "return object_ref" if no other functionality is needed"""
-        raise NotImplementedError
+        logger.info("post_handle_object method has no implementation")
+        return object_ref
 
     @classmethod
     @abstractmethod
@@ -43,7 +46,7 @@ class IJsonIterator:
     def do_rollback_on_error(cls, parent_ref: str, object_label: str, data):
         """If the pre_handle_object, handle_attribute and post_handle_object fails, this method can be used to undo the
          things that was made"""
-        raise NotImplementedError
+        logger.info("do_rollback_on_error method has no implementation")
 
     @classmethod
     def _iterate_data_structure(cls, data, object_label=None, parent_ref=None):
@@ -55,6 +58,7 @@ class IJsonIterator:
         except Exception as e:
             cls.do_rollback_on_error(parent_ref, object_label, data)
             logger.error(f"object {object_label} could not be created due to error {e}")
+            return FailedObject(object_label, e)
         else:
             cls.try_handle_related_objects(object_ref, one2many_related_objs, one2one_related_objs)
             return object_ref

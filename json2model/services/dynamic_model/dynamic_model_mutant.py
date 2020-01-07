@@ -9,6 +9,7 @@ from mutant.models import ModelDefinition
 
 import json2model.services.dynamic_model.dynamic_model_admin_handler as admin_handler
 from json2model.services.dynamic_model.attribute_types import ATTRIBUTE_TYPES
+from json2model.services.dynamic_model.failed_object import FailedObject
 from json2model.services.dynamic_model.i_json_iterator import IJsonIterator
 from json2model.utils import handle_errors
 
@@ -43,10 +44,13 @@ class DynamicModelMutant(IJsonIterator, ABC):
     @classmethod
     def create_models_from_data(cls, root_label, data):
         object_name = cls.start_iterating_data_structure(data, root_label)
-        object_name = object_name[0] if isinstance(object_name, list) else object_name
+        object_name = cls.get_object_name_if_object_name_is_list(object_name)
         admin_handler.register_all_models()
         return cls.get_dynamic_model(object_name)
 
+    @classmethod
+    def get_object_name_if_object_name_is_list(cls, object_name):
+        return object_name[0] if isinstance(object_name, list) else object_name
 
     @classmethod
     def get_dynamic_model(cls, model_name):
@@ -127,7 +131,10 @@ class DynamicModelMutant(IJsonIterator, ABC):
     @classmethod
     @handle_errors()
     def handle_related_object(cls, parent_ref, related_object_ref, object_label, parent_has_many=False):
-        cls.try_get_or_create_relation_to_parent(parent_ref, related_object_ref, parent_has_many)
+        if isinstance(related_object_ref, FailedObject):
+            return
+        else:
+            cls.try_get_or_create_relation_to_parent(parent_ref, related_object_ref, parent_has_many)
 
     @classmethod
     def try_get_or_create_relation_to_parent(cls, parent_ref, related_object_ref: str, parent_has_many: bool = False):
