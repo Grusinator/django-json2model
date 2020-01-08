@@ -18,6 +18,10 @@ class TestDynamicModelMutant(TransactionTestCase):
         super(TestDynamicModelMutant, cls).setUpClass()
         django.setup()
 
+    def tearDown(self):
+        # TODO delete all model defs between tests
+        pass
+
     def test_create_dynamic_simple(self):
         data = {
             "desc": "some",
@@ -102,7 +106,7 @@ class TestDynamicModelMutant(TransactionTestCase):
         model_builder = DynamicModelBuilder()
         model_builder.create_models_from_data(root_name, data)
 
-        # validate here
+        # TODO validate here
         # self.fail()
 
     def test_error_in_create_attribute_does_not_propagate(self):
@@ -123,7 +127,7 @@ class TestDynamicModelMutant(TransactionTestCase):
 
     def test_if_list_of_objects_with_some_errors_are_caught_correctly(self):
         data = {
-            "newobj1": {
+            "newobj3": {
                 "related2": [
                     {
                         "attribute": 0,
@@ -140,7 +144,7 @@ class TestDynamicModelMutant(TransactionTestCase):
                 ]
             }
         }
-        root_name = "model_test3"
+        root_name = "model_test4"
         model_builder = DynamicModelBuilder()
         model_builder.handle_attribute = Mock(side_effect=make_attributes_with_value_0_fail)
         ModelObject = model_builder.create_models_from_data(root_name, data)
