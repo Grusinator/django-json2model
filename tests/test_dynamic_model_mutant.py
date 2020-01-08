@@ -144,6 +144,7 @@ class TestDynamicModelMutant(TransactionTestCase):
                 ]
             }
         }
+
         root_name = "model_test4"
         model_builder = DynamicModelBuilder()
         model_builder.handle_attribute = Mock(side_effect=make_attributes_with_value_0_fail)
