@@ -54,8 +54,10 @@ class IJsonIterator:
             object_ref = self.handle_object_and_attributes(parent_ref, object_label, data, attributes)
         except Exception as e:
             self.do_rollback_on_error(parent_ref, object_label, data)
-            logger.error(f"object {object_label} could not be created due to error {e}")
-            return FailedObject(object_label, e, data)
+            logger.error(f"object: {object_label}, could not be created due to error: {e}")
+            failed_object = FailedObject(object_label, e, data)
+            self.failed_objects.append(failed_object)
+            return failed_object
         else:
             self.try_handle_related_objects(object_ref, one2many_related_objs, one2one_related_objs)
             return object_ref
@@ -65,7 +67,7 @@ class IJsonIterator:
             self._handle_one2one_related_objects(object_ref, one2one_related_objs)
             self._handle_one2many_related_objects(object_ref, one2many_related_objs)
         except Exception as e:
-            logger.error(f"related objects to object: {object_ref}, could not be created due to error {e}")
+            logger.error(f"related objects to object: {object_ref}, could not be created due to error: {e}")
 
     def handle_object_and_attributes(self, parent_ref, object_label, data, attributes: dict):
         object_ref = self.pre_handle_object(parent_ref, object_label, data)

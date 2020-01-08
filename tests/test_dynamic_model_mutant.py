@@ -6,6 +6,7 @@ from django.test import TransactionTestCase
 
 from json2model.services.dynamic_model.dynamic_model_builder import DynamicModelBuilder
 from json2model.services.dynamic_model.dynamic_model_utils import get_dynamic_model
+from tests.attribute_that_fails import make_attributes_with_value_0_fail
 
 
 class TestDynamicModelMutant(TransactionTestCase):
@@ -118,3 +119,31 @@ class TestDynamicModelMutant(TransactionTestCase):
         root_name = "model_test3"
         model_builder = DynamicModelBuilder()
         ModelObject = model_builder.create_models_from_data(root_name, data)
+        self.assertEqual(len(model_builder.failed_objects), 1)
+
+    def test_if_list_of_objects_with_some_errors_are_caught_correctly(self):
+        data = {
+            "newobj1": {
+                "related2": [
+                    {
+                        "attribute": 0,
+                    },
+                    {
+                        "attribute": 1,
+                    },
+                    {
+                        "attribute": 0,
+                    },
+                    {
+                        "attribute": 1,
+                    }
+                ]
+            }
+        }
+        root_name = "model_test3"
+        model_builder = DynamicModelBuilder()
+        model_builder.handle_attribute = Mock(side_effect=make_attributes_with_value_0_fail)
+        ModelObject = model_builder.create_models_from_data(root_name, data)
+        self.assertEqual(len(model_builder.failed_objects), 2)
+        relatedOb = get_dynamic_model("related2")
+        self.assertIsNotNone(relatedOb)
