@@ -7,10 +7,10 @@ verify_ssl = true
 
 [packages]
 psycopg2 = "*"
-django-mutant = ">=0.3a5"
+django-mutant = {path = "./lib/django-mutant-0.3a5.tar.gz"}
 django-polymodels = ">=1.5.1"
 jsonfield = "*"
-Django = ">=2.0.0,<2.1.0"
+Django ="<2.2.0,>=2.1.15"
 
 [requires]
 python_version = "3.7"

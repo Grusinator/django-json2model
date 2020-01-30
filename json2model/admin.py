@@ -3,9 +3,15 @@ from mutant.models import FieldDefinitionBase, ModelDefinition
 
 import json2model.services.dynamic_model.dynamic_model_admin_handler as admin_handler
 
+
+def build_list_display(field_type):
+    return ["name", ]
+
+
 for field_type in FieldDefinitionBase._field_definitions.values():
     field_name = field_type.__name__
-    attrs = {'model': field_type}
+    list_display = build_list_display(field_type)
+    attrs = {'model': field_type, 'list_display': list_display}
     FieldDefAdmin = type(f'{field_name}Admin', (admin.ModelAdmin,), attrs)
     admin.site.register(field_type, FieldDefAdmin)
 
