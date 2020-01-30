@@ -37,6 +37,6 @@ def handle_attribute_lists(data):
 
 def handle_specific_attribute_labels(attribute_label):
     if attribute_label in NOT_ALLOWED_ATTRIBUTE_NAMES:
-        return f"RENAMED__{attribute_label}"
+        return f"EXTERNAL_RENAMED_{attribute_label}"
     else:
         return attribute_label
