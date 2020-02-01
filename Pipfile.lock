@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "620b237dff6251ba94775fdee399a110a8de67896cf72b91c623474e8ec7186d"
+            "sha256": "68ea28c6c9666c8254db5d5171631c9a0e16aba91931d495313debf966309ea1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -26,6 +26,14 @@
         },
         "django-mutant": {
             "path": "./lib/django-mutant-0.3a5.tar.gz"
+        },
+        "django-picklefield": {
+            "hashes": [
+                "sha256:67a5e156343e3b032cac2f65565f0faa81635a99c7da74b0f07a0f5db467b646",
+                "sha256:e03cb181b7161af38ad6b573af127e4fe9b7cc2c455b42c1ec43eaad525ade0a"
+            ],
+            "index": "pypi",
+            "version": "==2.1.1"
         },
         "django-polymodels": {
             "hashes": [

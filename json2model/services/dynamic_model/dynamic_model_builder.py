@@ -1,9 +1,9 @@
 import logging
 from abc import ABC
 
-import mutant.contrib.related.models
 from django.conf import settings
 from django.db import IntegrityError
+from mutant.contrib.related.models import OneToOneFieldDefinition, ForeignKeyDefinition
 from mutant.models import ModelDefinition
 
 import json2model.services.dynamic_model.dynamic_model_admin_handler as admin_handler
@@ -16,11 +16,36 @@ from json2model.utils import handle_errors
 logger = logging.getLogger(__name__)
 
 APP_LABEL = getattr(settings, 'APP_LABEL_DYNAMIC_MODELS', "json2model")
+RELATE_TO_USER = getattr(settings, 'RELATE_TO_USER', False)
 
 RELATION_TYPES = {
-    False: mutant.contrib.related.models.OneToOneFieldDefinition,
-    True: mutant.contrib.related.models.ForeignKeyDefinition
+    False: OneToOneFieldDefinition,
+    True: ForeignKeyDefinition
 }
+
+
+def get_or_create_user_model_def():
+    model_def, created = ModelDefinition.objects.get_or_create(
+        app_label='test_app',
+        object_name='abstractDummy',
+        defaults={
+            'managed': False,
+        },
+
+    )
+    return model_def
+
+
+def create_user_model_def():
+    model_def, created = ModelDefinition.objects.get_or_create(
+        app_label='test_app',
+        object_name='AbstractDummy',
+        defaults={
+            'managed': False,
+        },
+
+    )
+    return model_def
 
 
 class DynamicModelBuilder(IJsonIterator, ABC):
@@ -84,6 +109,16 @@ class DynamicModelBuilder(IJsonIterator, ABC):
             return object_label
 
     def post_handle_object(self, parent_ref: str, object_ref: str, data):
+        if RELATE_TO_USER:
+            user_model_def = get_or_create_user_model_def()
+            model_def = dm_utils.get_model_def(object_ref)
+            relation_def, created = ForeignKeyDefinition.objects.get_or_create(
+                model_def=model_def,
+                name="user",
+                to=user_model_def,
+                null=True,
+                blank=True
+            )
         return object_ref
 
     @handle_errors()

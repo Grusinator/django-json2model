@@ -49,6 +49,7 @@ INSTALLED_APPS += (
 )
 INSTALLED_APPS += (
     'json2model',
+    'test_app'
 )
 
 MIDDLEWARE = [
