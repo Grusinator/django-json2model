@@ -43,6 +43,7 @@ class DynamicDataInstances(IJsonIterator, ABC):
         return object_ref
 
     def relate_object_to_user(self, object_ref: Model):
+        logger.info(f"attaching user id {self.user_pk} to model {object_ref}")
         object_ref.user_pk = self.user_pk
 
     def handle_related_object(self, parent_ref: Model, related_object_ref: Model, object_label,
