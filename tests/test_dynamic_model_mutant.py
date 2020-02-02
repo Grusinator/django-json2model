@@ -1,4 +1,4 @@
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 import django
 from django.db import IntegrityError
@@ -109,9 +109,9 @@ class TestDynamicModelMutant(TransactionTestCase):
         # TODO validate here
         # self.fail()
 
+    @patch("json2model.services.dynamic_model.dynamic_model_builder.DynamicModelBuilder._get_or_create_attribute",
+           Mock(side_effect=IntegrityError("Booom!!")))
     def test_error_in_create_attribute_does_not_propagate(self):
-        DynamicModelBuilder._get_or_create_attribute = Mock()
-        DynamicModelBuilder._get_or_create_attribute.side_effect = IntegrityError("Booom!!")
         data = {
             "newobj1": {
                 "newobj2": {

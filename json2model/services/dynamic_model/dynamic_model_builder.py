@@ -3,6 +3,7 @@ from abc import ABC
 
 from django.conf import settings
 from django.db import IntegrityError
+from mutant.contrib.numeric.models import IntegerFieldDefinition
 from mutant.contrib.related.models import OneToOneFieldDefinition, ForeignKeyDefinition
 from mutant.models import ModelDefinition
 
@@ -24,28 +25,25 @@ RELATION_TYPES = {
 }
 
 
-def get_or_create_user_model_def():
-    model_def, created = ModelDefinition.objects.get_or_create(
-        app_label='test_app',
-        object_name='abstractDummy',
-        defaults={
-            'managed': False,
-        },
-
-    )
-    return model_def
-
-
-def create_user_model_def():
-    model_def, created = ModelDefinition.objects.get_or_create(
-        app_label='test_app',
-        object_name='AbstractDummy',
-        defaults={
-            'managed': False,
-        },
-
-    )
-    return model_def
+# TODO this is related to another todo about fixing the dynamic foreign key to non dynamic models
+# def get_or_create_user_model_def():
+#     model_def, created = ModelDefinition.objects.get_or_create(
+#         app_label='test_app',
+#         object_name='abstractDummy',
+#         defaults={
+#             'managed': False,
+#         },
+#
+#     )
+#     return model_def
+#
+# def create_user_model_def():
+#     model_def = ModelDefinition.objects.create(
+#         app_label='test_app',
+#         object_name='Dummy',
+#         managed=False
+#     )
+#     return model_def
 
 
 class DynamicModelBuilder(IJsonIterator, ABC):
@@ -108,14 +106,15 @@ class DynamicModelBuilder(IJsonIterator, ABC):
         else:
             return object_label
 
+    @handle_errors()
     def post_handle_object(self, parent_ref: str, object_ref: str, data):
         if RELATE_TO_USER:
-            user_model_def = get_or_create_user_model_def()
+            # TODO: this is not nice, should have been foreign key instead
+            # user_model_def = get_or_create_user_model_def()
             model_def = dm_utils.get_model_def(object_ref)
-            relation_def, created = ForeignKeyDefinition.objects.get_or_create(
+            relation_def, created = IntegerFieldDefinition.objects.get_or_create(
                 model_def=model_def,
-                name="user",
-                to=user_model_def,
+                name="user_pk",
                 null=True,
                 blank=True
             )
