@@ -109,17 +109,20 @@ class DynamicModelBuilder(IJsonIterator, ABC):
     @handle_errors()
     def post_handle_object(self, parent_ref: str, object_ref: str, data):
         if RELATE_TO_USER:
-            logger.info("creating field for user ref")
-            # TODO: this is not nice, should have been foreign key instead
-            # user_model_def = get_or_create_user_model_def()
-            model_def = dm_utils.get_model_def(object_ref)
-            user_field_def, created = IntegerFieldDefinition.objects.get_or_create(
-                model_def=model_def,
-                name="user_pk",
-                null=True,
-                blank=True
-            )
+            self.create_user_ref_field(object_ref)
         return object_ref
+
+    def create_user_ref_field(self, object_ref):
+        logger.debug("creating field for user ref")
+        # TODO: this is not nice, should have been foreign key instead
+        # user_model_def = get_or_create_user_model_def()
+        model_def = dm_utils.get_model_def(object_ref)
+        user_field_def, created = IntegerFieldDefinition.objects.get_or_create(
+            model_def=model_def,
+            name="user_pk",
+            null=True,
+            blank=True
+        )
 
     @handle_errors()
     def handle_related_object(self, parent_ref, related_object_ref, object_label, parent_has_many=False):
