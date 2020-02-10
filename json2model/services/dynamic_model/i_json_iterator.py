@@ -113,7 +113,7 @@ class IJsonIterator:
             elif isinstance(value, self.JSON_ATTRIBUTE_TYPES):
                 properties[name] = value
             elif value is None:
-                logger.warning(f"property {name} has value {value} which is excluded")
+                logger.debug(f"property {name} has value {value} which is excluded")
             else:
                 raise NotImplementedError("the list contains not known attribute data types")
         return properties, one2one_related_objects, one2many_related_objects

@@ -27,8 +27,8 @@ def try_register_model_in_admin(model_def):
         admin.site.register(ObjectModel, ObjectModelAdmin)
         reload_and_clear_cache_admin()
     except admin.sites.AlreadyRegistered:
-        logger.warning(f"model_def: {model_def.name}, was already registered in admin.site, "
-                       f"and could therefore not register")
+        logger.debug(f"model_def: {model_def.name}, was already registered in admin.site, "
+                     f"and could therefore not register")
 
 
 def try_unregister_model_in_admin(model_def):
@@ -37,8 +37,8 @@ def try_unregister_model_in_admin(model_def):
         admin.site.unregister(ObjectModel)
         reload_and_clear_cache_admin()
     except admin.sites.NotRegistered:
-        logger.warning(f"model_def: {model_def.name}, was not registered in admin.site, "
-                       f"and could therefore not unregister")
+        logger.debug(f"model_def: {model_def.name}, was not registered in admin.site, "
+                     f"and could therefore not unregister")
 
 
 def reload_and_clear_cache_admin():
