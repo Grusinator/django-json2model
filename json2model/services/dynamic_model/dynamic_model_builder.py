@@ -10,6 +10,7 @@ from mutant.models import ModelDefinition
 import json2model.services.dynamic_model.dynamic_model_admin_handler as admin_handler
 from json2model.services.dynamic_model import dynamic_model_utils as dm_utils
 from json2model.services.dynamic_model.attribute_types import ATTRIBUTE_TYPES
+from json2model.services.dynamic_model.failed_atttribute import FailedAttribute
 from json2model.services.dynamic_model.failed_object import FailedObject
 from json2model.services.dynamic_model.i_json_iterator import IJsonIterator
 from json2model.utils import handle_errors
@@ -69,7 +70,7 @@ class DynamicModelBuilder(IJsonIterator, ABC):
         model_def.delete()
         return model_def
 
-    @handle_errors(raise_types=(IntegrityError,))
+    @handle_errors(accept_types=(IntegrityError,))
     def handle_attribute(self, object_ref, attribute_label, data):
         attribute_label, data = dm_utils.pre_handle_atts_if_list_and_specific_labels(attribute_label, data)
         field_schema = self._get_or_create_attribute(object_ref, attribute_label, data)
@@ -78,13 +79,19 @@ class DynamicModelBuilder(IJsonIterator, ABC):
     def _get_or_create_attribute(self, object_ref, attribute_label, data):
         SpecificFieldDefinition = self._get_specific_field_def(data)
         model_def = dm_utils.get_model_def(object_ref)
-        field_schema, created = SpecificFieldDefinition.objects.get_or_create(
-            name=attribute_label,
-            model_def=model_def,
-            blank=True,
-            null=True
-        )
-        return field_schema
+        try:
+            return SpecificFieldDefinition.objects.get_or_create(
+                name=attribute_label,
+                model_def=model_def,
+                blank=True,
+                null=True
+            )[0]
+        except IntegrityError as e:
+            att = dm_utils.get_dynamic_attribute(attribute_label, object_ref)
+            # This is a strangely occuring error, maybe because of that the datatype is misidentified
+            failed_att = FailedAttribute(object_ref, attribute_label, e, data)
+            self.failed_objects.append(failed_att)
+            return failed_att
 
     @handle_errors()
     def pre_handle_object(self, parent_ref, object_label, data):

@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="fixed root label issue. root label is not required">
+      <change afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/failed_atttribute.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/i_json_iterator.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/i_json_iterator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_dynamic_model_mutant.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_dynamic_model_mutant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_builder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/failed_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/failed_object.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -389,6 +391,9 @@
       <workItem from="1581938781510" duration="1747000" />
       <workItem from="1581940632564" duration="600000" />
       <workItem from="1581943596785" duration="345000" />
+      <workItem from="1581944346392" duration="1545000" />
+      <workItem from="1581946558016" duration="627000" />
+      <workItem from="1581948405226" duration="1061000" />
     </task>
     <task id="LOCAL-00015" summary="minor admin reorder m.m.">
       <created>1575381964346</created>
@@ -909,11 +914,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="776" height="420" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1576941964424" />
-    <state x="536" y="328" key="com.intellij.ide.util.TipDialog" timestamp="1581938781866">
+    <state x="536" y="328" key="com.intellij.ide.util.TipDialog" timestamp="1581948407293">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="-1144" y="328" key="com.intellij.ide.util.TipDialog/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1576046713619" />
-    <state x="536" y="328" key="com.intellij.ide.util.TipDialog/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581938781866" />
+    <state x="536" y="328" key="com.intellij.ide.util.TipDialog/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581948407293" />
     <state x="490" y="268" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1578420369158" />
     <state x="649" y="420" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578502056301">
       <screen x="0" y="0" width="1680" height="1010" />
@@ -921,12 +926,12 @@
     <state x="-1031" y="421" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575749499924" />
     <state x="649" y="420" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1578502056301" />
     <state x="593" y="343" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1575801759071" />
-    <state x="536" y="110" width="669" height="790" key="find.popup" timestamp="1581936990498">
+    <state x="536" y="110" width="669" height="790" key="find.popup" timestamp="1581948480262">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="536" y="110" width="669" height="790" key="find.popup/-1680.0.1680.1010/0.0.1680.1010/-157.1050.1536.824@0.0.1680.1010" timestamp="1580297617114" />
     <state x="-1144" y="110" width="607" height="789" key="find.popup/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1576412131104" />
-    <state x="536" y="110" width="669" height="790" key="find.popup/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581936990498" />
+    <state x="536" y="110" width="669" height="790" key="find.popup/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581948480262" />
     <state x="490" y="90" width="611" height="644" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1580395907254" />
     <state x="-1041" y="352" width="682" height="305" key="git4idea.ui.GitUnstashDialog" timestamp="1576061545485">
       <screen x="-1680" y="0" width="1680" height="1010" />
@@ -952,7 +957,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_builder.py</url>
-          <line>122</line>
+          <line>129</line>
           <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -977,7 +982,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_utils.py</url>
-          <line>15</line>
+          <line>17</line>
           <option name="timeStamp" value="148" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

@@ -3,6 +3,8 @@ import logging
 from django.core.exceptions import MultipleObjectsReturned
 from mutant.models import ModelDefinition
 
+from json2model.services.dynamic_model.attribute_types import ATTRIBUTE_TYPES
+
 logger = logging.getLogger(__name__)
 
 NOT_ALLOWED_ATTRIBUTE_NAMES = ("id",)
@@ -14,6 +16,17 @@ def get_dynamic_model(model_name):
     except ModelDefinition.DoesNotExist as e:
         e.args = (f"{e.args[0]} Could not find model with name: {model_name}",)
         raise e
+
+
+def get_dynamic_attribute(attribute_name: str, object_name: str = None):
+    found_attributes = []
+    for AttrClass in ATTRIBUTE_TYPES.values():
+        att = AttrClass.objects.filter(name=attribute_name, object_name=object_name)
+        found_attributes.extend(att)
+    if len(found_attributes) > 1:
+        logger.warning(f"get_dynamic_attribute found more than one with name {attribute_name} \
+                        and object name {object_name}")
+    return None or next(found_attributes)
 
 
 def get_model_def(object_name: str):
