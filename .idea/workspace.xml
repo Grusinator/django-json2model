@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="861708a3-a185-432e-a308-ace642806626" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_builder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_dynamic_model_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_dynamic_model_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +90,7 @@
       <recent name="C:\Users\willi\repo\django-json2model\json2model\tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Django tests.Test: tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_if_att_changes_from_int_to_float">
+  <component name="RunManager" selected="Django tests.tests">
     <configuration name="Test: tests.test_dynamic_model_mutant.TestDynamicModelMutant" type="DjangoTestsConfigurationType" temporary="true">
       <module name="django-json2model" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -246,8 +246,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Django tests.Test: tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_if_att_changes_from_int_to_float" />
         <item itemvalue="Django tests.Test: tests.test_dynamic_model_utils.TestDynamicModelUtils" />
+        <item itemvalue="Django tests.Test: tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_if_att_changes_from_int_to_float" />
         <item itemvalue="Django tests.Test: tests.test_dynamic_model_utils.TestDynamicModelUtils.test_get_dynamic_model" />
         <item itemvalue="Django tests.Test: tests.test_dynamic_model_mutant.TestDynamicModelMutant" />
         <item itemvalue="Django tests.Test: tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_no_root_label2" />
@@ -393,14 +393,7 @@
       <workItem from="1581950234820" duration="1493000" />
       <workItem from="1581952125789" duration="1791000" />
       <workItem from="1581953935582" duration="1792000" />
-      <workItem from="1581955779858" duration="282000" />
-    </task>
-    <task id="LOCAL-00017" summary="minor admin reorder m.m.">
-      <created>1575543194986</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1575543194986</updated>
+      <workItem from="1581955779858" duration="586000" />
     </task>
     <task id="LOCAL-00018" summary="refactored views.py and models.py out to an example app">
       <created>1575732443254</created>
@@ -738,7 +731,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581955951419</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="fixed a bug that caused integrity errors when int was mistaken from float">
+      <created>1581956236406</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1581956236406</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -830,11 +830,11 @@
     </state>
     <state x="-949" y="204" width="837" height="703" key="#xdebugger.evaluate/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581955523403" />
     <state x="378" y="107" width="801" height="594" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1578421251488" />
-    <state x="465" y="16" key="CommitChangelistDialog2" timestamp="1581955950625">
+    <state x="465" y="16" key="CommitChangelistDialog2" timestamp="1581956235807">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state x="-1215" y="99" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1576062048912" />
-    <state x="465" y="16" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581955950625" />
+    <state x="465" y="16" key="CommitChangelistDialog2/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581956235807" />
     <state x="425" y="13" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580395977910" />
     <state x="161" y="5" key="DiffContextDialog" timestamp="1581336722411">
       <screen x="0" y="0" width="1680" height="1010" />
@@ -846,29 +846,29 @@
     <state x="-1070" y="273" key="FileChooserDialogImpl/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1576046730302" />
     <state x="610" y="273" key="FileChooserDialogImpl/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581933054873" />
     <state x="558" y="223" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1576774415516" />
-    <state width="1637" height="339" key="GridCell.Tab.0.bottom" timestamp="1581955476712">
+    <state width="1637" height="365" key="GridCell.Tab.0.bottom" timestamp="1581956368066">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1637" height="210" key="GridCell.Tab.0.bottom/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575888642336" />
-    <state width="1637" height="339" key="GridCell.Tab.0.bottom/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581955476712" />
+    <state width="1637" height="365" key="GridCell.Tab.0.bottom/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581956368066" />
     <state width="1493" height="286" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578421786999" />
-    <state width="1637" height="339" key="GridCell.Tab.0.center" timestamp="1581955476712">
+    <state width="1637" height="365" key="GridCell.Tab.0.center" timestamp="1581956368065">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1637" height="210" key="GridCell.Tab.0.center/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575888642336" />
-    <state width="1637" height="339" key="GridCell.Tab.0.center/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581955476712" />
+    <state width="1637" height="365" key="GridCell.Tab.0.center/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581956368065" />
     <state width="1493" height="286" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578421786998" />
-    <state width="1637" height="339" key="GridCell.Tab.0.left" timestamp="1581955476712">
+    <state width="1637" height="365" key="GridCell.Tab.0.left" timestamp="1581956368065">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1637" height="210" key="GridCell.Tab.0.left/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575888642336" />
-    <state width="1637" height="339" key="GridCell.Tab.0.left/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581955476712" />
+    <state width="1637" height="365" key="GridCell.Tab.0.left/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581956368065" />
     <state width="1493" height="286" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578421786998" />
-    <state width="1637" height="339" key="GridCell.Tab.0.right" timestamp="1581955476712">
+    <state width="1637" height="365" key="GridCell.Tab.0.right" timestamp="1581956368065">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1637" height="210" key="GridCell.Tab.0.right/-1680.0.1680.1010/0.0.1680.1010@-1680.0.1680.1010" timestamp="1575888642336" />
-    <state width="1637" height="339" key="GridCell.Tab.0.right/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581955476712" />
+    <state width="1637" height="365" key="GridCell.Tab.0.right/-1680.0.1680.1010/0.0.1680.1010@0.0.1680.1010" timestamp="1581956368065" />
     <state width="1493" height="286" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578421786998" />
     <state width="1637" height="339" key="GridCell.Tab.1.bottom" timestamp="1581955481943">
       <screen x="0" y="0" width="1680" height="1010" />
@@ -961,7 +961,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/json2model/services/dynamic_model/dynamic_model_builder.py</url>
-          <line>131</line>
+          <line>133</line>
           <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1038,7 +1038,7 @@
     <SUITE FILE_PATH="coverage/django_json2model$run_tests__1_.coverage" NAME="run_tests (1) Coverage Results" MODIFIED="1576772071183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__tests_test_relate_to_user_TestRelateToUser_test_get_or_create_user_model_def.coverage" NAME="Test: tests.test_relate_to_user.TestRelateToUser.test_get_or_create_user_model_def Coverage Results" MODIFIED="1580559210240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__tests_test_relate_to_user_TestRelateToUser_test_relate_object_to_user_being_called.coverage" NAME="Test: tests.test_relate_to_user.TestRelateToUser.test_relate_object_to_user_being_called Coverage Results" MODIFIED="1581939815057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/django_json2model$Test__tests_test_dynamic_model_utils_TestDynamicModelUtils.coverage" NAME="Test: tests.test_dynamic_model_utils.TestDynamicModelUtils Coverage Results" MODIFIED="1581955074980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$Test__tests_test_dynamic_model_utils_TestDynamicModelUtils.coverage" NAME="Test: tests.test_dynamic_model_utils.TestDynamicModelUtils Coverage Results" MODIFIED="1581956328620" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel_test_create_dynamic_list_of_objects.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel.test_create_dynamic_list_of_objects Coverage Results" MODIFIED="1574958738666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$test.coverage" NAME="test Coverage Results" MODIFIED="1576773107146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel Coverage Results" MODIFIED="1574950254554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -1047,7 +1047,7 @@
     <SUITE FILE_PATH="coverage/django_json2model$Test__tests_test_dynamic_model_mutant_TestDynamicModelMutant_test_error_in_create_attribute_does_not_propagate.coverage" NAME="Test: tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_error_in_create_attribute_does_not_propagate Coverage Results" MODIFIED="1580624620596" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_test_dynamic_model_mutant_TestDynamicModelMutant_test_create_dynamic_simple.coverage" NAME="Test: json2model.tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_create_dynamic_simple Coverage Results" MODIFIED="1575366105076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__tests_test_relate_to_user_TestRelateToUser.coverage" NAME="Test: tests.test_relate_to_user.TestRelateToUser Coverage Results" MODIFIED="1581939409106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/django_json2model$tests.coverage" NAME="tests Coverage Results" MODIFIED="1581954620545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/django_json2model$tests.coverage" NAME="tests Coverage Results" MODIFIED="1581956368054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__tests_test_dynamic_model_mutant_TestDynamicModelMutant_test_no_root_label2.coverage" NAME="Test: tests.test_dynamic_model_mutant.TestDynamicModelMutant.test_no_root_label2 Coverage Results" MODIFIED="1581944060755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__tests_test_dynamic_model_utils_TestDynamicModelUtils_test_get_dynamic_model.coverage" NAME="Test: tests.test_dynamic_model_utils.TestDynamicModelUtils.test_get_dynamic_model Coverage Results" MODIFIED="1581955006118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/django_json2model$Test__json2model_tests_TestDjangoDynamicModel_test_create_random_json.coverage" NAME="Test: json2model.tests.TestDjangoDynamicModel.test_create_random_json Coverage Results" MODIFIED="1574959043552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

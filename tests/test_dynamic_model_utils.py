@@ -18,14 +18,14 @@ class TestDynamicModelUtils(TransactionTestCase):
         super().setUpClass()
         django.setup()
         data = {
-            "newobj1": {
-                "newobj2": {
+            "newobj600": {
+                "newobj601": {
                     "dummy1": 1,
                     "dummy2": "value1"
                 }
             }
         }
-        root_name = "model_test3"
+        root_name = "model_test8"
         model_builder = DynamicModelBuilder()
         model_builder.create_models_from_data(data, root_name)
 
@@ -36,9 +36,9 @@ class TestDynamicModelUtils(TransactionTestCase):
 
     def test_get_dynamic_attribute(self):
         tests = [
-            ["dummy1", "newobj2", BigIntegerFieldDefinition],
-            ["dummy1", "newobj1", type(None)],
-            ["dummy2", "newobj2", TextFieldDefinition],
+            ["dummy1", "newobj601", BigIntegerFieldDefinition],
+            ["dummy1", "newobj600", type(None)],
+            ["dummy2", "newobj601", TextFieldDefinition],
             ["dummy1", None, BigIntegerFieldDefinition],
         ]
         for test in tests:
