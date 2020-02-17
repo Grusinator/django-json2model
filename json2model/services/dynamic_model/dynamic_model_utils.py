@@ -20,13 +20,16 @@ def get_dynamic_model(model_name):
 
 def get_dynamic_attribute(attribute_name: str, object_name: str = None):
     found_attributes = []
+    filter_args = {"name": attribute_name}
+    if object_name:
+        filter_args["model_def__object_name"] = object_name
     for AttrClass in ATTRIBUTE_TYPES.values():
-        att = AttrClass.objects.filter(name=attribute_name, object_name=object_name)
+        att = AttrClass.objects.filter(**filter_args)
         found_attributes.extend(att)
     if len(found_attributes) > 1:
         logger.warning(f"get_dynamic_attribute found more than one with name {attribute_name} \
                         and object name {object_name}")
-    return None or next(found_attributes)
+    return next(iter(found_attributes), None)
 
 
 def get_model_def(object_name: str):
