@@ -1,19 +1,19 @@
 from datetime import datetime
 
-import mutant.contrib.boolean.models
-import mutant.contrib.file.models
-import mutant.contrib.numeric.models
-import mutant.contrib.temporal.models
-import mutant.contrib.text.models
 from django.contrib.sessions.backends import file
+from mutant.contrib.boolean.models import NullBooleanFieldDefinition
+from mutant.contrib.file.models import FilePathFieldDefinition
+from mutant.contrib.numeric.models import FloatFieldDefinition, BigIntegerFieldDefinition
+from mutant.contrib.temporal.models import DateTimeFieldDefinition
+from mutant.contrib.text.models import TextFieldDefinition
 
 ATTRIBUTE_TYPES = {
-    str: mutant.contrib.text.models.TextFieldDefinition,
-    float: mutant.contrib.numeric.models.FloatFieldDefinition,
-    bool: mutant.contrib.boolean.models.NullBooleanFieldDefinition,
-    int: mutant.contrib.numeric.models.BigIntegerFieldDefinition,
-    file: mutant.contrib.file.models.FilePathFieldDefinition,
-    datetime: mutant.contrib.temporal.models.DateTimeFieldDefinition,
+    str: TextFieldDefinition,
+    float: FloatFieldDefinition,
+    bool: NullBooleanFieldDefinition,
+    int: BigIntegerFieldDefinition,
+    file: FilePathFieldDefinition,
+    datetime: DateTimeFieldDefinition,
     # ('varchar', mutant.contrib.text.models.CharFieldDefinition),
     #
     # ('integer', mutant.contrib.numeric.models.BigIntegerFieldDefinition),

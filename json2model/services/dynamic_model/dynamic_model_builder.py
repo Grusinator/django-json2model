@@ -3,7 +3,8 @@ from abc import ABC
 
 from django.conf import settings
 from django.db import IntegrityError
-from mutant.contrib.numeric.models import IntegerFieldDefinition
+from django.db import transaction
+from mutant.contrib.numeric.models import IntegerFieldDefinition, BigIntegerFieldDefinition, FloatFieldDefinition
 from mutant.contrib.related.models import OneToOneFieldDefinition, ForeignKeyDefinition
 from mutant.models import ModelDefinition
 
@@ -88,6 +89,7 @@ class DynamicModelBuilder(IJsonIterator, ABC):
             )[0]
         except IntegrityError as e:
             att = dm_utils.get_dynamic_attribute(attribute_label, object_ref)
+            self.try_convert_field_def_integer_to_double(att, data)
             # This is a strangely occuring error, maybe because of that the datatype is misidentified
             failed_att = FailedAttribute(object_ref, attribute_label, e, data)
             self.failed_objects.append(failed_att)
@@ -151,7 +153,10 @@ class DynamicModelBuilder(IJsonIterator, ABC):
             return relation_def
 
     def _get_specific_field_def(self, value):
-        return ATTRIBUTE_TYPES.get(type(value), ATTRIBUTE_TYPES[str])
+        return ATTRIBUTE_TYPES.get(self.get_data_type(value), ATTRIBUTE_TYPES[str])
+
+    def get_data_type(self, value):
+        return type(value)
 
     def _get_specific_relation_field_def(self, parent_has_many):
         return RELATION_TYPES[parent_has_many]
@@ -164,3 +169,27 @@ class DynamicModelBuilder(IJsonIterator, ABC):
         for relation_def in RELATION_TYPES.values():
             relation_def.objects.filter(model_def=model_def).delete()
             relation_def.objects.filter(to=model_def).delete()
+
+    def try_convert_field_def_integer_to_double(self, att, data):
+        if self.get_data_type(data) == float and isinstance(att, BigIntegerFieldDefinition):
+            logger.warning(f"attribute {att.name} was identified as integer, but is in fact float")
+            if self.has_no_objects_been_created(att.model_def):
+                self.delete_att_and_create_as_float(att)
+            else:
+                logger.warning("cant change when objects has already been created, ( ..yet)")
+
+    def delete_att_and_create_as_float(self, att):
+        try:
+            with transaction.atomic():
+                att.delete()
+                FloatFieldDefinition.objects.get_or_create(
+                    name=att.name,
+                    model_def=att.model_def,
+                    blank=True,
+                    null=True
+                )
+        except Exception as e:
+            logger.warning(f"Tried to create float from int field def, but failed: {e}")
+
+    def has_no_objects_been_created(self, model_def: ModelDefinition):
+        return model_def.model_class().objects.all().count() == 0

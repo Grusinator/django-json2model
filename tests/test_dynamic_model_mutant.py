@@ -3,10 +3,11 @@ from unittest.mock import Mock, patch
 import django
 from django.db import IntegrityError
 from django.test import TransactionTestCase
+from mutant.contrib.numeric.models import FloatFieldDefinition
 from mutant.models import ModelDefinition
 
 from json2model.services.dynamic_model.dynamic_model_builder import DynamicModelBuilder
-from json2model.services.dynamic_model.dynamic_model_utils import get_dynamic_model
+from json2model.services.dynamic_model.dynamic_model_utils import get_dynamic_model, get_dynamic_attribute
 from tests.attribute_that_fails import make_attributes_with_value_0_fail
 
 
@@ -199,3 +200,11 @@ class TestDynamicModelMutant(TransactionTestCase):
         relatedOb = get_dynamic_model("related4")
         self.assertTrue(len(ModelDefinition.objects.all()) == 2)
         self.assertIsNotNone(relatedOb)
+
+    def test_if_att_changes_from_int_to_float(self):
+        att_name = "floatatt1"
+        data = [{att_name: 1, }, {att_name: 1.3}, ]
+        root_label = "root_obj600"
+        model_builder = DynamicModelBuilder()
+        model_builder.create_models_from_data(data, root_label=root_label)
+        self.assertIsInstance(get_dynamic_attribute(att_name), FloatFieldDefinition)
