@@ -9,7 +9,10 @@ NOT_ALLOWED_ATTRIBUTE_NAMES = ("id",)
 
 
 def get_dynamic_model(model_name):
-    return get_model_def(model_name).model_class()
+    try:
+        return get_model_def(model_name).model_class()
+    except ModelDefinition.DoesNotExist as e:
+        raise e(f"could not find {model_name}")
 
 
 def get_model_def(object_name: str):

@@ -60,7 +60,7 @@ class DynamicDataInstances(IJsonIterator, ABC):
         try:
             setattr(related_object_ref, parent_label, parent_ref)
         except:
-            logger.warning("could not relate objects by obj_ref, trying with pk instead")
+            logger.debug("could not relate objects by obj_ref, trying with pk instead")
             setattr(related_object_ref, f"{parent_label}_id", parent_ref.pk)
         finally:
             related_object_ref.save()
