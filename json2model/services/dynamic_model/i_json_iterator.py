@@ -10,6 +10,7 @@ class IJsonIterator:
     __metaclass__ = ABCMeta
 
     JSON_ATTRIBUTE_TYPES = (str, int, float, bool)
+    DEFAULT_ROOT_LABEL = "DEFAULT_ROOT_LABEL"
 
     def __init__(self):
         self.failed_objects = []
@@ -46,9 +47,7 @@ class IJsonIterator:
          things that was made"""
         logger.info("do_rollback_on_error method has no implementation")
 
-    def _iterate_data_structure(self, data, object_label=None, parent_ref=None):
-        if isinstance(data, list):
-            return "Why is this a list"
+    def _iterate_data_structure(self, data, object_label, parent_ref=None):
         attributes, one2one_related_objs, one2many_related_objs = self._split_into_attributes_and_related_objects(data)
         try:
             object_ref = self.handle_object_and_attributes(parent_ref, object_label, data, attributes)
@@ -121,15 +120,19 @@ class IJsonIterator:
     def list_element_is_objects(self, data):
         return list(map(lambda x: isinstance(x, dict), data))
 
-    def start_iterating_data_structure(self, data, root_label):
+    def start_iterating_data_structure(self, data, root_label=None):
+        if isinstance(data, dict) and root_label:
+            return self._iterate_data_structure(data, object_label=root_label)
+        elif isinstance(data, dict) and not root_label:
+            return self._start_iterating_dict_with_no_root_label(data)
         if isinstance(data, list):
-            object_name = self._start_iterating_as_list(root_label, data)
-        elif isinstance(data, dict):
-            object_name = self._iterate_data_structure(data, object_label=root_label)
+            root_label = root_label or self.DEFAULT_ROOT_LABEL
+            return self._start_iterating_as_list(data, root_label)
         else:
-            raise NotImplementedError("cant handle other datatypes")
-        return object_name
+            raise NotImplementedError(f"cant handle datatype: {type(data)}")
 
-    def _start_iterating_as_list(self, root_label, data):
-        objects = [self._iterate_data_structure(data_elm, object_label=root_label) for data_elm in data]
-        return objects
+    def _start_iterating_dict_with_no_root_label(self, data):
+        return [self._iterate_data_structure(inner_data, label) for label, inner_data in data.items()]
+
+    def _start_iterating_as_list(self, data, root_label):
+        return [self._iterate_data_structure(data_elm, object_label=root_label) for data_elm in data]

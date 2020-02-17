@@ -27,9 +27,9 @@ class TestDynamicModelMutant(TransactionTestCase):
         }
         root_name = "instance_test0"
         model_builder = DynamicModelBuilder()
-        model_builder.create_models_from_data(root_name, data)
+        model_builder.create_models_from_data(data, root_name)
         instance_builder = DynamicDataInstances()
-        inst = instance_builder.create_instances_from_data(root_name, data)
+        inst = instance_builder.create_instances_from_data(data, root_name)
 
         self.assertTrue(hasattr(inst, "relate1"))
         self.assertTrue(hasattr(inst.relate1, "dummy1"))
@@ -53,10 +53,10 @@ class TestDynamicModelMutant(TransactionTestCase):
         }
         root_name = "instance_test1"
         model_builder = DynamicModelBuilder()
-        model_builder.create_models_from_data(root_name, data)
+        model_builder.create_models_from_data(data, root_name)
 
         instance_builder = DynamicDataInstances()
-        instances = instance_builder.create_instances_from_data(root_name, data)
+        instances = instance_builder.create_instances_from_data(data, root_name)
 
     def test_create_data_from_random_json(self):
         data = {
@@ -69,10 +69,10 @@ class TestDynamicModelMutant(TransactionTestCase):
         }
         root_name = "instance_test2"
         model_builder = DynamicModelBuilder()
-        model_builder.create_models_from_data(root_name, data)
+        model_builder.create_models_from_data(data, root_name)
 
         instance_builder = DynamicDataInstances()
-        instances = instance_builder.create_instances_from_data(root_name, data)
+        instances = instance_builder.create_instances_from_data(data, root_name)
         obj2 = get_dynamic_model("obj2").objects.first()
         obj3 = get_dynamic_model("obj3").objects.first()
         self.assertEqual(obj3.title, "title2")

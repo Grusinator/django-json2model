@@ -50,13 +50,9 @@ class DynamicModelBuilder(IJsonIterator, ABC):
     def __init__(self):
         super().__init__()
 
-    def create_models_from_data(self, root_label, data):
-        object_name = self.start_iterating_data_structure(data, root_label)
-        object_name = self.get_object_name_if_object_name_is_list(object_name)
+    def create_models_from_data(self, data, root_label=None):
+        self.start_iterating_data_structure(data, root_label)
         admin_handler.register_all_models()
-
-    def get_object_name_if_object_name_is_list(self, object_name):
-        return object_name[0] if isinstance(object_name, list) else object_name
 
     def delete_all_dynamic_models(self, **filter_kwargs):
         model_defs = ModelDefinition.objects.filter(**filter_kwargs)

@@ -73,9 +73,9 @@ class TestOnJsonData(TransactionTestCase):
         expected = try_read_json_file(test_data_results_file)
         root_name = file.replace(".json", "_root_obj")
         model_builder = DynamicModelBuilder()
-        model_builder.create_models_from_data(root_name, data)
+        model_builder.create_models_from_data(data, root_name)
         instance_builder = DynamicDataInstances()
-        instances = instance_builder.create_instances_from_data(root_name, data)
+        instances = instance_builder.create_instances_from_data(data, root_name)
         instances_json = instances_to_list_of_json(instances)
         if expected:
             self.assertListEqual(instances_json, expected)

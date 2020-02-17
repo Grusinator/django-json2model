@@ -33,7 +33,7 @@ class TestDynamicModelMutant(TransactionTestCase):
 
         root_name = "model_test0"
         model_builder = DynamicModelBuilder()
-        model_builder.create_models_from_data(root_name, data)
+        model_builder.create_models_from_data(data, root_name)
         Object = get_dynamic_model(root_name)
 
         inst = Object(desc="soemthing")
@@ -65,7 +65,7 @@ class TestDynamicModelMutant(TransactionTestCase):
         }
         root_name = "model_test1"
         model_builder = DynamicModelBuilder()
-        model_builder.create_models_from_data(root_name, data)
+        model_builder.create_models_from_data(data, root_name)
         ModelObject = get_dynamic_model(root_name)
         instance = ModelObject(prop2=3)
         instance.save()
@@ -105,7 +105,7 @@ class TestDynamicModelMutant(TransactionTestCase):
 
         root_name = "model_test2"
         model_builder = DynamicModelBuilder()
-        model_builder.create_models_from_data(root_name, data)
+        model_builder.create_models_from_data(data, root_name)
 
         # TODO validate here
         # self.fail()
@@ -123,7 +123,7 @@ class TestDynamicModelMutant(TransactionTestCase):
         }
         root_name = "model_test3"
         model_builder = DynamicModelBuilder()
-        model_builder.create_models_from_data(root_name, data)
+        model_builder.create_models_from_data(data, root_name)
         self.assertEqual(len(model_builder.failed_objects), 1)
 
     def test_if_list_of_objects_with_some_errors_are_caught_correctly(self):
@@ -149,7 +149,26 @@ class TestDynamicModelMutant(TransactionTestCase):
         root_name = "model_test4"
         model_builder = DynamicModelBuilder()
         model_builder.handle_attribute = Mock(side_effect=make_attributes_with_value_0_fail)
-        model_builder.create_models_from_data(root_name, data)
+        model_builder.create_models_from_data(data, root_name)
         self.assertEqual(len(model_builder.failed_objects), 2)
         relatedOb = get_dynamic_model("related2")
+        self.assertIsNotNone(relatedOb)
+
+    def test_no_root_label(self):
+        data = {
+            "newobj4": {
+                "related3": [
+                    {
+                        "attribute": 0,
+                    }
+                ]
+            },
+            "newobj5": {
+                "att2": 4
+            }
+        }
+
+        model_builder = DynamicModelBuilder()
+        model_builder.create_models_from_data(data, root_label=None)
+        relatedOb = get_dynamic_model("newobj5")
         self.assertIsNotNone(relatedOb)
