@@ -3,6 +3,7 @@ from unittest.mock import Mock, patch
 import django
 from django.db import IntegrityError
 from django.test import TransactionTestCase
+from mutant.models import ModelDefinition
 
 from json2model.services.dynamic_model.dynamic_model_builder import DynamicModelBuilder
 from json2model.services.dynamic_model.dynamic_model_utils import get_dynamic_model
@@ -19,6 +20,7 @@ class TestDynamicModelMutant(TransactionTestCase):
         django.setup()
 
     def tearDown(self):
+        # ModelDefinition.objects.all().delete()
         # TODO delete all model defs between tests
         pass
 
@@ -171,4 +173,29 @@ class TestDynamicModelMutant(TransactionTestCase):
         model_builder = DynamicModelBuilder()
         model_builder.create_models_from_data(data, root_label=None)
         relatedOb = get_dynamic_model("newobj5")
+        self.assertIsNotNone(relatedOb)
+
+    def test_no_root_label2(self):
+        data = {
+            "newobj6": [
+                {
+                    "related4": [
+                        {
+                            "attribute": 0,
+                        }
+                    ]
+                }, {
+                    "related4": [
+                        {
+                            "attribute": 1,
+                        }
+                    ]
+                },
+            ]
+        }
+
+        model_builder = DynamicModelBuilder()
+        model_builder.create_models_from_data(data, root_label=None)
+        relatedOb = get_dynamic_model("related4")
+        self.assertTrue(len(ModelDefinition.objects.all()) == 2)
         self.assertIsNotNone(relatedOb)

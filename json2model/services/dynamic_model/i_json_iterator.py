@@ -132,7 +132,9 @@ class IJsonIterator:
             raise NotImplementedError(f"cant handle datatype: {type(data)}")
 
     def _start_iterating_dict_with_no_root_label(self, data):
-        return [self._iterate_data_structure(inner_data, label) for label, inner_data in data.items()]
+        # We dont know if the data inside the dict is a list or dict, but since root_label is now set
+        #  it will start iterating after each of those method calls
+        return [self.start_iterating_data_structure(inner_data, label) for label, inner_data in data.items()]
 
     def _start_iterating_as_list(self, data, root_label):
         return [self._iterate_data_structure(data_elm, object_label=root_label) for data_elm in data]
