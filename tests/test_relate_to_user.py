@@ -33,7 +33,8 @@ class TestRelateToUser(TransactionTestCase):
         }
         root_name = "user_test_1"
         model_builder = DynamicModelBuilder()
-        ModelObject = model_builder.create_models_from_data(root_name, data)
+        model_builder.create_models_from_data(root_name, data)
+        ModelObject = get_dynamic_model(root_name)
         inst = ModelObject.objects.create(prop2=3, user_pk=self.user.pk)
 
     @patch("json2model.services.dynamic_model.dynamic_data_instances.DynamicDataInstances.relate_object_to_user",

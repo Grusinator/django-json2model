@@ -33,7 +33,8 @@ class TestDynamicModelMutant(TransactionTestCase):
 
         root_name = "model_test0"
         model_builder = DynamicModelBuilder()
-        Object = model_builder.create_models_from_data(root_name, data)
+        model_builder.create_models_from_data(root_name, data)
+        Object = get_dynamic_model(root_name)
 
         inst = Object(desc="soemthing")
         inst.save()
@@ -64,8 +65,8 @@ class TestDynamicModelMutant(TransactionTestCase):
         }
         root_name = "model_test1"
         model_builder = DynamicModelBuilder()
-        ModelObject = model_builder.create_models_from_data(root_name, data)
-
+        model_builder.create_models_from_data(root_name, data)
+        ModelObject = get_dynamic_model(root_name)
         instance = ModelObject(prop2=3)
         instance.save()
 
@@ -122,7 +123,7 @@ class TestDynamicModelMutant(TransactionTestCase):
         }
         root_name = "model_test3"
         model_builder = DynamicModelBuilder()
-        ModelObject = model_builder.create_models_from_data(root_name, data)
+        model_builder.create_models_from_data(root_name, data)
         self.assertEqual(len(model_builder.failed_objects), 1)
 
     def test_if_list_of_objects_with_some_errors_are_caught_correctly(self):
@@ -148,7 +149,7 @@ class TestDynamicModelMutant(TransactionTestCase):
         root_name = "model_test4"
         model_builder = DynamicModelBuilder()
         model_builder.handle_attribute = Mock(side_effect=make_attributes_with_value_0_fail)
-        ModelObject = model_builder.create_models_from_data(root_name, data)
+        model_builder.create_models_from_data(root_name, data)
         self.assertEqual(len(model_builder.failed_objects), 2)
         relatedOb = get_dynamic_model("related2")
         self.assertIsNotNone(relatedOb)

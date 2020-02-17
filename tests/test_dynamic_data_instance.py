@@ -53,7 +53,7 @@ class TestDynamicModelMutant(TransactionTestCase):
         }
         root_name = "instance_test1"
         model_builder = DynamicModelBuilder()
-        ModelObject = model_builder.create_models_from_data(root_name, data)
+        model_builder.create_models_from_data(root_name, data)
 
         instance_builder = DynamicDataInstances()
         instances = instance_builder.create_instances_from_data(root_name, data)

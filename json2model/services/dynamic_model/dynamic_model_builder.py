@@ -54,7 +54,6 @@ class DynamicModelBuilder(IJsonIterator, ABC):
         object_name = self.start_iterating_data_structure(data, root_label)
         object_name = self.get_object_name_if_object_name_is_list(object_name)
         admin_handler.register_all_models()
-        return dm_utils.get_dynamic_model(object_name)
 
     def get_object_name_if_object_name_is_list(self, object_name):
         return object_name[0] if isinstance(object_name, list) else object_name

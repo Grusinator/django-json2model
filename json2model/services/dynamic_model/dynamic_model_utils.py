@@ -12,7 +12,7 @@ def get_dynamic_model(model_name):
     try:
         return get_model_def(model_name).model_class()
     except ModelDefinition.DoesNotExist as e:
-        e.args[0] += f" Could not find model with name: {model_name}"
+        e.args = (f"{e.args[0]} Could not find model with name: {model_name}",)
         raise e
 
 
