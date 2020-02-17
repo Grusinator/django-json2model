@@ -89,11 +89,13 @@ class DynamicModelBuilder(IJsonIterator, ABC):
             )[0]
         except IntegrityError as e:
             att = dm_utils.get_dynamic_attribute(attribute_label, object_ref)
-            self.try_convert_field_def_integer_to_double(att, data)
-            # This is a strangely occuring error, maybe because of that the datatype is misidentified
-            failed_att = FailedAttribute(object_ref, attribute_label, e, data)
-            self.failed_objects.append(failed_att)
-            return failed_att
+            new_att = self.try_convert_field_def_integer_to_double(att, data)
+            if new_att:
+                return new_att
+            else:
+                failed_att = FailedAttribute(object_ref, attribute_label, e, data)
+                self.failed_objects.append(failed_att)
+                return failed_att
 
     @handle_errors()
     def pre_handle_object(self, parent_ref, object_label, data):
@@ -174,7 +176,7 @@ class DynamicModelBuilder(IJsonIterator, ABC):
         if self.get_data_type(data) == float and isinstance(att, BigIntegerFieldDefinition):
             logger.warning(f"attribute {att.name} was identified as integer, but is in fact float")
             if self.has_no_objects_been_created(att.model_def):
-                self.delete_att_and_create_as_float(att)
+                return self.delete_att_and_create_as_float(att)
             else:
                 logger.warning("cant change when objects has already been created, ( ..yet)")
 
@@ -182,12 +184,12 @@ class DynamicModelBuilder(IJsonIterator, ABC):
         try:
             with transaction.atomic():
                 att.delete()
-                FloatFieldDefinition.objects.get_or_create(
+                return FloatFieldDefinition.objects.get_or_create(
                     name=att.name,
                     model_def=att.model_def,
                     blank=True,
                     null=True
-                )
+                )[0]
         except Exception as e:
             logger.warning(f"Tried to create float from int field def, but failed: {e}")
 
