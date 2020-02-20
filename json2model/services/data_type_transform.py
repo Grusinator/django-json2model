@@ -1,6 +1,7 @@
 from datetime import datetime
 from parser import ParserError
 
+import dateutil
 import dateutil.parser
 
 

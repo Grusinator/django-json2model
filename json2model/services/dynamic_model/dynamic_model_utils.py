@@ -10,12 +10,18 @@ logger = logging.getLogger(__name__)
 NOT_ALLOWED_ATTRIBUTE_NAMES = ("id",)
 
 
-def get_dynamic_model(model_name):
-    try:
-        return get_model_def(model_name).model_class()
-    except ModelDefinition.DoesNotExist as e:
-        e.args = (f"{e.args[0]} Could not find model with name: {model_name}",)
-        raise e
+def get_dynamic_model(model_name, prefix=None):
+    return get_model_def(model_name, prefix).model_class()
+
+
+def is_already_prefixed(object_label, prefix):
+    return prefix == object_label[:len(prefix)]
+
+
+def add_prefix_to_model_label(object_label, prefix):
+    if prefix and not is_already_prefixed(object_label, prefix):
+        object_label = f"{prefix}_{object_label}"
+    return object_label
 
 
 def get_dynamic_attribute(attribute_name: str, object_name: str = None):
@@ -32,12 +38,26 @@ def get_dynamic_attribute(attribute_name: str, object_name: str = None):
     return next(iter(found_attributes), None)
 
 
-def get_model_def(object_name: str):
+def get_model_def(object_name: str, prefix=None):
+    search_args = build_search_kwargs(object_name, prefix)
     try:
-        return ModelDefinition.objects.get(object_name=object_name)
+        return ModelDefinition.objects.get(**search_args)
+    except ModelDefinition.DoesNotExist as e:
+        e.args = (f"{e.args[0]} Could not find model with name: {object_name}",)
+        raise e
     except MultipleObjectsReturned as e:
         logger.warning(f"multiple objects found with object name {object_name}")
-        return ModelDefinition.objects.filter(object_name=object_name).first()
+        return ModelDefinition.objects.filter(**search_args).first()
+
+
+def build_search_kwargs(object_name, prefix):
+    search_key = "object_name"
+    if prefix:
+        object_name = add_prefix_to_model_label(object_name, prefix)
+    else:
+        search_key += "__endswith"
+    search_args = {search_key: object_name}
+    return search_args
 
 
 def pre_handle_atts_if_list_and_specific_labels(attribute_label, data):

@@ -14,9 +14,10 @@ RELATE_TO_USER = getattr(settings, 'RELATE_TO_USER', False)
 
 
 class DynamicDataInstances(IJsonIterator, ABC):
-    def __init__(self, user_pk=None):
+    def __init__(self, user_pk=None, model_name_prefix=None):
         super().__init__()
         self.user_pk = user_pk
+        self.model_name_prefix = model_name_prefix
 
     def create_instances_from_data(self, data, root_label=None):
         root_instance = self.start_iterating_data_structure(data, root_label)
@@ -34,7 +35,7 @@ class DynamicDataInstances(IJsonIterator, ABC):
             logger.warning(f"attribute label did not exist: {e}")
 
     def pre_handle_object(self, parent_ref: Model, object_label: str, data):
-        DjangoModel = dm_utils.get_dynamic_model(model_name=object_label)
+        DjangoModel = dm_utils.get_dynamic_model(model_name=object_label, prefix=self.model_name_prefix)
         instance = DjangoModel()
         return instance
 

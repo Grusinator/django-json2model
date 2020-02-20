@@ -12,6 +12,7 @@ import json2model.services.dynamic_model.dynamic_model_admin_handler as admin_ha
 from json2model.services import data_type_transform
 from json2model.services.dynamic_model import dynamic_model_utils as dm_utils
 from json2model.services.dynamic_model.attribute_types import ATTRIBUTE_TYPES
+from json2model.services.dynamic_model.dynamic_model_utils import add_prefix_to_model_label
 from json2model.services.dynamic_model.failed_atttribute import FailedAttribute
 from json2model.services.dynamic_model.failed_object import FailedObject
 from json2model.services.dynamic_model.i_json_iterator import IJsonIterator
@@ -50,7 +51,8 @@ RELATION_TYPES = {
 
 
 class DynamicModelBuilder(IJsonIterator, ABC):
-    def __init__(self):
+    def __init__(self, model_name_prefix=None):
+        self.model_name_prefix = model_name_prefix
         super().__init__()
 
     def create_models_from_data(self, data, root_label=None):
@@ -100,6 +102,7 @@ class DynamicModelBuilder(IJsonIterator, ABC):
 
     @handle_errors()
     def pre_handle_object(self, parent_ref, object_label, data):
+        object_label = add_prefix_to_model_label(object_label, self.model_name_prefix)
         try:
             model_def, created = ModelDefinition.objects.get_or_create(
                 app_label=APP_LABEL,
