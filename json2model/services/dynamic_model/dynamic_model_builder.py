@@ -53,6 +53,7 @@ RELATION_TYPES = {
 class DynamicModelBuilder(IJsonIterator, ABC):
     def __init__(self, model_name_prefix=None):
         self.model_name_prefix = model_name_prefix
+        self.built_objects = []
         super().__init__()
 
     def create_models_from_data(self, data, root_label=None):
@@ -114,6 +115,7 @@ class DynamicModelBuilder(IJsonIterator, ABC):
         except Exception as e:
             logger.error(f"object {object_label} could not be created. ERROR msg: {e}")
         else:
+            self.built_objects.append(model_def)
             return object_label
 
     @handle_errors()

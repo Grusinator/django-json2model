@@ -1,8 +1,11 @@
+import logging
 from datetime import datetime
-from parser import ParserError
 
 import dateutil
 import dateutil.parser
+from dateutil.parser._parser import ParserError
+
+logger = logging.getLogger(__name__)
 
 
 def try_transform_to_float(elm):
@@ -60,8 +63,8 @@ def transform_data_type(element):
                 # try the converting function of that type
                 # if it doesnt fail, thats our type
                 return transform_methods[typ](element)
-            except ValueError:
-                pass
+            except ValueError as e:
+                logger.debug(f"failed with error msg: {e}")
         # if nothing else works, return as string
         return str(element)
 
