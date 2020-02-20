@@ -115,7 +115,8 @@ class DynamicModelBuilder(IJsonIterator, ABC):
         except Exception as e:
             logger.error(f"object {object_label} could not be created. ERROR msg: {e}")
         else:
-            self.built_objects.append(model_def)
+            if created:
+                self.built_objects.append(model_def)
             return object_label
 
     @handle_errors()
