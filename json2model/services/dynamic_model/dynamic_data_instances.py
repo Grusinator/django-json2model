@@ -4,6 +4,7 @@ from abc import ABC
 from django.conf import settings
 from django.db.models.base import Model
 
+from json2model.services import data_type_transform
 from json2model.services.dynamic_model import dynamic_model_utils as dm_utils
 from json2model.services.dynamic_model.i_json_iterator import IJsonIterator
 
@@ -23,6 +24,7 @@ class DynamicDataInstances(IJsonIterator, ABC):
 
     def handle_attribute(self, object_ref: Model, attribute_label: str, data):
         attribute_label, data = dm_utils.pre_handle_atts_if_list_and_specific_labels(attribute_label, data)
+        data = data_type_transform.transform_data_type(data)
         self.try_set_attribute(attribute_label, data, object_ref)
 
     def try_set_attribute(self, attribute_label, data, object_ref):

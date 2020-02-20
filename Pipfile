@@ -9,9 +9,10 @@ verify_ssl = true
 psycopg2 = "*"
 django-mutant = {path = "./lib/django-mutant-0.3a5.tar.gz"}
 django-polymodels = ">=1.5.1"
-jsonfield = "*"
+jsonfield = "==2.1.1"
 Django ="<2.2.0,>=2.1.15"
 django-picklefield = "*"
+python-dateutil = "*"
 
 [requires]
 python_version = "3.7"

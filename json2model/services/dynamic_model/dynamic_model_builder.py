@@ -9,6 +9,7 @@ from mutant.contrib.related.models import OneToOneFieldDefinition, ForeignKeyDef
 from mutant.models import ModelDefinition
 
 import json2model.services.dynamic_model.dynamic_model_admin_handler as admin_handler
+from json2model.services import data_type_transform
 from json2model.services.dynamic_model import dynamic_model_utils as dm_utils
 from json2model.services.dynamic_model.attribute_types import ATTRIBUTE_TYPES
 from json2model.services.dynamic_model.failed_atttribute import FailedAttribute
@@ -158,6 +159,7 @@ class DynamicModelBuilder(IJsonIterator, ABC):
         return ATTRIBUTE_TYPES.get(self.get_data_type(value), ATTRIBUTE_TYPES[str])
 
     def get_data_type(self, value):
+        value = data_type_transform.transform_data_type(value)
         return type(value)
 
     def _get_specific_relation_field_def(self, parent_has_many):

@@ -125,7 +125,7 @@ class IJsonIterator:
             return self._iterate_data_structure(data, object_label=root_label)
         elif isinstance(data, dict) and not root_label:
             return self._start_iterating_dict_with_no_root_label(data)
-        if isinstance(data, list):
+        elif isinstance(data, list):
             root_label = root_label or self.DEFAULT_ROOT_LABEL
             return self._start_iterating_as_list(data, root_label)
         else:
