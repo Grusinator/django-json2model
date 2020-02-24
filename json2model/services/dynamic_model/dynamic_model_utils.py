@@ -80,3 +80,13 @@ def handle_specific_attribute_labels(attribute_label):
         return f"EXTERNAL_RENAMED_{attribute_label}"
     else:
         return attribute_label
+
+
+def get_all_dynamic_models(filter: dict = None):
+    if filter is None:
+        filter = {}
+    return [model_def.model_class() for model_def in ModelDefinition.objects.filter(**filter)]
+
+
+def get_all_model_definition_names():
+    return [model_def.object_name for model_def in ModelDefinition.objects.all()]
