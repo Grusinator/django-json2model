@@ -3,7 +3,5 @@ psycopg2
 django-mutant -e /home/grusinator/repo/django-mutant
 django-polymodels>=1.5.1
 jsonfield
-
-pytest
 pytest
 pytest-django
