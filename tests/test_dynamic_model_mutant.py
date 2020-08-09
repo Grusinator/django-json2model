@@ -1,27 +1,16 @@
 from unittest.mock import Mock
 
-import django
+import pytest
 from django.db import IntegrityError
-from django.test import TransactionTestCase
 
 from json2model.services.dynamic_model.dynamic_model_builder import DynamicModelBuilder
 from json2model.services.dynamic_model.dynamic_model_utils import get_dynamic_model
 from tests.attribute_that_fails import make_attributes_with_value_0_fail
 
 
-class TestDynamicModelMutant(TransactionTestCase):
-    """Tests for the application views."""
+class TestDynamicModelMutant:
 
-    # Django requires an explicit setup() when running tests in PTVS
-    @classmethod
-    def setUpClass(cls):
-        super(TestDynamicModelMutant, cls).setUpClass()
-        django.setup()
-
-    def tearDown(self):
-        # TODO delete all model defs between tests
-        pass
-
+    @pytest.mark.django_db
     def test_create_dynamic_simple(self):
         data = {
             "desc": "some",
@@ -41,12 +30,13 @@ class TestDynamicModelMutant(TransactionTestCase):
         inst2 = Objrelate(model_test0=inst, dummy1=2, dummy2="value2")
         inst2.save()
 
-        self.assertTrue(hasattr(inst, "relate"))
-        self.assertTrue(hasattr(inst.relate, "dummy1"))
-        self.assertTrue(hasattr(inst.relate, "dummy2"))
-        self.assertEqual(inst.relate.dummy1, 2)
-        self.assertEqual(inst.relate.dummy2, "value2")
+        assert hasattr(inst, "relate")
+        assert hasattr(inst.relate, "dummy1")
+        assert hasattr(inst.relate, "dummy2")
+        assert inst.relate.dummy1 == 2
+        assert inst.relate.dummy2 == "value2"
 
+    @pytest.mark.django_db
     def test_create_dynamic_list_of_objects(self):
         data = {
             "prop2": 1,
@@ -78,6 +68,7 @@ class TestDynamicModelMutant(TransactionTestCase):
         inst1 = RelObj(name="Anders Rikvold", value=3, model_test1=instance)
         inst1.save()
 
+    @pytest.mark.django_db
     def test_create_random_json(self):
         data = {
             "glossary": {
@@ -109,6 +100,7 @@ class TestDynamicModelMutant(TransactionTestCase):
         # TODO validate here
         # self.fail()
 
+    @pytest.mark.django_db
     def test_error_in_create_attribute_does_not_propagate(self):
         DynamicModelBuilder._get_or_create_attribute = Mock()
         DynamicModelBuilder._get_or_create_attribute.side_effect = IntegrityError("Booom!!")
@@ -123,8 +115,9 @@ class TestDynamicModelMutant(TransactionTestCase):
         root_name = "model_test3"
         model_builder = DynamicModelBuilder()
         ModelObject = model_builder.create_models_from_data(root_name, data)
-        self.assertEqual(len(model_builder.failed_objects), 1)
+        assert len(model_builder.failed_objects) == 1
 
+    @pytest.mark.django_db
     def test_if_list_of_objects_with_some_errors_are_caught_correctly(self):
         data = {
             "newobj3": {
@@ -149,6 +142,6 @@ class TestDynamicModelMutant(TransactionTestCase):
         model_builder = DynamicModelBuilder()
         model_builder.handle_attribute = Mock(side_effect=make_attributes_with_value_0_fail)
         ModelObject = model_builder.create_models_from_data(root_name, data)
-        self.assertEqual(len(model_builder.failed_objects), 2)
+        assert len(model_builder.failed_objects) == 2
         relatedOb = get_dynamic_model("related2")
-        self.assertIsNotNone(relatedOb)
+        assert relatedOb is not None
